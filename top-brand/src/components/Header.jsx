@@ -28,7 +28,10 @@ const Header = ()=> {
                 </ul>
             </div>
 
-            <div className=" w-36 h-9 rounded-lg bg-background flex-row-center shadow-lg">
+           {/* dummy div */}
+            <div className="w-36 bg-trasparent border-0"></div>
+
+            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-bg-light flex-row-center shadow-lg">
                 <div className="w-2/3 h-full rounded-2xl flex-row-center gap-1 pl-1">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-maintext"/>
                     <p className="text-text">Search</p>
@@ -39,7 +42,7 @@ const Header = ()=> {
                 </div>
             </div>
 
-{/*             <button className="hidden sm:block text-background bg-secondary m-0 rounded-3xl w-20 md:w-28 h-10 green-shadow">Call Now</button> */}
+{/*             <button className="hidden sm:block text-bg-ligbg-bg-light bg-secondary m-0 rounded-3xl w-20 md:w-28 h-10 green-shadow">Call Now</button> */}
             
             {/* Mobile menu button */}
             <div className="mobile-menu-button sm:hidden">

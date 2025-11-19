@@ -8,14 +8,17 @@
 }
 
 @theme {
-/* theme colors */
-    --color-background: #FFFFFF;
+/* THEME LIGHT */
     --color-primary: #E4F1F0;
-    --color-faded-primary: #dce8e7; /*  */
+    --color-faded-primary: #dce8e7;
     --color-secondary: #4FBB2E;
-    --color-maintext: #01110A;
-    --color-text: #1a1e1e;
-    --color-faded-white:hsl(0,0%,75%);
+      /* bg colors */
+    --color-bg: oklch(0.98 0 264);
+    --color-bg-dark: oklch(0.96 0 264);
+    --color-bg-light: oklch(1 0 264);
+    /* text colors */
+    --color-maintext: oklch(0.15 0 264);
+    --color-text: oklch(0.4 0 264);
 
 /* fonts */
     --font-sans: "Mona Sans", sans-serif;
@@ -25,10 +28,7 @@
 
 html,
 body {
-    width: 100%;
-    background-color: #FFFFFF;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+  @apply scroll-smooth w-full bg-bg overflow-x-hidden;
 }
 @layer utilities{
     .green-shadow{
@@ -47,21 +47,21 @@ body {
     } 
 
     .bodyText{
-      @apply text-slate-600 leading-7  tracking-wide w-[80%] sm:w-[70%] lg:w-[60%] text-left sm:text-center m-auto lg:mt-2 mb-16;
+      @apply text-text leading-7  tracking-wide w-[80%] sm:w-[70%] lg:w-[60%] text-left sm:text-center m-auto lg:mt-2 mb-16;
     } 
     .sideBodyText{
-      @apply text-slate-600 leading-7  tracking-wide w-[90%] text-center md:text-left  m-auto mt-4 ;
+      @apply text-text leading-7  tracking-wide w-[90%] text-center md:text-left  m-auto mt-4 ;
     } 
 
 
    /*  card */
     .cardText{
-      @apply text-slate-600 leading-7 sm:leading-8 tracking-wide text-center lg:text-left;
+      @apply text-text leading-7 sm:leading-8 tracking-wide lg:text-left;
     } 
 
    /*  styling body Icons */
     .mainIcon{
-      @apply text-4xl text-secondary mb-2;
+      @apply text-4xl text-secondary;
     }
     .subIcon{
       @apply text-xl text-maintext;
@@ -119,7 +119,7 @@ body {
       @apply px-4 py-2 font-bold rounded ;
     }
     .btn-primary {
-      @apply px-2 py-2 w-32 bg-secondary rounded-sm cursor-pointer text-background font-medium shadow-md;
+      @apply px-2 py-2 w-32 bg-secondary rounded-sm cursor-pointer text-bg font-medium shadow-md;
     }
     .btn-secondary {
       @apply px-2 py-2 bg-none border w-32 border-secondary rounded-sm cursor-pointer text-maintext font-medium shadow-md;
@@ -140,10 +140,10 @@ body {
       @apply cursor-pointer hover:brightness-90 hover:text-secondary duration-200;
     }
     .mobileList li{
-      @apply text-background pl-4 w-full h-10 flex flex-row items-center;
+      @apply text-bg pl-4 w-full h-10 flex flex-row items-center;
     }
     .mobileNavIcon{
-      @apply text-xl text-background mr-3;
+      @apply text-xl text-bg mr-3;
     }
     .navAngleIcon{
       @apply mr-2 float-end text-text text-sm mt-2;
@@ -151,7 +151,7 @@ body {
 
     /* Footer list settings */
     .footerList{
-        @apply flex flex-col-center items-start justify-evenly w-fit h-fit gap-4 text-background text-sm;
+        @apply flex flex-col-center items-start justify-evenly w-fit h-fit gap-4 text-bg text-sm;
       }
     .footerLink li{
     @apply cursor-pointer hover:text-secondary duration-200;
@@ -173,7 +173,7 @@ body {
         @apply fixed z-50 w-full;
 
         div {
-            @apply flex  flex-col-center md:flex-row md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+            @apply flex flex-col-center md:flex-row md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
         }
 
         p {
