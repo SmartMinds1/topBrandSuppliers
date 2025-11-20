@@ -38,3 +38,31 @@ export const testimonialCards = [
     cardRating: "5",
   },
 ];
+
+/* An array of the testimoial cards Objects to be looped */
+export const clovesList = [
+  {
+    productImg: Halima,
+    price: "$20.00",
+    title: "Creamy taste",
+    description: "Pure, rich, and naturally harvested from eco-friendly farms",
+  },
+  {
+    productImg: Lauracia,
+    price: "$28.00",
+    title: "Freshy aroma",
+    description: "This adds you the best fresh aroma to all your foodies",
+  },
+  {
+    productImg: Yuvala,
+    price: "$19.50",
+    title: "Sun dried",
+    description: "Enjoy the crisp like nature of the dried cloves",
+  },
+  {
+    productImg: Juzman,
+    price: "$43.60",
+    title: "Sour taste",
+    description: "Pure, and naturally tasty for all cloves products",
+  },
+];

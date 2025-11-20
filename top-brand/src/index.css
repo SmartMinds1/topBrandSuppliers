@@ -19,6 +19,7 @@
     /* text colors */
     --color-maintext: oklch(0.15 0 264);
     --color-text: oklch(0.4 0 264);
+    --color-text-light: oklch(0.8 0 264);
 
 /* fonts */
     --font-sans: "Mona Sans", sans-serif;
@@ -29,7 +30,9 @@
 html,
 body {
   @apply scroll-smooth w-full bg-bg overflow-x-hidden;
+  /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; */
 }
+
 @layer utilities{
     .green-shadow{
       @apply  cursor-pointer hover:shadow-2xl hover:shadow-secondary duration-300;
@@ -40,24 +43,28 @@ body {
 
     /* styling header and ordinary text */
     .headerText{
-      @apply text-maintext text-4xl font-bold font-serif mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider;
+      @apply text-maintext text-4xl font-bold font-sans mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider;
+    } 
+    .headerTextGradient{
+      @apply text-transparent text-4xl font-bold font-serif mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider bg-linear-to-r from-maintext via-maintext  to-text-light bg-clip-text;
     } 
     .subHeader{
-      @apply text-maintext text-lg font-bold font-serif mb-6 lg:mb-0 lg:leading-14 tracking-wider;
+      @apply text-maintext text-xl font-bold font-sans mb-6 lg:mb-0 lg:leading-10 tracking-wider;
     } 
 
     .bodyText{
-      @apply text-text leading-7  tracking-wide w-[80%] sm:w-[70%] lg:w-[60%] text-left sm:text-center m-auto lg:mt-2 mb-16;
+      @apply text-text leading-7  tracking-wide w-[80%] sm:w-[70%] lg:w-[60%] text-left sm:text-center m-auto lg:mt-2 mb-16 font-light;
     } 
     .sideBodyText{
-      @apply text-text leading-7  tracking-wide w-[90%] text-center md:text-left  m-auto mt-4 ;
+      @apply text-text leading-7  tracking-wide w-[90%] text-center md:text-left  m-auto mt-4 font-light ;
     } 
 
 
    /*  card */
     .cardText{
-      @apply text-text leading-7 sm:leading-8 tracking-wide lg:text-left;
+      @apply text-text leading-7 sm:leading-7 tracking-wide lg:text-left font-light;
     } 
+
 
    /*  styling body Icons */
     .mainIcon{
@@ -149,6 +156,12 @@ body {
       @apply mr-2 float-end text-text text-sm mt-2;
     }
 
+   /*  PRODUCT PAGE */
+   .productLink li{
+    @apply cursor-pointer p-2 pl-4 pr-4 w-fit text-center rounded-2xl hover:bg-bg-dark duration-200 ;
+  }
+
+
     /* Footer list settings */
     .footerList{
         @apply flex flex-col-center items-start justify-evenly w-fit h-fit gap-4 text-bg text-sm;
@@ -163,6 +176,14 @@ body {
   }
 
 }
+/* src/index.css (after your @tailwind directives) */
+.clip-wave {
+  clip-path: path("M0,40 C120,10 300,10 420,40 L420,240 L0,240 Z");
+  -webkit-clip-path: path("M0,40 C120,10 300,10 420,40 L420,240 L0,240 Z");
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 
 @layer components {
     main {

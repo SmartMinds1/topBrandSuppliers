@@ -10,7 +10,7 @@ const Header = ()=> {
   
     return(
       <>
-        <div className="w-full h-12 m-auto flex-row-end justify-between sm:h-16 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">
+        <div className="w-full h-12 m-auto flex-row-end justify-between sm:h-16 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px] hidden">
            {/*  logo */}
             <div className="w-40 flex flex-row items-end justify-center">
                 <div className="w-10 h-10 bg-maintext flex-col-center justify-start mr-0.5">

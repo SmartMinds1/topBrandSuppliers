@@ -8,7 +8,7 @@ const TopProductCard = ({title, description, productImage}) => {
                     <div className='w-full h-6 sm:h-0 lg:h-6 rounded-tr-full rounded-tl-full bg-bg-light'></div>
                 </div>
                 
-                <div className='pb-6 pl-6 pr-6 w-full h-fit sm:h-60 md:h-70 lg:h-fit sm:w-1/2 lg:w-full bg-bg-light'>
+                <div className='pb-6 pl-6 pr-6 w-full h-fit sm:h-60 md:h-70 lg:h-fit sm:w-1/2 lg:w-full bg-bg-light rounded-lg rounded-tr-none rounded-tl-none'>
                     {/* product title */}
                         <p className="subHeader text-center sm:text-left mt-5 lg:mt-0">{title}</p>
     
