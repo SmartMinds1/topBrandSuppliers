@@ -4,11 +4,16 @@ import Header from '../components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
 import ProductCard from '../components/ProductCard'
-import { clovesList } from '../../constants'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'
+import ProductDetails from '../components/ProductDetails';
+import Modal from '../components/Modal';
+import { cashewList, clovesList, gingerList, honeyList, macadamiaList } from '../../constants/ProductList'
 
 const Brands = () => {
+  const [productLink, setProductLink] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   /* setting up active product */
   const [activeProduct, setActiveProduct] = useState("cloves");
 
@@ -42,7 +47,11 @@ const Brands = () => {
     );
   }, []);
 
-
+//The view details function is triggered from the Product card
+    const viewDetails = (title)=>{
+        setShowModal(true); 
+        setProductLink(title);
+    }
 
   return (
    <div>
@@ -64,13 +73,13 @@ const Brands = () => {
 
      {/* ------------------SECTION 2 -------------------------*/}
          {/*  products bar */}
-           <div className='w-[50%] h-12 bg-bg-light rounded-4xl m-auto shadow-lg'>
+           <div className='w-[50%] h-12 bg-bg rounded-4xl m-auto shadow-lg'>
               <ul className='flex-row-center justify-evenly text-maintext h-full w-full productLink'>
-                <li onClick={() => setActiveProduct("cloves")}  className={`${activeProduct === "cloves" ? "bg-bg-dark" : ""}`}>cloves</li>
-                <li onClick={() => setActiveProduct("honey")}   className={`${activeProduct === "honey" ? "bg-bg-dark" : ""}`}>honey</li>
-                <li onClick={() => setActiveProduct("cashews")} className={`${activeProduct === "cashews" ? "bg-bg-dark" : ""}`}>cashews</li>
-                <li onClick={() => setActiveProduct("ginger")}  className={`${activeProduct === "ginger" ? "bg-bg-dark" : ""}`}>ginger</li>
-                <li onClick={() => setActiveProduct("macadamia")} className={`${activeProduct === "macadamia" ? "bg-bg-dark" : ""}`}>macadamia</li>
+                <li onClick={() => setActiveProduct("cloves")}  className={`${activeProduct === "cloves" ? "bg-bg-light" : ""}`}>cloves</li>
+                <li onClick={() => setActiveProduct("honey")}   className={`${activeProduct === "honey" ? "bg-bg-light" : ""}`}>honey</li>
+                <li onClick={() => setActiveProduct("cashews")} className={`${activeProduct === "cashews" ? "bg-bg-light" : ""}`}>cashews</li>
+                <li onClick={() => setActiveProduct("ginger")}  className={`${activeProduct === "ginger" ? "bg-bg-light" : ""}`}>ginger</li>
+                <li onClick={() => setActiveProduct("macadamia")} className={`${activeProduct === "macadamia" ? "bg-bg-light" : ""}`}>macadamia</li>
               </ul>
            </div>
 
@@ -79,56 +88,122 @@ const Brands = () => {
              <div className='w-full h-fit mt-8'>
                 {/* proudct caption */}
                   <div className='w-[75%] m-auto h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
-                    <p className='w-[95%] sm:w-1/3 h-fit text-maintext headerText'>Aromatic Cloves</p>
-                    <p className='w-full text-left sm:w-1/2 p-4 h-fit text-text cardText'> Strong, fragrant cloves ideal for enhancing flavor, crafting spice blends, and supporting natural home remedies.</p>
+                      <p className="productListHeader">Aromatic Cloves</p>
+                      <p className="productListDesc"> Strong, fragrant cloves perfect for enhancing dishes, blending spices, supporting wellness, and adding natural flavor depth.</p>
                   </div>
 
                 {/* product cards */}
-                  <div className="flex flex-row-center justify-evenly w-full h-fit">
+                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap">
                       {clovesList.map((card, index) => (
                         <div
                             key={index}
                             ref={(el) => (cardsRef.current[index] = el)} // SAME as using box1Ref, box2Ref, box3Ref
                             >
-                            <ProductCard {...card} /> {/* sending all the props to the card component */}
+                           <ProductCard {...card} viewDetails={viewDetails} /> {/* sending all the props to the card component */}
                         </div>
                       ))}
                   </div> 
              </div>
           }
 
-   
-          {activeProduct === "honey" &&  
-            <div className='w-full h-[50vh] mt-16'>
-                <p className='subHeader w-full text-center'>Golden Nature Honey</p>
-                <p className='bodyText'>Pure, rich, and naturally harvested from eco-friendly apiaries. Packed with flavor and nutrients for everyday wellness.</p>
-            </div>
-          }
-
+     {/* ------------------SECTION 3 -------------------------*/}
           {activeProduct === "cashews" &&  
-            <div className='w-full h-[50vh]  mt-16'>
-                <p className='subHeader w-full text-center'>Premium Cashews</p>
-                <p className='bodyText'>Carefully selected, rich, and naturally crisp. Perfect for snacking, cooking, and quality cashew products.</p>
-            </div>
-          }
+             <div className='w-full h-fit mt-8'>
+                {/* proudct caption */}
+                  <div className='w-[75%] m-auto h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
+                      <p className="productListHeader">Premium Cashew Products</p>
+                      <p className="productListDesc"> High-quality cashews ideal for snacking, processing, roasting, confectionery, export markets, and diverse manufacturing applications.</p>
+                  </div>
 
+                {/* product cards */}
+                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap">
+                      {cashewList.map((card, index) => (
+                        <div
+                            key={index}
+                            ref={(el) => (cardsRef.current[index] = el)} // SAME as using box1Ref, box2Ref, box3Ref
+                            >
+                           <ProductCard {...card} viewDetails={viewDetails} /> {/* sending all the props to the card component */}
+                        </div>
+                      ))}
+                  </div> 
+             </div>
+          }
+     {/* ------------------SECTION 4 -------------------------*/}
+          {activeProduct === "honey" &&  
+             <div className='w-full h-fit mt-8'>
+                {/* proudct caption */}
+                  <div className='w-[75%] m-auto h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
+                      <p className="productListHeader">Natural Honey Selection</p>
+                      <p className="productListDesc">Pure, richly flavored honey sourced responsibly to support nutrition, wellness, retail brands, and premium food production.</p>      
+                  </div>
+
+                {/* product cards */}
+                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap">
+                      {honeyList.map((card, index) => (
+                        <div
+                            key={index}
+                            ref={(el) => (cardsRef.current[index] = el)} // SAME as using box1Ref, box2Ref, box3Ref
+                            >
+                           <ProductCard {...card} viewDetails={viewDetails} /> {/* sending all the props to the card component */}
+                        </div>
+                      ))}
+                  </div> 
+             </div>
+          }
+     {/* ------------------SECTION 5 -------------------------*/}
           {activeProduct === "ginger" &&  
-            <div className='w-full h-[50vh]  mt-16'>
-                <p className='subHeader w-full text-center'>Pure Ginger</p>
-                <p className='bodyText'>Aromatic, sun-dried ginger with strong flavor—perfect for tea blends, spice mixes, and food processing.</p>
-            </div>
-          }
+             <div className='w-full h-fit mt-8'>
+                {/* proudct caption */}
+                  <div className='w-[75%] m-auto h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
+                      <p className="productListHeader">Fresh and Dried Ginger</p>
+                      <p className="productListDesc">Bold, aromatic ginger trusted for flavoring foods, crafting beverages, supporting wellness, and powering natural herbal products.</p>     
+                  </div>
 
-          {activeProduct === "macadamia" &&  
-            <div className='w-full h-[50vh]  mt-16'>
-                <p className='subHeader w-full text-center'>Elite Macadamia</p>
-                <p className='bodyText'>Rich, carefully selected macadamia nuts, ideal for snacking, baking, and creating high-quality nut products with consistent freshness.</p>
-            </div>
+                {/* product cards */}
+                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap">
+                      {gingerList.map((card, index) => (
+                        <div
+                            key={index}
+                            ref={(el) => (cardsRef.current[index] = el)} // SAME as using box1Ref, box2Ref, box3Ref
+                            >
+                           <ProductCard {...card} viewDetails={viewDetails} /> {/* sending all the props to the card component */}
+                        </div>
+                      ))}
+                  </div> 
+             </div>
           }
+     {/* ------------------SECTION 6 -------------------------*/}
+          {activeProduct === "macadamia" &&  
+             <div className='w-full h-fit mt-8'>
+                {/* proudct caption */}
+                  <div className='w-[75%] m-auto h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
+                      <p className="productListHeader">Premium Macadamia Products</p>
+                      <p className="productListDesc">Rich macadamia products offering exceptional flavor, versatile usage, global demand, superior quality, and excellent nutrition across categories.</p>      
+                  </div>
+
+                {/* product cards */}
+                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap">
+                      {macadamiaList.map((card, index) => (
+                        <div
+                            key={index}
+                            ref={(el) => (cardsRef.current[index] = el)} // SAME as using box1Ref, box2Ref, box3Ref
+                            >
+                           <ProductCard {...card} viewDetails={viewDetails} /> {/* sending all the props to the card component */}
+                        </div>
+                      ))}
+                  </div> 
+             </div>
+          }
+         
 
      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
       <Footer/>
+
+    {/* A modal to show every project's additional details */}
+      <Modal isOpen={showModal} onClose={() => {setShowModal(false)}}>
+          <ProductDetails product={productLink} onClose={() => {setShowModal(false)}}/>
+      </Modal> 
    </div>
   )
 }

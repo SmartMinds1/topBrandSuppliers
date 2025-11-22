@@ -53,7 +53,7 @@ const Home = () => {
              <div className='h-[75%] w-full flex-row-center justify-between'>
                 {/* landing captions */}
                 <div className='h-full w-1/2 flex-col-start justify-center pl-[5%] pt-20'>
-                   <p className='w-120 h-fit text-maintext text-5xl font-bold font-serif leading-14 tracking-wide'>Sustainable Brands That Work</p>
+                   <p className='w-110 h-fit text-maintext text-5xl font-bold font-sans leading-14 tracking-wide'>Sustainable Brands That Work</p>
                    <p className='text-text w-[80%] mt-4'>We're building a world where sustainable living is commonplace, desirable and rewarding. Where the brands people love are a force for good.</p>
                    <div className='w-1/2 h-fit flex-row-center justify-evenly'>
                         <NavLink to="/brands">  <button className="btn-primary mt-0 lg:mt-12 green-shadow"> shop Now</button> </NavLink> 
@@ -76,7 +76,7 @@ const Home = () => {
 {/* ------------------SECTION 1 -------------------------*/}
       <div className='w-full h-fit mt-20 hidden'>
            <div>
-               <p className='headerText w-full text-center'>Connecting Africa to the World</p>
+               <p className='headerText w-full text-center'>Africa to the World</p>
                <p className='bodyText'>TopBrand Suppliers connect Africa’s finest products to the world with efficiency and trust. We specialize in sourcing quality products from Kenya and delivering them to global markets—and bringing international goods back home.</p>
            </div>
           {/* services cards */}
@@ -102,7 +102,7 @@ const Home = () => {
 
 
 {/* ------------------SECTION 3 -------------------------*/}
-      <div className='w-full h-fit mt-20'>
+      <div className='w-full h-fit mt-20 hidden'>
            <div>
                <p className='headerText w-full text-center'>Top Natural Products</p>
                <p className='bodyText'>Discover our sustainably sourced products. Carefully harvested to preserve purity, flavor, and nutritional value. Each product is selected from trusted farmers who follow eco-friendly practices, ensuring freshness and quality in every batch.</p>
@@ -128,13 +128,13 @@ const Home = () => {
       </div>
 
 {/* ------------------SECTION 5 -------------------------*/}
-      <div className='w-full h-fit mt-40 hidden'>
+      <div className='w-full h-fit mt-40  hidden'>
           <div className='w-full h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
-            <p className='w-[95%] sm:w-1/3 h-fit text-maintext headerText'>What Our Satisfied Customers Say</p>
+            <p className='w-[95%] sm:w-1/3 h-fit text-maintext headerText'>Meet Our Satisfied Customers</p>
             <p className='w-full text-left sm:w-1/2 p-4 h-fit text-text cardText'>Businesses and buyers trust our natural products for their quality, consistency, and dependable delivery. Their feedback reflects the strong relationships and reliable service we work hard to uphold every day.</p>
           </div>
             
-         <div className="flex flex-col-center justify-evenly gap-6 md:grid md:grid-cols-2 md:place-items-center testimonial-section">
+         <div className="mt-20 bg-green-300flex flex-col-center justify-evenly gap-6 md:grid md:grid-cols-2 md:place-items-center testimonial-section">
             {testimonialCards.map((card, index) => (
                <div
                   key={index}
@@ -147,7 +147,7 @@ const Home = () => {
       </div>
       
 
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br />
 
 
      {/*  Footer section */}
