@@ -12,6 +12,8 @@
     --color-primary: #E4F1F0;
     --color-faded-primary: #dce8e7;
     --color-secondary: #4FBB2E;
+    --color-secondary-shade: #4FBB2E;
+
       /* bg colors */
     --color-bg: oklch(0.98 0 264);
     --color-bg-dark: oklch(0.96 0 264);
@@ -30,7 +32,7 @@
 html,
 body {
   @apply scroll-smooth w-full bg-bg-light overflow-x-hidden;
-  /* font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer utilities{
@@ -43,10 +45,10 @@ body {
 
     /* styling header and ordinary text */
     .headerTextGradient{
-      @apply text-transparent text-4xl font-bold font-serif mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider bg-linear-to-r from-maintext via-maintext  to-text-light bg-clip-text;
+      @apply text-transparent text-4xl font-bold font-sans mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider bg-linear-to-r from-maintext to-green-800 bg-clip-text;
     } 
     .subHeader{
-      @apply text-maintext text-xl font-bold font-sans mb-6 lg:mb-0 lg:leading-10 tracking-wider;
+      @apply text-maintext text-xl font-bold mb-6 lg:mb-0 lg:leading-10 tracking-wider;
     } 
 
     .bodyText{
@@ -56,10 +58,6 @@ body {
       @apply text-text leading-7  tracking-wide w-[90%] text-center md:text-left  m-auto mt-4 font-light ;
     } 
 
-
- 
-
-
    /*  styling body Icons */
     .mainIcon{
       @apply text-4xl text-secondary;
@@ -68,26 +66,25 @@ body {
       @apply text-xl text-maintext;
     }
 
+    /* STYLING THE ITEM LISTS */
+      .productListHeader{
+        @apply  w-[95%] sm:w-1/3 h-fit text-maintext headerText font-semibold;
+      }
+      .productListDesc{
+        @apply w-full text-left sm:w-1/2 p-4 h-fit text-text cardText;
+      }
 
-/* STYLING THE ITEM LISTS */
-  .productListHeader{
-     @apply  w-[95%] sm:w-1/3 h-fit text-maintext headerText;
-  }
-  .productListDesc{
-     @apply w-full text-left sm:w-1/2 p-4 h-fit text-text cardText;
-  }
-}  
-
+    }  
 
 /*  header */
 @utility headerText{
-  @apply text-maintext text-4xl font-bold font-sans mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider;
+  @apply text-maintext text-4xl font-bold mb-2 sm:mb-0 p-2 sm:leading-12 tracking-wider;
     
   }
 
 /*  card */
 @utility cardText{
-      @apply text-text leading-7 sm:leading-normal tracking-wide lg:text-left font-light;
+      @apply text-text leading-7 sm:leading-normal tracking-wide lg:text-left;
     
   }
  /*  Flex layout */

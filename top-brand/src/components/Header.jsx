@@ -10,7 +10,7 @@ const Header = ()=> {
   
     return(
       <>
-        <div className="w-full h-12 m-auto flex-row-end justify-between sm:h-16 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px] hidden">
+        <div className="w-full h-12 m-auto flex-row-end justify-between sm:h-16 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">
            {/*  logo */}
             <div className="w-40 flex flex-row items-end justify-center">
                 <div className="w-10 h-10 bg-maintext flex-col-center justify-start mr-0.5">
@@ -31,7 +31,7 @@ const Header = ()=> {
            {/* dummy div */}
             <div className="w-36 bg-trasparent border-0"></div>
 
-            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-bg-light flex-row-center shadow-lg">
+            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-bg flex-row-center shadow">
                 <div className="w-2/3 h-full rounded-2xl flex-row-center gap-1 pl-1">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-maintext"/>
                     <p className="text-text">Search</p>
