@@ -8,7 +8,7 @@ import Socials from "./Socials";
 const Footer = ()=> {
     return(
        <div className="w-full h-fit flex flex-col items-center justify-between">
-        <div className="flex-row-center flex-wrap justify-center lg:justify-evenly w-full h-fit pb-12 pt-8 bg-primary">
+        <div className="flex-row-center flex-wrap justify-center lg:justify-evenly w-full h-fit pb-12 pt-8 bg-bg">
             {/* logo div */}
             <div className=" w-full lg:w-70 h-fit flex-row-center lg:flex-col-start flex-wrap lg:justify-start justify-evenly gap-2 p-2">
                 <div className="mb-6 sm:mb-0"> 
@@ -48,9 +48,9 @@ const Footer = ()=> {
                     <div  className="footerList sm:pt-0 sm:pl-0 pl-[10%] pt-6">
                         <p className="font-bold text-lg text-maintext">Let's connect</p>
                         <ul className="footerList gap-6 w-fit sm:w-100 text-text footerLink">
-                            <li><FontAwesomeIcon icon={faMobileAlt} className="text-xl text-maintext mr-3" /> +254 115 154 402  </li>
-                            <li><FontAwesomeIcon icon={faEnvelope} className="text-xl text-maintext  mr-3" /> topbrandsuppliers@gmail.com  </li>
-                            <li className="flex-row-start pl-1 gap-1"><FontAwesomeIcon icon={faLocationDot} className="text-xl text-maintext  mr-3" /> <span> Twiga towers, 6th floor, Room 606, Murang'a Road, Opp Meridian Court Hotel, Nairobi Kenya </span> </li>
+                            <li><FontAwesomeIcon icon={faMobileAlt} className="text-xl text-secondary mr-3" /> +254 115 154 402  </li>
+                            <li><FontAwesomeIcon icon={faEnvelope} className="text-xl text-secondary  mr-3" /> topbrandsuppliers@gmail.com  </li>
+                            <li className="flex-row-start pl-1 gap-1"><FontAwesomeIcon icon={faLocationDot} className="text-xl text-secondary  mr-3" /> <span> Twiga towers, 6th floor, Room 606, Murang'a Road, Opp Meridian Court Hotel, Nairobi Kenya </span> </li>
                         </ul>
                     </div>
                  
@@ -67,7 +67,7 @@ const Footer = ()=> {
 
 
         {/* footer copyright */}
-         <div className="flex-row-center flex-wrap w-full h-fit pt-4 pb-4 gap-2 sm:gap-0 text-text bg-faded-primary text-xs">
+         <div className="flex-row-center flex-wrap w-full h-fit pt-4 pb-4 gap-2 sm:gap-0 text-text bg-bg-dark text-xs">
             <div className="w-full sm:w-[55%] sm:h-full h-1/2 flex-row-center justify-center sm:justify-end">
                 <p>&copy; 2025 topbrandsuppliers.com</p>
             </div>

@@ -93,7 +93,7 @@ const Brands = () => {
 
      {/* ------------------SECTION 2 -------------------------*/}
          {/*  products bar */}
-           <div className='w-[90%] sm:w-[80%] xl:w-[50%] lg:w-[60%] h-fit p-2 sm:h-12 bg-bg-dark rounded-4xl m-auto shadow-lg mb-16 mt-12 '>
+           <div className='w-[90%] sm:w-[80%] xl:w-[50%] lg:w-[60%] h-fit p-2 sm:h-12 bg-bg-dark rounded-4xl m-auto shadow-md mb-16 mt-12 '>
               <ul className='flex-row-center justify-evenly flex-wrap text-maintext h-full w-full productLink'>
                 <li onClick={() => setActiveProduct("cloves")}  className={`${activeProduct === "cloves" ? "bg-bg-light" : ""}`}>cloves</li>
                 <li onClick={() => setActiveProduct("honey")}   className={`${activeProduct === "honey" ? "bg-bg-light" : ""}`}>honey</li>

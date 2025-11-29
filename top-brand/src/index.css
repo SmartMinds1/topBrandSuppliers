@@ -2,10 +2,10 @@
 
 @import "tailwindcss";
 
-@font-face {
+/* @font-face {
     font-family: "Modern Negra";
     src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
-}
+} */
 
 @theme {
 /* THEME LIGHT */
@@ -18,10 +18,12 @@
     --color-bg: oklch(0.98 0 264);
     --color-bg-dark: oklch(0.96 0 264);
     --color-bg-light: oklch(1 0 264);
+
     /* text colors */
     --color-maintext: oklch(0.15 0 264);
     --color-text: oklch(0.4 0 264);
     --color-text-light: oklch(0.8 0 264);
+
 
 /* fonts */
     --font-sans: "Mona Sans", sans-serif;
@@ -64,6 +66,11 @@ body {
     }
     .subIcon{
       @apply text-xl text-maintext;
+    }
+    
+    /*   contact Icons */
+    .contactIcon{
+      @apply w-12 h-12 rounded-full bg-bg shadow-lg flex-col-center justify-center;
     }
 
     /* STYLING THE ITEM LISTS */

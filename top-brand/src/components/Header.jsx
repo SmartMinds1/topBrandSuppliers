@@ -13,14 +13,14 @@ const Header = ()=> {
         <div className="w-full h-12 m-auto flex-row-end justify-between sm:h-16 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">
            {/*  logo */}
             <div className="w-40 flex flex-row items-end justify-center">
-                <div className="w-10 h-10 bg-maintext flex-col-center justify-start mr-0.5">
+                <div className="w-10 h-10 bg-[#111111] flex-col-center justify-start mr-0.5">
                     <div className="w-full h-2/3 border-b-2 border-yellow-500 rounded-br-full rounded-bl-full"></div>
                 </div>
-                <p className="text-main-text text-2xl font-extrabold">topB<span className="text-secondary text-2xl font-light">rand</span></p>
+                <p className="text-maintext text-2xl font-extrabold">topB<span className="text-secondary text-2xl font-light">rand</span></p>
             </div>
             
             <div className="sm:block hidden  w-[55%] md:w-[50%] lg:w-[40%]">
-                <ul className="text-text text-sm headerLink flex-row-center justify-evenly w-full h-fit">
+                <ul className="text-text-light text-sm headerLink flex-row-center justify-evenly w-full h-fit">
                     <li><NavLink to="/" className={({ isActive }) => isActive ? "text-secondary" : ""}>home</NavLink> </li>
                     <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-secondary" : ""}>about</NavLink> </li>
                     <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-secondary" : ""}>brands</NavLink> </li>
@@ -31,7 +31,7 @@ const Header = ()=> {
            {/* dummy div */}
             <div className="w-36 bg-trasparent border-0"></div>
 
-            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-bg flex-row-center shadow">
+            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-text-light flex-row-center shadow">
                 <div className="w-2/3 h-full rounded-2xl flex-row-center gap-1 pl-1">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-maintext"/>
                     <p className="text-text">Search</p>
