@@ -2,7 +2,7 @@
 export const clovesList = [
   {
     productImg: "null for now",
-    price: "$50.00",
+    price: 50.0,
     title: "Zanzibar Cloves",
     description:
       "Rich, aromatic cloves harvested from fertile Zanzibar island farms.",
@@ -10,14 +10,14 @@ export const clovesList = [
 
   {
     productImg: "null for now",
-    price: "$48.00",
+    price: 48.0,
     title: "Madagascar Cloves",
     description: "Sweet, smoky cloves delivering bold flavor and aroma.",
   },
 
   {
     productImg: "null for now",
-    price: "$45.00",
+    price: 45.0,
     title: "Comoros Cloves",
     description:
       "Earthy, naturally dried cloves offering balanced aroma and quality.",
@@ -25,28 +25,28 @@ export const clovesList = [
 
   {
     productImg: "null for now",
-    price: "$52.00",
+    price: 52.0,
     title: "Tanzania Cloves",
     description: "High-oil premium cloves with strong aroma and global demand.",
   },
 
   {
     productImg: "null for now",
-    price: "$55.00",
+    price: 55.0,
     title: "Sri Lanka Cloves",
     description: "Bright, mild cloves loved for teas, desserts, and blends.",
   },
 
   {
     productImg: "null for now",
-    price: "$47.00",
+    price: 47.0,
     title: "India Cloves",
     description: "Warm, spicy cloves widely used in cooking and medicine.",
   },
 
   {
     productImg: "null for now",
-    price: "$46.00",
+    price: 46.0,
     title: "Indonesia Cloves",
     description:
       "Intensely aromatic cloves essential for kretek and spice blends.",
@@ -54,7 +54,7 @@ export const clovesList = [
 
   {
     productImg: "null for now",
-    price: "$44.00",
+    price: 44.0,
     title: "Brazil Cloves",
     description:
       "Mild, slightly sweet cloves perfect for desserts and flavoring.",
@@ -65,14 +65,14 @@ export const clovesList = [
 export const cashewList = [
   {
     productImg: "null for now",
-    price: "$85.00",
+    price: 85.0,
     title: "W240 Cashew Nuts",
     description: "Large, smooth cashew kernels offering rich buttery flavor.",
   },
 
   {
     productImg: "null for now",
-    price: "$78.00",
+    price: 78.0,
     title: "W320 Cashew Nuts",
     description:
       "Popular cashew grade balancing perfect size, quality, affordability.",
@@ -80,7 +80,7 @@ export const cashewList = [
 
   {
     productImg: "null for now",
-    price: "$70.00",
+    price: 70.0,
     title: "W450 Cashew Nuts",
     description:
       "Smaller cashew kernels delivering great flavor for bulk buyers.",
@@ -88,35 +88,35 @@ export const cashewList = [
 
   {
     productImg: "null for now",
-    price: "$62.00",
+    price: 62.0,
     title: "WS Cashew Nuts",
     description: "Bright split cashews ideal for baking and desserts.",
   },
 
   {
     productImg: "null for now",
-    price: "$55.00",
+    price: 55.0,
     title: "LP Cashew Nuts",
     description: "Large cashew pieces perfect for toppings and food blends.",
   },
 
   {
     productImg: "null for now",
-    price: "$48.00",
+    price: 48.0,
     title: "BB Cashew Nuts",
     description: "Tiny cashew fragments ideal for sauces, spreads, powders.",
   },
 
   {
     productImg: "null for now",
-    price: "$72.00",
+    price: 72.0,
     title: "Scorched W240",
     description: "Lightly browned cashew kernels with strong flavor and value.",
   },
 
   {
     productImg: "null for now",
-    price: "$65.00",
+    price: 65.0,
     title: "Scorched W320",
     description:
       "Affordable whole cashews perfect for flavored snack production.",
@@ -127,21 +127,21 @@ export const cashewList = [
 export const honeyList = [
   {
     productImg: "null for now",
-    price: "$42.00",
+    price: 42.0,
     title: "Wild Forest Honey",
     description: "Rich dark forest honey with deep aroma and nutrients.",
   },
 
   {
     productImg: "null for now",
-    price: "$48.00",
+    price: 48.0,
     title: "Acacia Honey",
     description: "Clear, mild honey loved for teas and gourmet foods.",
   },
 
   {
     productImg: "null for now",
-    price: "$55.00",
+    price: 55.0,
     title: "White Comb Honey",
     description:
       "Pure natural comb honey offering unmatched freshness and purity.",
@@ -149,28 +149,28 @@ export const honeyList = [
 
   {
     productImg: "null for now",
-    price: "$46.00",
+    price: 46.0,
     title: "Eucalyptus Honey",
     description: "Warm herbal honey with smooth sweetness for beverages.",
   },
 
   {
     productImg: "null for now",
-    price: "$40.00",
+    price: 40.0,
     title: "Sunflower Honey",
     description: "Bright golden honey with light floral sweetness and aroma.",
   },
 
   {
     productImg: "null for now",
-    price: "$52.00",
+    price: 52.0,
     title: "Mountain Flora Honey",
     description: "Rare high-altitude honey offering rich floral nutrition.",
   },
 
   {
     productImg: "null for now",
-    price: "$47.00",
+    price: 47.0,
     title: "Orange Blossom Honey",
     description:
       "Sweet citrus-scented honey perfect for desserts and pastries.",
@@ -178,7 +178,7 @@ export const honeyList = [
 
   {
     productImg: "null for now",
-    price: "$38.00",
+    price: 38.0,
     title: "Multiflora Honey",
     description: "Balanced floral honey ideal for daily household use.",
   },
@@ -188,7 +188,7 @@ export const honeyList = [
 export const gingerList = [
   {
     productImg: "null for now",
-    price: "$32.00",
+    price: 32.0,
     title: "Fresh Whole Ginger",
     description:
       "Strong aromatic ginger offering vibrant freshness for cooking needs.",
@@ -196,7 +196,7 @@ export const gingerList = [
 
   {
     productImg: "null for now",
-    price: "$28.00",
+    price: 28.0,
     title: "Dry Split Ginger",
     description:
       "Sun-dried ginger halves delivering powerful flavor and long shelf-life.",
@@ -204,7 +204,7 @@ export const gingerList = [
 
   {
     productImg: "null for now",
-    price: "$36.00",
+    price: 36.0,
     title: "Ginger Powder",
     description:
       "Fine ginger powder offering instant strong flavor for recipes.",
@@ -212,7 +212,7 @@ export const gingerList = [
 
   {
     productImg: "null for now",
-    price: "$40.00",
+    price: 40.0,
     title: "Organic Ginger",
     description:
       "Pure chemical-free ginger grown naturally for health-focused buyers.",
@@ -220,7 +220,7 @@ export const gingerList = [
 
   {
     productImg: "null for now",
-    price: "$34.00",
+    price: 34.0,
     title: "Baby Ginger",
     description:
       "Tender young ginger with smooth texture and gentle fresh flavor.",
@@ -228,14 +228,14 @@ export const gingerList = [
 
   {
     productImg: "null for now",
-    price: "$30.00",
+    price: 30.0,
     title: "Ginger Flakes",
     description: "Crisp dried ginger slices perfect for teas and blends.",
   },
 
   {
     productImg: "null for now",
-    price: "$55.00",
+    price: 55.0,
     title: "Ginger Oil",
     description:
       "Highly concentrated ginger essence ideal for beverages and fragrances.",
@@ -243,7 +243,7 @@ export const gingerList = [
 
   {
     productImg: "null for now",
-    price: "$33.00",
+    price: 33.0,
     title: "Crushed Ginger",
     description:
       "Coarse crushed ginger delivering instant strong flavor for cooking.",
@@ -254,7 +254,7 @@ export const gingerList = [
 export const macadamiaList = [
   {
     productImg: "null for now",
-    price: "$62.00",
+    price: 62.0,
     title: "Raw Macadamia Nuts",
     description:
       "Creamy natural macadamias offering rich flavor for premium use.",
@@ -262,7 +262,7 @@ export const macadamiaList = [
 
   {
     productImg: "null for now",
-    price: "$58.00",
+    price: 58.0,
     title: "Macadamia Kernel Halves",
     description:
       "Clean macadamia halves ideal for mixes and confectionery production.",
@@ -270,7 +270,7 @@ export const macadamiaList = [
 
   {
     productImg: "null for now",
-    price: "$48.00",
+    price: 48.0,
     title: "Macadamia Kernel Pieces",
     description:
       "Affordable macadamia pieces delivering strong flavor for bulk processing.",
@@ -278,7 +278,7 @@ export const macadamiaList = [
 
   {
     productImg: "null for now",
-    price: "$66.00",
+    price: 66.0,
     title: "Roasted Macadamia Nuts",
     description:
       "Rich roasted macadamias offering deep aroma and satisfying crunch.",
@@ -286,7 +286,7 @@ export const macadamiaList = [
 
   {
     productImg: "null for now",
-    price: "$68.00",
+    price: 68.0,
     title: "Salted Macadamia Nuts",
     description:
       "Lightly salted macadamias delivering bold, balanced flavor for snacking.",
@@ -294,7 +294,7 @@ export const macadamiaList = [
 
   {
     productImg: "null for now",
-    price: "$72.00",
+    price: 72.0,
     title: "Macadamia Oil",
     description:
       "Cold-pressed macadamia oil offering smooth flavor and versatility.",
@@ -302,14 +302,14 @@ export const macadamiaList = [
 
   {
     productImg: "null for now",
-    price: "$52.00",
+    price: 52.0,
     title: "Macadamia Flour",
     description: "Finely milled macadamia flour ideal for gluten-free baking.",
   },
 
   {
     productImg: "null for now",
-    price: "$64.00",
+    price: 64.0,
     title: "Macadamia Nut Butter",
     description:
       "Smooth macadamia butter offering natural creamy richness for spreads.",

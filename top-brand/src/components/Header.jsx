@@ -3,10 +3,15 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCartShopping, faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import MobileMenu from "./MobileMenu";
+import { useCart } from "../context/CartContext";//for our cart
 
 const Header = ()=> {
   //mobile menu control 
   const [isOpen, setIsOpen] = useState(false);
+
+  //Cart Items
+  const { cartItems } = useCart();
+  const count = cartItems.reduce((t, i) => t + i.qty, 0);
   
     return(
       <>
@@ -37,9 +42,17 @@ const Header = ()=> {
                     <p className="text-text">Search</p>
                 </div>
                 <p className="text-2xl mr-2 text-text">|</p>
+
+                {/* cart icon */}
                 <div className="w-1/5 h-full rounded-2xl flex-row-center justify-center">
                     <NavLink to="/cart" className={({ isActive }) => isActive ? "text-secondary" : ""}><FontAwesomeIcon icon={faCartShopping} className="text-xl"/></NavLink>
+                    {count > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-red-600 text-xs px-2 py-1 rounded-full">
+                            {count}
+                        </span>
+                        )}
                 </div>
+
             </div>
 
 {/*             <button className="hidden sm:block text-bg-ligbg-bg-light bg-secondary m-0 rounded-3xl w-20 md:w-28 h-10 green-shadow">Call Now</button> */}

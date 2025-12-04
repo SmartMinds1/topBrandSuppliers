@@ -45,28 +45,26 @@ const Home = () => {
   return (
    <div className='bg-background'>
 {/* ---------------------landing page--------------------------- */}
-            {/*  Nav bar */}
-            <Header/>
+      {/*  Nav bar */}
+      <Header/>
 
-      <div className="w-full h-screen shadow-2xs flex-row-start justify-end bg-[url('/cashew1.jpg')] bg-cover bg-bottom ">
-
+      <div className="w-full h-screen shadow-2xs flex-row-start justify-end bg-[url('/cashew1.jpg')] bg-cover bg-bottom hidden">
          <div className='w-full h-full backdrop-blur-xs '>
-
             {/* landing page content */}
-             <div className='h-[75%] w-full flex-row-start justify-between'>
-                {/* landing captions */}
-                <div className='h-full w-1/2 flex-col-start justify-end pl-[5%] pt-20 gap-6'>
-                   <p className='w-fit h-fit text-bg text-6xl font-bold leading-20'>Sustainable Brands That Work</p>
-                   <p className='text-text-light w-[80%]'>We're building a world where sustainable living is commonplace, desirable and rewarding. Where the brands people love are a force for good.</p>
-                   <div className='w-1/2 h-fit flex-row-center justify-evenly'>
-                        <NavLink to="/brands">  <button className="btn-primary mt-0 lg:mt-12 green-shadow text-maintext font-bold"> Shop Now</button> </NavLink> 
-                        <button className="btn-secondary mt-0 lg:mt-12 green-shadow text-text-light">Explore more</button>
-                   </div>
-                </div>
-          
-             {/* landing image */}
-             <div className="h-[65%] w-[30%] bg-[url('/landing1.png')] bg-cover bg-no-repeat bg-bottom "> </div>
-             </div>
+            <div className='h-[75%] w-full flex-row-start justify-between'>
+               {/* landing captions */}
+               <div className='h-full w-1/2 flex-col-start justify-end pl-[5%] pt-20 gap-6'>
+                  <p className='w-fit h-fit text-bg text-6xl font-bold leading-20'>Sustainable Brands That Work</p>
+                  <p className='text-text-light w-[80%]'>We're building a world where sustainable living is commonplace, desirable and rewarding. Where the brands people love are a force for good.</p>
+                  <div className='w-1/2 h-fit flex-row-center justify-evenly'>
+                     <NavLink to="/brands">  <button className="btn-primary mt-0 lg:mt-12 green-shadow text-maintext font-bold"> Shop Now</button> </NavLink> 
+                     <button className="btn-secondary mt-0 lg:mt-12 green-shadow text-text-light">Explore more</button>
+                  </div>
+               </div>
+            
+               {/* landing image */}
+               <div className="h-[65%] w-[30%] bg-[url('/landing1.png')] bg-cover bg-no-repeat bg-bottom "> </div>
+            </div>
 
             {/* trendy products */}
              <div className='w-[80%] m-auto h-fit flex-row-center justify-end gap-4'>
@@ -75,12 +73,11 @@ const Home = () => {
                     <div className='w-60 h-32 shadow-text rounded-2xl shadow-xs'></div>
              </div>
          </div>
-
       </div>
 
 
 {/* ------------------SECTION 1 -------------------------*/}
-      <div className='w-full h-fit mt-20'>
+      <div className='w-full h-fit mt-20 hidden'>
            <div>
                <p className='headerText w-full text-center'>Africa to the World</p>
                <p className='bodyText'>TopBrand Suppliers connect Africa’s finest products to the world with efficiency and trust. We specialize in sourcing quality products from Kenya and delivering them to global markets—and bringing international goods back home.</p>

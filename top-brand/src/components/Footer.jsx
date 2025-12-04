@@ -27,7 +27,7 @@ const Footer = ()=> {
             <div className="w-full lg:w-2/3 h-fit flex flex-col justify-evenly">
                 <div className="w-[95%] sm:w-full h-fit m-auto flex-row-start flex-wrap justify-evenly gap-4 pt-6">
                     <div  className="footerList">
-                        <p className="font-bold text-lg text-maintext">Pages</p>
+                        <p className="font-bold text-lg text-maintext">Quick links</p>
                         <ul className="text-text flex flex-col justify-between gap-2 footerLink">
                             <li><NavLink to="/" className={({ isActive }) => isActive ? "text-secondary" : ""}>home</NavLink> </li>
                             <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-secondary" : ""}>about</NavLink> </li>

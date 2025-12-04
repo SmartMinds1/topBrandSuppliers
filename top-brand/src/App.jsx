@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Home from './pages/Home.jsx';
@@ -8,9 +8,11 @@ import Contact from './pages/Contact.jsx';
 import Cart from './pages/Cart.jsx';
 
 const App = () => {
+  
   return (
+    
   <Router>
-      <ScrollToTop />
+        <ScrollToTop />
         <Routes>
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="/" element={<Home/>} />

@@ -19,25 +19,10 @@ const ProductCard = ({productImg, price, title, description, viewDetails}) => {
                 <p className='text-text text-sm text-left line-clamp-2'>{description}</p>
             {/* product price */}
                 <div className='w-fit p-1 bg-bg-dark h-fit mt-1'>
-                    <p className='font-bold text-maintext font-serif tracking-wider shadow'>{price}</p>
+                    <p className='font-bold text-maintext font-serif tracking-wider shadow'>${price}</p>
                </div>
             </div>
         </div>
-        
- {/*        <div className='pb-6 pl-6 pr-6 w-full h-fit bg-bg rounded-lg rounded-tr-none rounded-tl-none'>
-            <div className='w-full h-fit mt-1'> 
-                <div className='flex-row-center justify-end w-full'>
-                    <p className='text-2xl w-20 flex-row-center justify-evenly mt-1'>
-                        <FontAwesomeIcon icon={faMinus} className='text-maintext bg-bg-dark rounded-full p-2 text-sm cursor-pointer hover:brightness-95 duration-300'/>
-                        <FontAwesomeIcon icon={faPlus}  className='text-maintext bg-bg-dark rounded-full p-2 text-sm hover:brightness-95 cursor-pointer duration-300'/>
-                    </p>
-                </div>  
-                <div className='flex-row-center justify-between w-full mt-3'>
-                    <button onClick={()=> viewDetails(title)} className=" border border-secondary p-2 font-semibold text-text w-26  rounded-lg green-shadow text-sm shadow-xl">View Details</button>
-                    <button className="w-fit bg-secondary p-2 text-bg-light font-semibold rounded-lg text-sm shadow-xl green-shadow"> Add to Cart</button>
-                </div>
-            </div>
-        </div> */}
     </div>
     
   )

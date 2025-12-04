@@ -12,7 +12,7 @@
     --color-primary: #E4F1F0;
     --color-faded-primary: #dce8e7;
     --color-secondary: #4FBB2E;
-    --color-secondary-shade: #4FBB2E;
+    --color-secondary-shade: #1b7400;
 
       /* bg colors */
     --color-bg: oklch(0.98 0 264);
@@ -179,6 +179,15 @@ body {
     @apply cursor-pointer p-2 pl-4 pr-4 w-fit text-center rounded-2xl hover:bg-bg-light duration-200 ;
   }
 
+ /* Cart page */
+ .cartTab{
+  @apply cursor-pointer h-10 text-text flex-row-center pl-2 gap-2 rounded-md hover:bg-bg-dark;
+  
+ }
+ .activeCartTab{
+  @apply cursor-pointer h-10 bg-secondary-shade text-bg-light pl-2  flex-row-center gap-2 rounded-md;
+  
+ }
 
     /* Footer list settings */
     .footerList{
@@ -200,6 +209,7 @@ body {
   -webkit-clip-path: path("M0,40 C120,10 300,10 420,40 L420,240 L0,240 Z");
   border-radius: 12px;
   overflow: hidden;
+
 }
 
 

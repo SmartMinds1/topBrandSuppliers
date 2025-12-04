@@ -3,10 +3,14 @@ import { productData } from "../../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faStarHalfAlt } from "@fortawesome/free-regular-svg-icons";
+import { useCart } from "../context/CartContext";
 
 
 export default function ProductDetails({product, onClose}) {
-      if (!productData[product]) {
+  //handling add to cart
+    const { addToCart } = useCart();
+
+    if (!productData[product]) {
         return (
           <div className="py-16 px-6 md:px-20 bg-bg w-[90vw] h-screen m-auto shadow-2xl ">
               <div className="w-full h-8 bg-transparent text-right mb-6 fixed top-3 right-[7%] md:right-[6%]">
@@ -82,7 +86,8 @@ export default function ProductDetails({product, onClose}) {
                    
                   {/*  Add to cart */}
                   <div className='w-full h-fit text-center mt-8 flex-row-center justify-start gap-6 lg:gap-12 flex-wrap'>
-                    <button className="btn-primary green-shadow w-60"> Add to cart</button>
+                    <button onClick={() =>addToCart({ ...productData[product], id: product })
+                     } className="btn-primary green-shadow w-60"> Add to cart</button>
                     <button className="btn-secondary green-shadow">Bulk Quote</button>
                   </div>
               </div>
