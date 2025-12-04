@@ -36,7 +36,7 @@ const Header = ()=> {
            {/* dummy div */}
             <div className="w-36 bg-trasparent border-0"></div>
 
-            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-text-light flex-row-center shadow">
+            <div className="absolute right-4 w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-bg flex-row-center shadow">
                 <div className="w-2/3 h-full rounded-2xl flex-row-center gap-1 pl-1">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-maintext"/>
                     <p className="text-text">Search</p>

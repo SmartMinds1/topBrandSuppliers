@@ -32,21 +32,6 @@ const Contact = () => {
       }
 
 
-      //Handle Marketting email subscription
-      const handleSubscribe = async (e) => {
-        e.preventDefault();
-        console.log("submitting user Subscription", formData);
-
-    /*       try {
-              const response = await axios.post("http://localhost:5000/api/messages", formData);
-              setResponseMessage(response.data.message);
-              setFormData({username:"", email:"", message:""});
-              }
-              
-          catch(error){
-            setResponseMessage("ERROR! sending message, Kindly try again later!");
-          } */
-      }
   return (
     <div>
       {/*  Nav bar */}
@@ -197,27 +182,6 @@ const Contact = () => {
                   faqAns="Don’t worry. During our consultation, We'll analyze your business and recommend the best starting point. Sometimes it’s building a high-converting site first, sometimes it’s running ads with a landing page — it depends on your goals."
                   />
               </div>
-
-          {/* EMAIL SUBSCRIPTION SECTION */}
-            <div className="w-full h-fit p-4 mt-40">
-                <p className="text-text w-full text-center">Be the first to know about new products, special deals, and important industry updates.</p>
-                <form onSubmit={handleSubscribe} className='flex-row-center gap-8 mt-4 justify-center'>
-                    <input
-                        className="w-1/4 border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-secondary duration-300 ease-in-out" 
-                        type="email"
-                        name="email"
-                        autoComplete="on"
-                        id="email"
-                        maxLength="40"
-                        required
-                        placeholder="Your Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                   <button className="btn-primary mt-3 w-40 hover:shadow-xl bg-maintext text-bg-dark">Subscribe Now</button>
-                </form>
-            </div>
-
 
             <br /><br /><br /><br />
     <Footer/>
