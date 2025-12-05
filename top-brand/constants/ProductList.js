@@ -1,7 +1,7 @@
 /* An array of the clove cards to be looped */
 export const clovesList = [
   {
-    productImg: "null for now",
+    productImg: "/cloves1.jpg",
     price: 50.0,
     title: "Zanzibar Cloves",
     description:
@@ -9,14 +9,14 @@ export const clovesList = [
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves2.jpg",
     price: 48.0,
     title: "Madagascar Cloves",
     description: "Sweet, smoky cloves delivering bold flavor and aroma.",
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves3.jpg",
     price: 45.0,
     title: "Comoros Cloves",
     description:
@@ -24,28 +24,28 @@ export const clovesList = [
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves4.jpg",
     price: 52.0,
     title: "Tanzania Cloves",
     description: "High-oil premium cloves with strong aroma and global demand.",
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves5.jpg",
     price: 55.0,
     title: "Sri Lanka Cloves",
     description: "Bright, mild cloves loved for teas, desserts, and blends.",
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves6.jpg",
     price: 47.0,
     title: "India Cloves",
     description: "Warm, spicy cloves widely used in cooking and medicine.",
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves7.jpg",
     price: 46.0,
     title: "Indonesia Cloves",
     description:
@@ -53,7 +53,7 @@ export const clovesList = [
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cloves8.jpg",
     price: 44.0,
     title: "Brazil Cloves",
     description:
@@ -64,14 +64,14 @@ export const clovesList = [
 /* An array of the cashew cards to be looped */
 export const cashewList = [
   {
-    productImg: "null for now",
+    productImg: "/cashew1.jpg",
     price: 85.0,
     title: "W240 Cashew Nuts",
     description: "Large, smooth cashew kernels offering rich buttery flavor.",
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cashew2.jpg",
     price: 78.0,
     title: "W320 Cashew Nuts",
     description:
@@ -79,7 +79,7 @@ export const cashewList = [
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cashew3.jpg",
     price: 70.0,
     title: "W450 Cashew Nuts",
     description:
@@ -87,7 +87,7 @@ export const cashewList = [
   },
 
   {
-    productImg: "null for now",
+    productImg: "/cashew4.jpg",
     price: 62.0,
     title: "WS Cashew Nuts",
     description: "Bright split cashews ideal for baking and desserts.",

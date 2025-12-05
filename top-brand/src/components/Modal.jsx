@@ -42,7 +42,7 @@ const Modal = ({ isOpen, onClose, children}) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        zIndex: 1000,
+        zIndex: 50,
       }}
     >
       <div ref={modalRef} className="w-fit h-screen p-0 modal-content overflow-y-scroll">

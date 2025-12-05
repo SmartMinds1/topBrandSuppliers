@@ -11,6 +11,7 @@ import Modal from '../components/Modal';
 import { cashewList, clovesList, gingerList, honeyList, macadamiaList } from '../../constants/ProductList'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 
+
 const Brands = () => {
   const [productLink, setProductLink] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -54,6 +55,19 @@ const Brands = () => {
         setProductLink(title);
     }
 
+/* Animating brands page landing text */
+   useGSAP(() => {
+    gsap.fromTo( '.para',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        delay: 0.3,
+        stagger: 0.3
+      }
+    );
+  }, []);
+
   return (
    <div>
       {/*  Nav bar */}
@@ -61,18 +75,18 @@ const Brands = () => {
 
      {/* ------------------SECTION 1 -------------------------*/}
      <div className='w-full lg:w-[80%] m-auto h-fit pt-10 sm:pt-6 md:h-[75vh] md:pt-16 lg:pt-6  lg:h-[80vh] mt-16 sm:mt-20 flex flex-col items-center sm:justify-evenly justify-center'>
-            <div className='w-full h-fit lg:h-15 flex flex-col sm:flex-row items-center justify-center'>
+            <div className='w-full h-fit lg:h-15 flex flex-col sm:flex-row items-center justify-center para'>
                <FontAwesomeIcon icon={faSeedling} className='mainIcon'/>
                <p className='headerTextGradient text-center sm:text-left'>Our Natural Products</p>           
             </div>
-            <p className='bodyText'>  Discover natural products grown with care and delivered with precision. From rich honey to premium cashews and cloves, we ensure freshness, purity, and high-quality standards from farm to export.</p>
-            <div className='w-full h-fit text-center mb-4 -translate-y-8 flex-row-center justify-center gap-6 sm:gap-12'>
+            <p className='bodyText para'>  Discover natural products grown with care and delivered with precision. From rich honey to premium cashews and cloves, we ensure freshness, purity, and high-quality standards from farm to export.</p>
+            <div className='w-full h-fit text-center mb-4 -translate-y-8 flex-row-center justify-center gap-6 sm:gap-12 para'>
                <button className="btn-primary green-shadow"> Bulk Quote</button>
                <button className="btn-secondary green-shadow">Call to Order</button>
             </div>
 
             {/* Trust badges */}
-            <div className="w-full flex-row-center justify-center gap-2 p-2 sm:gap-10 mt-2 md:mt-10 opacity-90">
+            <div className="w-full flex-row-center justify-center gap-2 p-2 sm:gap-10 mt-2 md:mt-10 opacity-90 para">
                 <div className="flex items-center gap-2 text-gray-600">
                   <FontAwesomeIcon icon={faLeaf} className="text-secondary text-lg" />
                   <p className="text-sm">100% Organic</p>

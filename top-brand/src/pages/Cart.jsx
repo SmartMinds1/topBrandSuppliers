@@ -128,7 +128,7 @@ export default function Cart() {
                               <h3 className="text-xl font-semibold w-full flex items-center justify-between">Total: <span>${total.toFixed(2)}</span></h3>
 
                               <button
-                                className="w-full bg-secondary-shade text-white px-6 py-3 rounded-lg"
+                                className="w-full bg-secondary green-shadow text-white px-6 py-3 rounded-lg"
                                 onClick={clearCart}
                               >
                                 Request Order
@@ -147,15 +147,15 @@ export default function Cart() {
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
                       cartHistory.map((cart, index) => (
-                        <div key={index} className="border p-4 rounded mb-2">
-                          <h3 className="font-semibold">Cart #{index + 1}</h3>
+                        <div key={index} className="border border-gray-300 p-4 rounded mb-2">
+                          <h3 className="font-semibold text-xl">Cart {index + 1} Items</h3>
                           <ul className="ml-4 list-disc">
                             {cart.map((item) => (
                               <li key={item.id}>{item.title} x {item.qty} (${item.price})</li>
                             ))}
                           </ul>
                           <button
-                                className="mt-4 bg-red-600 text-white px-4 py-2 rounded"
+                                className="mt-4 bg-red-300 text-white px-4 py-2 rounded"
                                 onClick={clearCartHistory}
                               >
                                 Clear Cart History
@@ -207,7 +207,7 @@ export default function Cart() {
 
                                       <td className="py-3 px-4 text-right">
                                         {order.status === "processing" ? (
-                                          <button className="bg-secondary-shade text-white px-4 py-2 rounded-lg shadow-sm hover:opacity-90 duration-300 cursor-pointer">
+                                          <button className="bg-secondary text-white px-4 py-2 rounded-lg shadow-sm hover:opacity-90 duration-300 cursor-pointer">
                                             Modify
                                           </button>
                                         ) : (

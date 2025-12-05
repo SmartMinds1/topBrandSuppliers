@@ -13,8 +13,34 @@ import {
   faStar
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useGSAP } from '@gsap/react';
+import { gsap } from "gsap";
 
 const About = () => {
+
+  /*   animating all other cards */
+        useGSAP(() => {
+          gsap.utils.toArray(".card-group").forEach((group) => {
+            gsap.fromTo(
+              group.querySelectorAll(".animate-card"),
+              { opacity: 0, y: 100 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.25,
+                scrollTrigger: {
+                  trigger: group,
+                  start: "top 80%",
+                  toggleActions: "play none none reverse"
+                },
+              }
+            );
+          });
+        }, []);
+
+
+
   return (
     <div>
 {/*  Nav bar */}
@@ -37,9 +63,9 @@ const About = () => {
                </p>
            </div>
             {/* image div */}
-            <div className="w-200 md:w-90 lg:w-110 h-70 md:h-80 bg-bg-dark rounded-xl relative overflow-hidden">
+            <div className="w-200 md:w-90 lg:w-110 h-70 md:h-80 bg-bg-dark rounded-xl relative overflow-hidden bg-[url('/team1.jpg')] bg-cover bg-bottom">
                {/* Background Video */}
-               <video
+          {/*      <video
                   autoPlay
                   muted
                   loop
@@ -47,7 +73,7 @@ const About = () => {
                   className="absolute top-0 left-0 w-full h-full object-cover object-[60%]"
                >
                   <source src="/honeyVid2.mp4" type="video/mp4" />
-               </video>
+               </video> */}
             </div>
         </div>
 
@@ -60,20 +86,30 @@ const About = () => {
                <p className='bodyText'>From sourcing quality products to delivering them across borders, we handle every step with care. We’re committed to giving you a smooth, stress-free experience from checkout to delivery.</p>
            </div>
           {/* services cards */}
-           <div className='w-full flex flex-row items-center sm:flex-col md:flex-row justify-center gap-12 flex-wrap p-4'>
-               <ServiceItem icon={faGlobe} label="Shipping products from Africa to the world"/>
-               <ServiceItem icon={faBoxOpen} label="Import products into Africa"/>
-               <ServiceItem icon={faUsers} label="Connect customers with trusted suppliers"/>
+           <div className='w-full flex flex-row items-center sm:flex-col md:flex-row justify-center gap-12 flex-wrap p-4 card-group'>
+               <div className="animate-card">
+                  <ServiceItem icon={faGlobe} label="Shipping products from Africa to the world"/>
+               </div>
+
+               <div className="animate-card">
+                  <ServiceItem icon={faBoxOpen} label="Import products into Africa"/>
+               </div>
+
+               <div className="animate-card">
+                  <ServiceItem icon={faUsers} label="Connect customers with trusted suppliers"/>
+               </div>
               {/* Shield + Check Special Icon */}
-                <div className="flex flex-col items-center text-center justify-center space-y-3 bg-bg border border-gray-300 shadow-lg hover:shadow-2xl duration-300 w-50 h-40 rounded-lg">
-                  <span className="relative inline-block text-secondary">
-                    <FontAwesomeIcon icon={faShieldAlt} className="text-5xl" />
-                    <FontAwesomeIcon icon={faCheck} className="absolute text-2xl top-3 left-3 text-maintext" />
-                  </span>
-                  <p className="text-text mt-2">
-                    Provide secure and transparent logistics
-                  </p>
-                </div>
+              <div className="animate-card">
+                  <div className="flex flex-col items-center text-center justify-center space-y-3 bg-bg border border-gray-300 shadow-lg hover:shadow-2xl duration-300 w-50 h-40 rounded-lg">
+                    <span className="relative inline-block text-secondary">
+                      <FontAwesomeIcon icon={faShieldAlt} className="text-5xl" />
+                      <FontAwesomeIcon icon={faCheck} className="absolute text-2xl top-3 left-3 text-maintext" />
+                    </span>
+                    <p className="text-text mt-2">
+                      Provide secure and transparent logistics
+                    </p>
+                  </div>
+              </div>
            </div>
       </div>
 
@@ -107,29 +143,29 @@ const About = () => {
                 </div>
 
                 {/* SELLING points */}
-                <div className='w-150 h-70 grid grid-cols-2 m-auto  p-4'>
-                      <div className="flex flex-col items-center text-center justify-center space-y-3">
+                <div className='w-150 h-70 grid grid-cols-2 m-auto  p-4 card-group'>
+                      <div className="flex flex-col items-center text-center justify-center space-y-3 animate-card">
                         <span className="relative inline-block text-secondary">
                           <FontAwesomeIcon icon={faStar} className="text-3xl" />
                         </span>
                         <p className="text-maintext font-semibold  mt-2 tracking-wide">Quality First</p>
                       </div>
 
-                      <div className="flex flex-col items-center text-center justify-center space-y-3">
+                      <div className="flex flex-col items-center text-center justify-center space-y-3 animate-card">
                         <span className="relative inline-block text-secondary">
                           <FontAwesomeIcon icon={faEye} className="text-3xl" />
                         </span>
                         <p className="text-maintext font-semibold  mt-2 tracking-wide">Transparency</p>
                       </div>
 
-                      <div className="flex flex-col items-center text-center justify-center space-y-3">
+                      <div className="flex flex-col items-center text-center justify-center space-y-3 animate-card">
                         <span className="relative inline-block text-secondary">
                           <FontAwesomeIcon icon={faGlobe} className="text-3xl" />
                         </span>
                         <p className="text-maintext font-semibold tracking-wide mt-2">Global Reach</p>
                       </div>
 
-                      <div className="flex flex-col items-center text-center justify-center space-y-3 ">
+                      <div className="flex flex-col items-center text-center justify-center space-y-3  animate-card">
                         <span className="relative inline-block text-secondary">
                           <FontAwesomeIcon icon={faHeart} className="text-3xl" />
                         </span>

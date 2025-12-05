@@ -5,6 +5,8 @@ import FAQcard from '../components/FAQcard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMobilePhone, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react'
 
 const Contact = () => {
     //state controlled inputs
@@ -31,12 +33,24 @@ const Contact = () => {
           } */
       }
 
+/* Animating contact page landing text */
+   useGSAP(() => {
+    gsap.fromTo( '.para',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        delay: 0.3,
+        stagger: 0.3
+      }
+    );
+  }, []);
+
 
   return (
     <div>
       {/*  Nav bar */}
       <Header/>
-
 
       {/* SECTION 1 */}
       <div className="flex flex-col items-center md:flex-row justify-center pt-12 h-fit xl:h-screen bg-bg-light">
@@ -49,7 +63,7 @@ const Contact = () => {
 
                   {/*  Contact channels */}
                     <div className='w-2/3 m-auto h-full pt-8 text-text font-light mt-12 '>
-                      <div className='flex-row-center gap-4  w-70'> 
+                      <div className='flex-row-center gap-4  w-70 para'> 
                           <p className='contactIcon'> <FontAwesomeIcon icon={faMobilePhone} className='text-secondary text-2xl'/></p>
                           <div>
                               <p className='text-maintext text-lg font-semibold'>Phone</p>
@@ -57,7 +71,7 @@ const Contact = () => {
                           </div>
                       </div>
                       <br />
-                      <div className='flex-row-center gap-4 w-70'> 
+                      <div className='flex-row-center gap-4 w-70 para'> 
                           <p className='contactIcon'> <FontAwesomeIcon icon={faEnvelope} className='text-secondary text-2xl'/></p>
                           <div>
                               <p className='text-maintext text-lg font-semibold'>Email</p>
@@ -71,7 +85,7 @@ const Contact = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <div className='flex-row-center gap-4  w-70'> 
+                        <div className='flex-row-center gap-4  w-70 para'> 
                             <p className='contactIcon'> <FontAwesomeIcon icon={faWhatsapp} className='text-secondary text-2xl'/></p>
                             <div>
                                 <p className='text-maintext text-lg font-semibold'>Whatsapp</p>
@@ -146,42 +160,42 @@ const Contact = () => {
                 <p className="m-auto mt-4 text-text w-[90%] md:w-[70%] lg:w-[50%] text-md text-center">We’ve answered frequently asked questions by clients. If you don’t see your question here, feel free to reach out.</p>
         </div>
 
-      {/* FAQ cards */}
-      <div className="h-fit">
-                {/* All the faqs */}
-                <FAQcard 
-                  faqTitle="How much do you charge for a website?"
-                  faqAns="Our pricing depends on the complexity of your project. Simple landing pages cost less than full e-commerce platforms. After a free consultation, we shall give you a break-down, no-surprise quote."
-                  />
-                <FAQcard 
-                  faqTitle="Do you only build websites, or you also handle marketing?"
-                  faqAns="We do both. We can design, build, and promote your website."
-                  />
-                <FAQcard 
-                  faqTitle="Can I hire you just for Google Ads management?"
-                  faqAns="Absolutely! Some clients already have a website and only need Ads management. We can audit your site and campaigns, then set up and optimize ads to bring in targeted traffic."
-                  />
-                <FAQcard 
-                  faqTitle="How long does it take to finish a project?"
-                  faqAns="Small websites (like landing pages) can take 1–2 weeks. Larger websites (e-commerce, custom apps) usually take 1-2 months. Ad campaigns can be launched in as little as 3–5 days once everything is set up."
-                  />
-                <FAQcard 
-                  faqTitle="Will I be able to update my website after you build it?"
-                  faqAns="Yes! We design websites so they’re easy to update. We also provide a quick walkthrough or documentation so you can manage content on your own — no coding required."
-                  />
-                <FAQcard 
-                  faqTitle="Do you work with international clients?"
-                  faqAns="Yes. We work with clients from anywhere in the world. We can communicate via email, Zoom, or WhatsApp, and We accept international payments."
-                  />
-                <FAQcard 
-                  faqTitle="How do you make sure my Ads budget is well spent?"
-                  faqAns="We set up detailed conversion tracking so we know exactly where every dollar goes. We regularly test, monitor, and optimize your campaigns to make sure your budget brings maximum return."
-                  />
-                <FAQcard 
-                  faqTitle="What if I don’t know where to start, website first or Ads?"
-                  faqAns="Don’t worry. During our consultation, We'll analyze your business and recommend the best starting point. Sometimes it’s building a high-converting site first, sometimes it’s running ads with a landing page — it depends on your goals."
-                  />
-              </div>
+        {/* FAQ cards */}
+        <div className="h-fit">
+            <FAQcard 
+              faqTitle="How do I place an order with TopBrand Suppliers?"
+              faqAns="You can place an order by contacting us through our website, WhatsApp, or email. Once we understand what you need, we’ll send you a quote and delivery timeline."
+            />
+            <FAQcard 
+              faqTitle="Do you supply in bulk or also small quantities?"
+              faqAns="We do both. Whether you’re a retailer, a distributor, or an individual buyer, we provide flexible order quantities depending on your needs."
+            />
+            <FAQcard 
+              faqTitle="Which types of products do you supply?"
+              faqAns="We specialize in natural products, sustainable brands, household essentials, food items, and general wholesale goods. If you're looking for something specific, feel free to ask — chances are we can source it."
+            />
+            <FAQcard 
+              faqTitle="Do you offer delivery services?"
+              faqAns="Yes. We handle deliveries across Kenya and organize regional shipments. For larger orders, we offer scheduled deliveries and full logistics support."
+            />
+            <FAQcard 
+              faqTitle="Can you source specific products on request?"
+              faqAns="Absolutely. If a product isn’t listed, we can source it through our supplier network and provide a custom quote based on your requirements."
+            />
+            <FAQcard 
+              faqTitle="What are your payment options?"
+              faqAns="We accept M-Pesa, bank transfers, and invoice-based payments for businesses. International clients can use standard cross-border payment methods."
+            />
+            <FAQcard 
+              faqTitle="How long does delivery take?"
+              faqAns="Delivery timelines depend on your order size and destination. Most local orders take 1–3 days, while bulk or long-distance deliveries may take 3–7 days."
+            />
+            <FAQcard 
+              faqTitle="Can I open a long-term supply account with you?"
+              faqAns="Yes. Many businesses work with us for consistent supply and discounted pricing. We can create a custom supply plan based on your monthly needs."
+            />
+        </div>
+
 
             <br /><br /><br /><br />
     <Footer/>

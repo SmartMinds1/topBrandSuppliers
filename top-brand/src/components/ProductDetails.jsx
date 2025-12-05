@@ -7,6 +7,12 @@ import { useCart } from "../context/CartContext";
 
 
 export default function ProductDetails({product, onClose}) {
+  //Total Cart Items
+    const { cartItems } = useCart();
+    const singleCount = cartItems.find(item => item.id === product)?.qty || 0;
+
+  //write the logic for single product count
+
   //handling add to cart
     const { addToCart } = useCart();
 
@@ -25,10 +31,21 @@ export default function ProductDetails({product, onClose}) {
 
   return (
     <section className="py-16 px-6 md:px-20 lg:px-0 xl:px-20 bg-bg-light w-[90vw] m-auto shadow-2xl">
-  {/* close button */}
-        <div className="w-fith-8 text-right fixed top-3 right-[7%] md:right-[6%]">
-          <button onClick={onClose} className="bg-bg-dark shadow-2xl w-6 h-6 rounded-full text-background hover:brightness-80 duration-300 cursor-pointer"> <FontAwesomeIcon icon={faTimes}/></button>
+        <div className="w-[80%] flex-row-center justify-between h-8 text-right fixed top-3 right-[7%] md:right-[6%]">
+          {/* item count */}
+            {singleCount > 0 ? (
+                  <span className="bg-secondary text-xs px-2 py-1 rounded-full text-bg-light">
+                    {singleCount}
+                  </span>
+                ) : (
+                  <span className="bg-gray-300 text-xs px-2 py-1 rounded-full opacity-50">
+                    0
+                  </span>
+              )}
+          {/*  close btn */}
+            <button onClick={onClose} className="bg-bg-dark shadow-2xl w-6 h-6 rounded-full text-background hover:brightness-80 duration-300 cursor-pointer"> <FontAwesomeIcon icon={faTimes}/></button>
         </div>
+
 
   {/* Product image and details */}
         <div className="w-full sm:w-[90%] lg:w-full m-auto h-fit lg:h-screen xl:h-[80vh] flex-row-center justify-evenly flex-wrap lg:flex-nowrap gap-4">
@@ -37,7 +54,7 @@ export default function ProductDetails({product, onClose}) {
                     <img
                         src={productData[product].image}
                         alt={productData[product].title}
-                        className="w-full h-[60vh] object-cover rounded-xl bg-bg-dark"
+                        className="w-full h-[60vh] object-cover rounded-xl bg-bg-dark object-center"
                     />
                     <div className=" w-full h-20 flex-row-center justify-center gap-4 ">
                       {/* image1 */}

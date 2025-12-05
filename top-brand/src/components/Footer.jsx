@@ -58,11 +58,12 @@ const Footer = ()=> {
                     {/* logo div */}
                     <div className=" w-full lg:w-70 h-fit flex-row-center lg:flex-col-start flex-wrap lg:justify-start justify-evenly gap-2 p-2">
                         <div className="mb-6 sm:mb-0"> 
+                            {/*  logo */}
                             <div className="w-40 flex flex-row items-end justify-center">
-                            <div className="w-10 h-10 bg-maintext flex-col-center justify-start mr-0.5">
-                                <div className="w-full h-2/3 border-b-2 border-yellow-500 rounded-br-full rounded-bl-full"></div>
-                            </div>
-                            <p className="text-main-text text-2xl font-extrabold">topB<span className="text-secondary text-2xl font-light">rand</span></p>
+                                <div className="w-9 h-9  flex-col-center justify-start mr-0.5 bg-[#111111]">
+                                    <div className="w-full h-2/3 border-b-3 border-bg-light rounded-br-full rounded-bl-full"></div>
+                                </div>
+                                <p className="text-secondary text-2xl font-extrabold">topB<span className="text-maintext text-2xl font-extralight">rand</span></p>
                             </div>
                             <p className="w-[90%] text-md text-text text-sm mt-4 pl-4">Ideas that grow, connections that scale.</p>
                         </div>

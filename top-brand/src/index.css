@@ -12,16 +12,33 @@
     --color-primary: #E4F1F0;
     --color-faded-primary: #dce8e7;
     --color-secondary: #4FBB2E;
+    
+    --color-secondary: #60A5FA; 
+
+    --color-secondary: #10B981; 
+    --color-secondary: #059669; 
+
+    --color-secondary: #F97316; 
+    
+    --color-secondary: #6B7280; 
+
+    --color-secondary: #6B7280; 
+
+    --color-secondary: #0D9488; 
+    --color-secondary: #14B8A6; 
+
+
+
     --color-secondary-shade: #1b7400;
 
-      /* bg colors */
+/* bg colors */
     --color-bg: oklch(0.98 0 264);
     --color-bg-dark: oklch(0.96 0 264);
     --color-bg-light: oklch(1 0 264);
 
     /* text colors */
     --color-maintext: oklch(0.15 0 264);
-    --color-text: oklch(0.4 0 264);
+    --color-text: #4a5565; /* oklch(0.4 0 264) */
     --color-text-light: oklch(0.8 0 264);
 
 
@@ -185,7 +202,7 @@ body {
   
  }
  .activeCartTab{
-  @apply cursor-pointer h-10 bg-secondary-shade text-bg-light pl-2  flex-row-center gap-2 rounded-md;
+  @apply cursor-pointer h-10 bg-secondary text-bg-light pl-2  flex-row-center gap-2 rounded-md;
   
  }
 
