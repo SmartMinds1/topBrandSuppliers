@@ -193,7 +193,7 @@ export const productData = {
     caption: "Smaller but flavorful kernels for bulk processing",
     description:
       "W450 cashews offer a slightly smaller kernel but maintain excellent flavor and texture. A preferred option for companies needing high volumes at cost-efficient rates.",
-    image: "/cashew3.jpg",
+    image: "/cashew3.webp",
     benefits: [
       "Budget-friendly whole kernels",
       "Perfect for large-scale food processing",

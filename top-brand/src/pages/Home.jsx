@@ -84,7 +84,7 @@ useGSAP(() => {
       {/*  Nav bar */}
       <Header/>
 
-      <div className="w-full min-h-screen bg-[url('/landing6.png')] bg-cover bg-position-[50%_80%]">
+      <div className="w-full min-h-screen bg-[url('landing6.webp')] bg-cover bg-position-[50%_80%]">
          <div className="w-full min-h-screen bg-[#00000046]">
             
             {/* Main container */}
@@ -180,15 +180,15 @@ useGSAP(() => {
           {/* services cards */}
            <div className='w-full flex flex-row items-center sm:flex-col md:flex-row justify-evenly flex-wrap gap-12 sm:gap-6 md:gap-12 lg:gap-2 p-4 card-group'>
                <div className="animate-card">
-                  <TopProductCard title="Golden Nature Honey" description="Pure, rich, and naturally harvested from eco-friendly apiaries. Packed with flavor and nutrients for everyday wellness." productImage="/honey3.jpg"/>
+                  <TopProductCard title="Golden Nature Honey" description="Pure, rich, and naturally harvested from eco-friendly apiaries. Packed with flavor and nutrients for everyday wellness." productImage="honey3.webp"/>
                </div>
 
                <div className="animate-card">
-                  <TopProductCard title="Premium Cashews" description="Carefully selected, rich, and naturally crisp. Perfect for snacking, cooking, and quality cashew products." productImage="/cashew3.jpg"/>
+                  <TopProductCard title="Premium Cashews" description="Carefully selected, rich, and naturally crisp. Perfect for snacking, cooking, and quality cashew products." productImage="cashew3.webp"/>
                </div>
 
                <div className="animate-card">
-                 <TopProductCard title="Aromatic Cloves" description="Strong, fragrant cloves ideal for enhancing flavor, crafting spice blends, and supporting natural home remedies." productImage="/cloves9.jpg"/>
+                 <TopProductCard title="Aromatic Cloves" description="Strong, fragrant cloves ideal for enhancing flavor, crafting spice blends, and supporting natural home remedies." productImage="cloves2.webp"/>
                </div>
            </div>
       </div>

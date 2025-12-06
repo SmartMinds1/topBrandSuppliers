@@ -79,7 +79,7 @@ export const cashewList = [
   },
 
   {
-    productImg: "/cashew3.jpg",
+    productImg: "/cashew3.webp",
     price: 70.0,
     title: "W450 Cashew Nuts",
     description:
