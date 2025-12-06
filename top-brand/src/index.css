@@ -182,10 +182,10 @@ body {
       @apply cursor-pointer hover:brightness-90 hover:text-secondary duration-200;
     }
     .mobileList li{
-      @apply text-bg pl-4 w-full h-10 flex flex-row items-center;
+      @apply text-text hover:bg-bg pl-4 w-full h-10 flex flex-row items-center;
     }
     .mobileNavIcon{
-      @apply text-xl text-bg mr-3;
+      @apply text-xl text-secondary mr-3;
     }
     .navAngleIcon{
       @apply mr-2 float-end text-text text-sm mt-2;

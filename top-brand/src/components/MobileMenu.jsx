@@ -1,66 +1,95 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-    faHouse, 
-    faUser, 
-    faGears, 
-    faBriefcase, 
-    faEnvelope, 
-    faTags, 
-    faAngleRight
-  } from "@fortawesome/free-solid-svg-icons";
+  faHouse, 
+  faUser, 
+  faGears, 
+  faBriefcase, 
+  faAngleRight,
+  faUserCircle,
+  faTags,
+  faPhoneAlt
+} from "@fortawesome/free-solid-svg-icons";
 import { useGSAP } from "@gsap/react";
 
-export default function MobileMenu({isOpen}) {
+export default function MobileMenu({ isOpen, setIsOpen }) {
   const menuRef = useRef(null);
-  //mobile menu closing on clicking nav link
-  const [isClosed, setIsClosed] = useState(false);
 
   useGSAP(() => {
+    if (!menuRef.current) return;
+
     if (isOpen) {
-      // Animate menu in
       gsap.fromTo(
         menuRef.current,
         { x: "100%", opacity: 0 },
-        { x: "0%", opacity: 1, duration: 0.6, ease: "power3.out" }
+        { x: "0%", opacity: 1, duration: 0.5, ease: "power3.out" }
       );
-    } 
-    else {
-      // Animate menu out
+    } else {
       gsap.to(menuRef.current, {
         x: "100%",
         opacity: 0,
-        duration: 0.5,
-        ease: "power3.in",
+        duration: 0.4,
+        ease: "power3.in"
       });
     }
   }, [isOpen]);
 
-  //close the menu on clicking the nav link
-  useGSAP(() => {
-    if (isClosed) {
-      // Animate menu out
-      gsap.to(menuRef.current, {
-        x: "100%",
-        opacity: 0,
-        duration: 0.5,
-        ease: "power3.in",
-      });
-    }
-  }, [isClosed]);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <div className="w-full h-screen overflow-x-hidden fixed top-0 right-0 z-40 sm:hidden ">
-      {/* Overlay Menu */}
-      <div ref={menuRef} className="bg-background absolute top-14 right-0 w-[95%] h-[90vh] text-maintext p-1 shadow-[#2e2e3f] shadow-lg flex-col-center z-50 opacity-0 " >
-        <h2 className="font-bold border-b border-text text-center w-[80%] pb-2">Menu</h2>
-        <ul className="pb-8 p text-sm flex-col-start justify-evenly w-[95%] h-full mobileList rounded-lg">
-            <li onClick={()=>setIsClosed(!isClosed)}> <Link to="/" className="w-full"> <FontAwesomeIcon icon={faHouse} className="mobileNavIcon"/> home <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon"/> </Link> </li>
-            <li onClick={()=>setIsClosed(!isClosed)}> <Link to="/about" className="w-full"> <FontAwesomeIcon icon={faUser} className="mobileNavIcon"/> about <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon"/> </Link></li>
-            <li onClick={()=>setIsClosed(!isClosed)}> <Link to="/brands" className="w-full"> <FontAwesomeIcon icon={faGears} className="mobileNavIcon"/> products <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon"/> </Link></li>
-            <li onClick={()=>setIsClosed(!isClosed)}> <Link to="/contact" className="w-full"> <FontAwesomeIcon icon={faBriefcase} className="mobileNavIcon"/>contact <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon"/> </Link></li>
+    <div className="w-full h-[95vh] overflow-x-hidden fixed top-7 right-0 z-40 sm:hidden pointer-events-none ">
+      <div
+        ref={menuRef}
+        className="bg-bg absolute top-6 right-0 w-[98%] h-[90vh] pt-12 text-maintext p-2 shadow-[#2e2e3f] shadow-lg flex flex-col items-center z-50 opacity-0 pointer-events-auto rounded-lg"
+      >
+        <h2 className="font-bold border-b border-text text-center w-[80%] pb-2">
+          Menu
+        </h2>
+
+        <ul className="text-sm flex flex-col justify-start gap-12 pt-12 w-[95%] h-full mobileList rounded-lg text-tex">
+          <li onClick={handleClose}>
+            <Link to="/" className="w-full flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faHouse} className="mobileNavIcon" />
+                Home
+              </span>
+              <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon" />
+            </Link>
+          </li>
+
+          <li onClick={handleClose}>
+            <Link to="/about" className="w-full flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faUserCircle} className="mobileNavIcon" />
+                About
+              </span>
+              <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon" />
+            </Link>
+          </li>
+
+          <li onClick={handleClose}>
+            <Link to="/brands" className="w-full flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faTags} className="mobileNavIcon" />
+                brands
+              </span>
+              <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon" />
+            </Link>
+          </li>
+
+          <li onClick={handleClose}>
+            <Link to="/contact" className="w-full flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <FontAwesomeIcon icon={faPhoneAlt} className="mobileNavIcon" />
+                Contact
+              </span>
+              <FontAwesomeIcon icon={faAngleRight} className="navAngleIcon" />
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

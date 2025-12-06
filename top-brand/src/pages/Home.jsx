@@ -84,29 +84,44 @@ useGSAP(() => {
       {/*  Nav bar */}
       <Header/>
 
-      <div className="w-full h-screen shadow-2xs flex-row-start justify-end bg-[url('/landing6.png')] bg-cover bg-position-[50%_80%]">
-         <div className='w-full h-full bg-[#00000046]'> {/* backdrop-blur-xs */}
-            {/* landing page content */}
-            <div className='h-[75%] w-full flex-row-start justify-between'>
-               {/* landing captions */}
-               <div className='h-full w-1/2 flex-col-start justify-end pl-[5%] pt-20 gap-6'>
-                  <p className='w-fit h-fit text-bg-light text-6xl font-bold leading-20 para'>Sustainable Brands That Work</p>
-                  <p className='text-gray-300 w-[80%] para'>We're building a world where sustainable living is commonplace, desirable and rewarding. Where the brands people love are a force for good.</p>
-                  <div className='w-1/2 h-fit flex-row-center justify-evenly para'>
-                     <NavLink to="/brands">  <button className="btn-primary mt-0 lg:mt-12 green-shadow text-maintext font-bold"> Shop Now</button> </NavLink> 
-                     <button className="btn-secondary mt-0 lg:mt-12 green-shadow text-bg-dark">Explore more</button>
-                  </div>
+      <div className="w-full min-h-screen bg-[url('/landing6.png')] bg-cover bg-position-[50%_80%]">
+         <div className="w-full min-h-screen bg-[#00000046]">
+            
+            {/* Main container */}
+            <div className="min-h-screen lg:min-h-[75%] w-full pt-14 flex items-center">
+               
+               {/* Content wrapper */}
+               <div className="w-full lg:w-1/2 flex flex-col justify-start px-6 sm:px-10 lg:pl-[5%] gap-6 text-center lg:text-left">
+
+               {/* Heading */}
+               <p className="text-bg-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight para sm:text-left sm:w-100 md:w-120 lg:w-150 lg:mt-20 ">
+                  Sustainable Brands That Work
+               </p>
+
+               {/* Description */}
+               <p className="text-gray-300 w-full sm:w-[95%]  text-base para sm:text-left ">
+                  We're building a world where sustainable living is commonplace, desirable and rewarding. 
+                  Where the brands people love are a force for good.
+               </p>
+
+               {/* Buttons */}
+               <div className="w-full flex flex-col sm:flex-row items-center sm:justify-start gap-4 sm:gap-6 mt-4 para">
+                  <NavLink to="/brands">
+                     <button className="btn-primary green-shadow text-maintext font-bold w-full sm:w-auto ">
+                     Shop Now
+                     </button>
+                  </NavLink>
+
+                  <button className="btn-secondary green-shadow text-bg-dark w-65 sm:w-auto">
+                     Explore more
+                  </button>
+               </div>
+
                </div>
             </div>
-
-            {/* trendy products */}
-      {/*        <div className='w-[80%] m-auto h-fit flex-row-center justify-end gap-4'>
-                    <p className='text-text-light font-bold text-lg'>Trendy <br /> Products</p>
-                    <div className='w-60 h-32 shadow-text rounded-2xl shadow-xs'></div>
-                    <div className='w-60 h-32 shadow-text rounded-2xl shadow-xs'></div>
-             </div> */}
          </div>
       </div>
+
 
 
 {/* ------------------SECTION 1 -------------------------*/}

@@ -35,9 +35,9 @@ const Footer = ()=> {
         {/* EMAIL SUBSCRIPTION SECTION */}
             <div className="w-full h-fit p-4 mb-20">
                 <p className="text-text w-full text-center">Be the first to know about new products, special deals, and important industry updates.</p>
-                <form onSubmit={handleSubscribe} className='flex-row-center gap-8 mt-4 justify-center'>
+                <form onSubmit={handleSubscribe} className='flex sm:flex-row flex-col items-center sm:gap-8 gap-4 sm:mt-4 mt-12  justify-center'>
                     <input
-                        className="w-1/4 border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-secondary duration-300 ease-in-out" 
+                        className="w-full sm:w-1/4 border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-secondary duration-300 ease-in-out" 
                         type="email"
                         name="email"
                         autoComplete="on"
