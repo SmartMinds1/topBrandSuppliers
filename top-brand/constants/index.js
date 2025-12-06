@@ -78,7 +78,7 @@ export const productData = {
     caption: "Naturally dried with earthy tones",
     description:
       "Comoros cloves are valued for their earthy aroma and balanced oil content. Often chosen by buyers seeking a budget-friendly but high-quality alternative.",
-    image: "/cloves3.jpg",
+    image: "/cloves3.webp",
     benefits: [
       "Earthy, well-balanced aroma",
       "Budget-friendly alternative",

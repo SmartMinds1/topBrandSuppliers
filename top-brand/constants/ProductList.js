@@ -16,7 +16,7 @@ export const clovesList = [
   },
 
   {
-    productImg: "/cloves3.jpg",
+    productImg: "/cloves3.webp",
     price: 45.0,
     title: "Comoros Cloves",
     description:
