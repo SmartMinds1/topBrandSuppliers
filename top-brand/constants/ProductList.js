@@ -1,7 +1,7 @@
 /* An array of the clove cards to be looped */
 export const clovesList = [
   {
-    productImg: "/cloves1.jpg",
+    productImg: "cloves1.webp",
     price: 50.0,
     title: "Zanzibar Cloves",
     description:
@@ -9,14 +9,14 @@ export const clovesList = [
   },
 
   {
-    productImg: "/cloves2.jpg",
+    productImg: "cloves2.webp",
     price: 48.0,
     title: "Madagascar Cloves",
     description: "Sweet, smoky cloves delivering bold flavor and aroma.",
   },
 
   {
-    productImg: "/cloves3.webp",
+    productImg: "cloves3.webp",
     price: 45.0,
     title: "Comoros Cloves",
     description:
@@ -24,28 +24,28 @@ export const clovesList = [
   },
 
   {
-    productImg: "/cloves4.jpg",
+    productImg: "cloves4.webp",
     price: 52.0,
     title: "Tanzania Cloves",
     description: "High-oil premium cloves with strong aroma and global demand.",
   },
 
   {
-    productImg: "/cloves5.jpg",
+    productImg: "cloves5.webp",
     price: 55.0,
     title: "Sri Lanka Cloves",
     description: "Bright, mild cloves loved for teas, desserts, and blends.",
   },
 
   {
-    productImg: "/cloves6.jpg",
+    productImg: "cloves6.webp",
     price: 47.0,
     title: "India Cloves",
     description: "Warm, spicy cloves widely used in cooking and medicine.",
   },
 
   {
-    productImg: "/cloves7.jpg",
+    productImg: "cloves7.webp",
     price: 46.0,
     title: "Indonesia Cloves",
     description:
@@ -53,7 +53,7 @@ export const clovesList = [
   },
 
   {
-    productImg: "/cloves8.jpg",
+    productImg: "cloves8.webp",
     price: 44.0,
     title: "Brazil Cloves",
     description:

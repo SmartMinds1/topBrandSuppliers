@@ -50,7 +50,7 @@ export const productData = {
     caption: "Strong aroma from fertile islands",
     description:
       "Zanzibar cloves are known for their rich oil content and powerful fragrance. Handpicked at peak maturity for the best flavor. A perfect choice for spice manufacturers, tea blenders, and export buyers seeking premium quality.",
-    image: "/cloves1.jpg",
+    image: "cloves1.webp",
     benefits: [
       "High essential oil content",
       "Strong aroma ideal for blending",
@@ -64,7 +64,7 @@ export const productData = {
     caption: "Warm, sweet aroma with bold flavor",
     description:
       "Madagascar cloves offer a sweet, slightly smoky fragrance and consistent size. Sourced from well-maintained plantations known for reliable export quality.",
-    image: "/cloves2.jpg",
+    image: "cloves2.webp",
     benefits: [
       "Sweet, rich fragrance profile",
       "Consistent size and color",
@@ -78,7 +78,7 @@ export const productData = {
     caption: "Naturally dried with earthy tones",
     description:
       "Comoros cloves are valued for their earthy aroma and balanced oil content. Often chosen by buyers seeking a budget-friendly but high-quality alternative.",
-    image: "/cloves3.webp",
+    image: "cloves3.webp",
     benefits: [
       "Earthy, well-balanced aroma",
       "Budget-friendly alternative",
@@ -92,7 +92,7 @@ export const productData = {
     caption: "Premium grade with high oil levels",
     description:
       "Tanzania produces some of Africa’s top-grade cloves with excellent oil concentration and strong global demand. Known for uniform shape and deep brown color.",
-    image: "/cloves4.jpg",
+    image: "cloves4.webp",
     benefits: [
       "High global demand",
       "Uniform size and color",
@@ -106,7 +106,7 @@ export const productData = {
     caption: "Delicate aroma, premium appearance",
     description:
       "Sri Lankan cloves have a mild, pleasant aroma and are known for their bright coloration. Commonly used in teas, desserts, and pharmaceutical blends.",
-    image: "/cloves5.jpg",
+    image: "cloves5.webp",
     benefits: [
       "Bright color ideal for display",
       "Milder refined aroma",
@@ -120,7 +120,7 @@ export const productData = {
     caption: "Warm flavor used in traditional cooking",
     description:
       "India offers versatile cloves with warm, spicy notes widely used in culinary and medicinal applications. A popular choice across Asian markets.",
-    image: "/cloves6.jpg",
+    image: "cloves6.webp",
     benefits: [
       "Warm spicy flavor",
       "Versatile culinary uses",
@@ -134,7 +134,7 @@ export const productData = {
     caption: "Distinct aroma used in kretek production",
     description:
       "Indonesia is the world’s largest clove producer. These cloves are especially valued for their role in making kretek cigarettes and aromatic spice blends.",
-    image: "/cloves7.jpg",
+    image: "cloves7.webp",
     benefits: [
       "Key ingredient for kretek",
       "Intense aromatic profile",
@@ -148,7 +148,7 @@ export const productData = {
     caption: "Rich color and mild sweetness",
     description:
       "Brazilian cloves feature a slightly sweet taste and are known for their lighter aroma. Suitable for confectionery and flavoring applications.",
-    image: "/cloves8.jpg",
+    image: "cloves8.webp",
     benefits: [
       "Mild sweetness for desserts",
       "Attractive deep color",
