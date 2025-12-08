@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <>
       {/* Header */}
-      <div className="w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px] bg-[#ffffff7c]">
+      <div className="w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
         
         {/* Logo */}
         <div className="w-40 flex flex-row items-end justify-center">
@@ -28,13 +28,13 @@ const Header = () => {
             <div className="w-full h-2/3 border-b-3 border-bg-light rounded-br-full rounded-bl-full"></div>
           </div>
           <p className="text-secondary text-2xl font-extrabold">
-            topB<span className="text-maintext text-2xl font-extralight">rand</span>
+            topB<span className="text-bg-dark text-2xl font-extralight">rand</span>
           </p>
         </div>
 
         {/* Desktop nav */}
         <div className="sm:block hidden w-[55%] md:w-[50%] lg:w-[40%]">
-          <ul className="text-maintext text-sm headerLink flex-row-center justify-evenly w-full h-fit">
+          <ul className="text-bg-dark text-sm headerLink flex-row-center justify-evenly w-full h-fit">
             <li><NavLink to="/" className={({ isActive }) => isActive ? "text-secondary" : ""}>home</NavLink></li>
             <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-secondary" : ""}>about</NavLink></li>
             <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-secondary" : ""}>brands</NavLink></li>

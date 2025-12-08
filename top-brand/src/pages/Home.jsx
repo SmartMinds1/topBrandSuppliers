@@ -84,7 +84,7 @@ useGSAP(() => {
       {/*  Nav bar */}
       <Header/>
 
-      <div className="w-full min-h-screen bg-[url('/landing6.webp')] bg-cover bg-position-[50%_80%]">
+      <div className="w-full min-h-screen bg-[url('/landingV1.webp')] bg-cover bg-position-[50%_20%]">
          <div className="w-full min-h-screen bg-[#00000046]">
             
             {/* Main container */}
