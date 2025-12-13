@@ -120,9 +120,9 @@ const HomeHeader = () => {
       <div className="mobile-menu-button sm:hidden fixed top-15 left-2 z-50">
             <button onClick={() => setIsOpen(prev => !prev)}>
                 {isOpen ? (
-                    <FontAwesomeIcon icon={faTimes} className="text-2xl header-text font-extralight" />
+                    <FontAwesomeIcon icon={faTimes} className="text-2xl header-text text-bg font-extralight" />
                 ) : (
-                    <FontAwesomeIcon icon={faBars} className="text-2xl header-text" />
+                    <FontAwesomeIcon icon={faBars} className="text-2xl header-text text-bg" />
                 )}
             </button>
       </div>
