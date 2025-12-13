@@ -31,7 +31,7 @@ const StatsCard = () => {
       }, []);
   
     return (
-       <div className='w-[90%] m-auto h-fit flex-row-center justify-evenly flex-wrap bg-bg'>
+       <div className='md:w-full xl:w-[90%] m-auto h-fit flex flex-row items-center justify-evenly flex-wrap md:grid grid-cols-2 lg:flex bg-bg'>
             <div className='w-85 p-2 h-60 flex flex-col items-start justify-evenly'>
                 <div ref={(el) => (countersRef.current[0] = el)} data-target="98" data-symbol="%" className='text-7xl font-modern-negra text-teal-700'>0%</div>
                 <p className='text-maintext text-2xl'>Client Satisfaction</p>

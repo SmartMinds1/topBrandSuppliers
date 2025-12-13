@@ -53,19 +53,19 @@ const Contact = () => {
       <Header/>
 
       {/* SECTION 1 */}
-      <div className="flex flex-col items-center md:flex-row justify-center pt-12 h-fit xl:h-screen bg-bg-light">
+      <div className="flex flex-col items-center md:flex-row justify-center pt-16 text-center lg:text-left md:pt-12 h-fit xl:h-screen">
             <div className='w-[95%] md:w-[46%] lg:ml-[10%] m-auto h-full pt-8 sm:pt-16 md:pt-0 lg:pt-20 sm:pl-10 md:pl-0 flex flex-col justify-end'>
                 <p className='headerText'>Let's talk</p>
-                <p className='w-[90%] m-auto h-fit text-text font-light'>
+                <p className='w-[90%] m-auto h-fit text-text font-light text-left'>
                 We’re here for you anytime ready to answer, support, and 
                 guide you. Reach out whenever you need us; your comfort 
                 and experience mean everything to us.</p>
 
                   {/*  Contact channels */}
-                    <div className='w-2/3 m-auto h-full pt-8 text-text font-light mt-12 '>
+                    <div className='w-70 lg:w-2/3  m-auto h-full pt-8 text-text font-light mt-12'>
                       <div className='flex-row-center gap-4  w-70 para'> 
                           <p className='contactIcon'> <FontAwesomeIcon icon={faMobilePhone} className='text-secondary text-2xl'/></p>
-                          <div>
+                          <div className='text-left'>
                               <p className='text-maintext text-lg font-semibold'>Phone</p>
                               <p> +254 769731071</p>
                           </div>
@@ -73,7 +73,7 @@ const Contact = () => {
                       <br />
                       <div className='flex-row-center gap-4 w-70 para'> 
                           <p className='contactIcon'> <FontAwesomeIcon icon={faEnvelope} className='text-secondary text-2xl'/></p>
-                          <div>
+                          <div className='text-left'>
                               <p className='text-maintext text-lg font-semibold'>Email</p>
                               <p> support@topbrand.co.ke</p>
                               <p>salesteam@topbrand.co.ke</p>
@@ -85,19 +85,19 @@ const Contact = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <div className='flex-row-center gap-4  w-70 para'> 
-                            <p className='contactIcon'> <FontAwesomeIcon icon={faWhatsapp} className='text-secondary text-2xl'/></p>
-                            <div>
-                                <p className='text-maintext text-lg font-semibold'>Whatsapp</p>
-                                <p> Chat on Whatsapp</p>
-                            </div>
-                        </div>
+                      <div className='flex-row-center gap-4  w-70 para'> 
+                          <p className='contactIcon'> <FontAwesomeIcon icon={faWhatsapp} className='text-secondary text-2xl'/></p>
+                          <div className='text-left'>
+                              <p className='text-maintext text-lg font-semibold'>Whatsapp</p>
+                              <p> Chat on Whatsapp</p>
+                          </div>
+                      </div>
                       </a>
                   </div>
             </div>
 
             {/* contact form */}
-            <div className='w-[95%] sm:w-100 h-[70vh] m-auto mt-10 md:mt-20 lg:mt-28 lg:mr-[10%]'>
+            <div className='w-[95%] sm:w-100 h-114 m-auto mt-10 md:mt-20 lg:mt-28 lg:mr-[10%]'>
                   {/* Contact form */}
                     <form onSubmit={handleSubmit} className='w-full h-full flex-col-center p-4 gap-3 bg-bg shadow pt-8 rounded-xl'>
                           <input 
@@ -147,7 +147,6 @@ const Contact = () => {
                             required
                             placeholder="Your message"
                           />
-                          
                           <button className="btn-primary green-shadow w-[90%] mt-8"> Submit </button>
                     </form>
               </div>
@@ -155,9 +154,9 @@ const Contact = () => {
          
 
         {/* SECTION 2 */} 
-        <div className="w-full h-fit mb-16 mt-30">
-                <p className="headerText text-center">| Have questions? <span className="headerSpan">You’re not alone.</span></p>
-                <p className="m-auto mt-4 text-text w-[90%] md:w-[70%] lg:w-[50%] text-md text-center">We’ve answered frequently asked questions by clients. If you don’t see your question here, feel free to reach out.</p>
+        <div className="w-full m-auto h-fit mb-16 mt-30">
+                <p className="headerText text-center w-[80%] m-auto sm:leading-2 ">| Have questions? <span className="headerSpan">You’re not alone.</span></p>
+                <p className="m-auto sm:mt-4 text-text w-[90%] md:w-[70%] lg:w-[50%] text-md text-center">We’ve answered frequently asked questions by clients. If you don’t see your question here, feel free to reach out.</p>
         </div>
 
         {/* FAQ cards */}

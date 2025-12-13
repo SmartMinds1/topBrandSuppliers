@@ -74,7 +74,7 @@ const Brands = () => {
       <Header/>
 
      {/* ------------------SECTION 1 -------------------------*/}
-     <div className='w-full lg:w-[80%] m-auto h-fit pt-10 sm:pt-6 md:h-[75vh] md:pt-16 lg:pt-6  lg:h-[80vh] mt-16 sm:mt-20 flex flex-col items-center sm:justify-evenly justify-center'>
+     <div className='w-full lg:w-[80%] m-auto h-fit pt-10 sm:pt-6 md:pt-16 lg:pt-6  lg:h-[80vh] mt-16 sm:mt-20 flex flex-col items-center sm:justify-evenly justify-center'>
             <div className='w-full h-fit lg:h-15 flex flex-col sm:flex-row items-center justify-center para'>
                <FontAwesomeIcon icon={faSeedling} className='mainIcon'/>
                <p className='headerTextGradient text-center sm:text-left'>Our Natural Products</p>           
@@ -127,7 +127,7 @@ const Brands = () => {
                   </div>
 
                 {/* product cards */}
-                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap mt-8sm:mt-20">
+                  <div className="flex flex-row-center justify-evenly w-full h-fit flex-wrap mt-8sm:mt-20 gap-2">
                       {clovesList.map((card, index) => (
                         <div
                             key={index}

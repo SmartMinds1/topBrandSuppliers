@@ -60,8 +60,8 @@ const Footer = ()=> {
                         <div className="mb-6 sm:mb-0"> 
                             {/*  logo */}
                             <div className="w-40 flex flex-row items-end justify-center">
-                                <div className="w-9 h-9  flex-col-center justify-start mr-0.5 bg-[#111111]">
-                                    <div className="w-full h-2/3 border-b-3 border-bg-light rounded-br-full rounded-bl-full"></div>
+                                <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
+                                    <div className="logo-bg w-4/5 h-5/7 border-b-5 border-black rounded-br-full rounded-bl-full"></div>
                                 </div>
                                 <p className="text-secondary text-2xl font-extrabold">topB<span className="text-maintext text-2xl font-extralight">rand</span></p>
                             </div>

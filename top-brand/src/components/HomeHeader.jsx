@@ -11,30 +11,78 @@ import {
 import MobileMenu from "./MobileMenu";
 import { useCart } from "../context/CartContext";
 
-const Header = () => {
+import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cartItems } = useCart();
 
   const count = cartItems.reduce((t, i) => t + i.qty, 0);
 
+
+  /* GSAP COLOR SWITCHING */
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: "body",
+      start: "top -80%",
+      onEnter: () => {
+        gsap.to(".site-header", { duration: 0.3, backgroundColor: "white" });
+  
+        // Header text
+        gsap.to(".header-text", { color: "#000", duration: 0.3 });
+
+        // Logo
+        gsap.to(".logo-bg", { borderColor: "#000", duration: 0.3 });
+
+        // brand text
+        gsap.to(".brand-light", { color: "#000", duration: 0.3 });
+
+        // Nav links text
+        gsap.to(".navLinks-light li", { color: "#000", duration: 0.3 });
+  
+     
+      },
+      onLeaveBack: () => {
+        gsap.to(".site-header", { duration: 0.3, backgroundColor: "transparent" });
+
+      // revert Header text
+        gsap.to(".header-text", { color: "#FFF", duration: 0.3 });
+
+      // revert Logo
+        gsap.to(".logo-bg", { borderColor: "#FFF", duration: 0.3 });
+  
+       // revert nav links text
+        gsap.to(".navLinks-light li", { color: "#FFF", duration: 0.2 });
+  
+        // revert mobile icons
+        gsap.to(".mobile-icon", { color: "#99a1af", duration: 0.3 });
+      }
+    });
+  }, []);
+  
+  
+
   return (
     <>
       {/* Header */}
-      <div className="w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
+      <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
         
         {/* Logo */}
         <div className="w-40 flex flex-row items-end justify-center">
           <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
-            <div className="logo-bg w-4/5 h-5/7 border-b-5 border-black rounded-br-full rounded-bl-full"></div>
+            <div className="logo-bg w-4/5 h-5/7 border-b-5 border-[#FFF] rounded-br-full rounded-bl-full"></div>
           </div>
           <p className="text-secondary text-2xl font-extrabold">
-            topB<span className="text-maintext text-2xl font-extralight">rand</span>
+             topB<span className="header-text text-bg text-2xl font-extralight">rand</span>
           </p>
         </div>
 
         {/* Desktop nav */}
         <div className="sm:block hidden w-[55%] md:w-[50%] lg:w-[40%]">
-          <ul className="text-maintext text-sm headerLink flex-row-center justify-evenly w-full h-fit">
+          <ul className="navLinks-light text-bg text-sm headerLink flex-row-center justify-evenly w-full h-fit">
             <li><NavLink to="/" className={({ isActive }) => isActive ? "text-secondary" : ""}>home</NavLink></li>
             <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-secondary" : ""}>about</NavLink></li>
             <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-secondary" : ""}>brands</NavLink></li>
@@ -72,9 +120,9 @@ const Header = () => {
       <div className="mobile-menu-button sm:hidden fixed top-15 left-2 z-50">
             <button onClick={() => setIsOpen(prev => !prev)}>
                 {isOpen ? (
-                    <FontAwesomeIcon icon={faTimes} className="text-2xl text-maintext font-extralight" />
+                    <FontAwesomeIcon icon={faTimes} className="text-2xl header-text font-extralight" />
                 ) : (
-                    <FontAwesomeIcon icon={faBars} className="text-2xl text-maintext" />
+                    <FontAwesomeIcon icon={faBars} className="text-2xl header-text" />
                 )}
             </button>
       </div>
@@ -85,4 +133,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HomeHeader;

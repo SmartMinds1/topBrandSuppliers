@@ -1,9 +1,8 @@
 import React, {useEffect, useRef} from 'react'
 import Footer from '../components/Footer'
-import Header from '../components/Header'
 import { NavLink } from 'react-router-dom'
 import ServiceCard from '../components/ServiceCard'
-import { faCheckCircle, faMagnifyingGlass, faSailboat, faTruckFast} from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightLong, faCheckCircle, faLeaf, faMagnifyingGlass, faSailboat, faSpa, faTruckFast} from '@fortawesome/free-solid-svg-icons'
 import TopProductCard from '../components/TopProductCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import StatsCard from '../components/StatsCard'
@@ -11,13 +10,14 @@ import { testimonialCards } from '../../constants'
 import TestimonialCard from '../components/TestimonialCard'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'
+import HomeHeader from '../components/HomeHeader'
 
 const Home = () => {
   // checking if array is empty or undefined
   if (!testimonialCards || testimonialCards.length === 0) return null;
 
   // equivalent of box1Ref, box2Ref, box3Ref
-  const cardsRef = useRef([]); 
+  const cardsRef = useRef([]);
 
   useGSAP(() => {
     // Equivalent to using [box1Ref.current, box2Ref.current, box3Ref.current]
@@ -82,41 +82,69 @@ useGSAP(() => {
    <div className='bg-background'>
 {/* ---------------------landing page--------------------------- */}
       {/*  Nav bar */}
-      <Header/>
+      <HomeHeader/>
 
-      <div className="w-full min-h-screen bg-[url('/landingV1.webp')] bg-cover bg-position-[50%_20%]">
-         <div className="w-full min-h-screen bg-[#00000046]">
+      <div className="w-full min-h-screen bg-[url('/landingCashew7.webp')] bg-cover bg-position-[10%_50%] lg:bg-position-[50%_50%]"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%] */}
+         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr from-black to-transparent">
             
             {/* Main container */}
-            <div className="min-h-screen lg:min-h-[75%] w-full pt-14 flex items-center">
+            <div className="h-fit lg:min-h-[75%] w-full pt-24 lg:pt-14 flex items-center justify-between flex-wrap-reverse">
                
                {/* Content wrapper */}
-               <div className="w-full lg:w-1/2 flex flex-col justify-start px-6 sm:px-10 lg:pl-[5%] gap-6 text-center lg:text-left">
-
-               {/* Heading */}
-               <p className="text-bg-light text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight para sm:text-left sm:w-100 md:w-120 lg:w-150 lg:mt-20 ">
-                  Sustainable Brands That Work
-               </p>
-
-               {/* Description */}
-               <p className="text-gray-300 w-full sm:w-[95%]  text-base para sm:text-left ">
-                  We're building a world where sustainable living is commonplace, desirable and rewarding. 
-                  Where the brands people love are a force for good.
-               </p>
-
-               {/* Buttons */}
-               <div className="w-full flex flex-col sm:flex-row items-center sm:justify-start gap-4 sm:gap-6 mt-4 para">
-                  <NavLink to="/brands">
-                     <button className="btn-primary green-shadow text-maintext font-bold w-full sm:w-auto ">
-                     Shop Now
-                     </button>
-                  </NavLink>
-
-                  <button className="btn-secondary green-shadow text-bg-dark w-65 sm:w-auto">
-                     Explore more
-                  </button>
+               <div className="w-full lg:w-1/2 flex flex-col justify-start px-6 sm:px-10 lg:pl-[5%] gap-6 text-center lg:text-left lg:mt-12">
+                     {/* Heading */}
+                     <p className="text-bg text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold leading-tight para sm:text-left sm:w-100 md:w-120 lg:w-150 ">
+                        Naturally Harvested, Globally Supplied. Cashews, Cloves & Honey
+                     </p>
+                     {/* Description */}
+                     <p className="text-gray-300 w-full sm:w-[95%]  text-base para sm:text-left ">
+                     From farm to destination, we partner with sustainable growers to bring
+                      you natural products. Together, we’re shaping a global
+                       supply chain where quality enriches lives.
+                     </p>
+                     {/* Buttons */}
+                     <div className="w-full flex flex-col sm:flex-row items-center sm:justify-start gap-4 sm:gap-6 mt-4 para">
+                        <NavLink to="/brands">
+                           <button className="btn-primary green-shadow text-maintext font-bold w-full sm:w-auto ">
+                           Shop Now
+                           </button>
+                        </NavLink>
+                        <button className="btn-secondary green-shadow text-bg w-65 sm:w-auto">
+                           Explore more
+                        </button>
+                     </div>
                </div>
 
+               <div className="w-full sm:w-fit mr-[10%] fit mt-8">
+               {/*    <div className="w-full m-1 sm:w-123 h-60 p-2 bg-[url('/landingHoney.webp')] bg-cover bg-position-[50%_40%] rounded-2xl"></div>
+                  <div className='p-1 flex flex-row-center justify-between mt-3 w-full sm:w-123 bg-amber-600'>
+                     <div className="w-35 sm:w-50 h-44 p-2 bg-[url('/landingCloves.webp')] bg-cover bg-position-[50%_50%] rounded-2xl"></div>
+                     <div className="w-38 sm:w-70 h-44 p-2 bg-[url('/landingCashews.webp')] bg-cover bg-position-[50%_50%] "></div>
+                  </div> */}
+                  <div className="w-80 h-44 p-2 bg-black/40 hidden">
+                     <p className='text-gray-200 font-bold text-xl text-left pl-4 pt-1 leading-12 border-l-2 border-secondary'> <span className='text-2xl'>Order</span> <br /> <span className='text-secondary text-4xl animate-pulse font-serif'>FREE!</span> Samples <FontAwesomeIcon icon={faArrowRightLong} className='font-light text-lg bg-[#FFF]/20 cursor-pointer hover:bg-secondary duration-300  p-2 rounded-full ml-4 translate-y-2'/></p>
+                  </div>
+               </div>
+            </div>
+
+          {/* TRUST SECTION */}
+            <div className='w-full h-20 bg flex-row-center justify-center mt-12'>
+            {/* Trust badges */}
+               <div className="w-full h-full flex-row-center justify-center gap-2 p-2 sm:gap-10  opacity-90">
+                  <div className="flex items-center gap-2 text-gray-600 para">
+                     <FontAwesomeIcon icon={faLeaf} className="text-secondary text-lg" />
+                     <p className="text-sm text-bg-dark">100% Organic</p>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-gray-600 para">
+                     <FontAwesomeIcon icon={faCheckCircle} className="text-secondary text-lg" />
+                     <p className="text-sm text-bg-dark">Certified Export Quality</p>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-gray-600 para">
+                     <FontAwesomeIcon icon={faSpa} className="text-secondary text-lg" />
+                     <p className="text-sm text-bg-dark">Farm-Fresh Guarantee</p>
+                  </div>
                </div>
             </div>
          </div>
@@ -131,7 +159,7 @@ useGSAP(() => {
                <p className='bodyText'>TopBrand Suppliers connect Africa’s finest products to the world with efficiency and trust. We specialize in sourcing quality products from Kenya and delivering them to global markets—and bringing international goods back home.</p>
            </div>
           {/* services cards */}
-           <div className='w-[90%] m-auto flex-row-center justify-evenly flex-wrap gap-4 md:gap-2 card-group'>
+           <div className='w-[90%] md:w-[98%] m-auto flex-row-center justify-evenly flex-wrap gap-4 md:gap-2 card-group'>
                <div className="animate-card">
                   <ServiceCard title="Product Sourcing" description="We identify trusted suppliers, negotiate the best value, and ensure every product meets strict quality standards." icon={faMagnifyingGlass}/> 
                </div>
@@ -170,7 +198,7 @@ useGSAP(() => {
            </div>
       </div>
 
-
+ <br /><br />
 {/* ------------------SECTION 3 -------------------------*/}
       <div className='w-full h-fit mt-20'>
            <div>
@@ -196,7 +224,7 @@ useGSAP(() => {
 
 
 {/* ------------------SECTION 4 -------------------------*/}
-      <div className='w-full h-fit mt-40'>
+      <div className='w-full h-fit mt-20'>
             <div className='w-full h-15 flex-row-center justify-center'>
                <div> <FontAwesomeIcon icon={faCheckCircle} className='mainIcon'/> </div>
                <p className='headerText'>Proven Performance</p>           
@@ -208,7 +236,7 @@ useGSAP(() => {
       </div>
 
 {/* ------------------SECTION 5 -------------------------*/}
-      <div className='w-full h-fit mt-40'>
+      <div className='w-full h-fit mt-20'>
           <div className='w-full h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
             <p className='w-[95%] sm:w-1/3 h-fit text-maintext headerText'>Meet Our Satisfied Customers</p>
             <p className='w-full text-left sm:w-1/2 p-4 h-fit text-text cardText'>Businesses and buyers trust our natural products for their quality, consistency, and dependable delivery. Their feedback reflects the strong relationships and reliable service we work hard to uphold every day.</p>
@@ -226,12 +254,6 @@ useGSAP(() => {
          </div> 
       </div>
       
-
-      <br /><br /><br /><br />
-
-   
-
-
      {/*  Footer section */}
      <Footer/>
    </div>

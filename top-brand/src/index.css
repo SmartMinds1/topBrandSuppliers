@@ -11,6 +11,8 @@
 /* THEME LIGHT */
     --color-primary: #E4F1F0;
     --color-faded-primary: #dce8e7;
+    --color-secondary-shade: #1b7400;
+    
     --color-secondary: #4FBB2E;
     
     --color-secondary: #60A5FA; 
@@ -18,18 +20,16 @@
     --color-secondary: #10B981; 
     --color-secondary: #059669; 
 
-    --color-secondary: #F97316; 
+    
     
     --color-secondary: #6B7280; 
-
     --color-secondary: #6B7280; 
-
+    
     --color-secondary: #0D9488; 
+    --color-secondary: #F97316; /* orange */
+    --color-secondary: #D4A937; /*Premium Gold */
     --color-secondary: #14B8A6; /* best */
 
-
-
-    --color-secondary-shade: #1b7400;
 
 /* bg colors */
     --color-bg: oklch(0.98 0 264);
@@ -74,7 +74,7 @@ body {
       @apply text-text leading-7  tracking-wide w-[80%] sm:w-[70%] lg:w-[60%] text-left sm:text-center m-auto lg:mt-2 mb-16 font-light;
     } 
     .sideBodyText{
-      @apply text-text leading-7  tracking-wide w-[90%] text-center md:text-left  m-auto mt-4 font-light ;
+      @apply text-text leading-7  tracking-wide w-[90%] text-left sm:text-center md:text-left  m-auto mt-4 font-light ;
     } 
 
    /*  styling body Icons */
@@ -95,7 +95,7 @@ body {
         @apply  w-[95%] sm:w-1/3 h-fit text-maintext headerText font-semibold;
       }
       .productListDesc{
-        @apply w-full text-left sm:w-1/2 p-4 h-fit text-text cardText;
+        @apply w-full text-left sm:w-2/3 md:w-1/2 p-4 h-fit text-text cardText;
       }
 
     }  
@@ -180,6 +180,9 @@ body {
     }
     .headerLink li{
       @apply cursor-pointer hover:brightness-90 hover:text-secondary duration-200;
+    }
+    .header-dark .headerLink a {
+      @apply text-black;
     }
     .mobileList li{
       @apply text-text hover:bg-bg pl-4 w-full h-10 flex flex-row items-center;

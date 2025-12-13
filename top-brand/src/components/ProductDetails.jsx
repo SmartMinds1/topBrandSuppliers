@@ -50,7 +50,7 @@ export default function ProductDetails({product, onClose}) {
   {/* Product image and details */}
         <div className="w-full sm:w-[90%] lg:w-full m-auto h-fit lg:h-screen xl:h-[80vh] flex-row-center justify-evenly flex-wrap lg:flex-nowrap gap-4">
           {/* PRODUCT IMAGES */}
-                <div className="w-full sm:w-96  h-80 md:h-full flex-col-center">
+                <div className="w-full sm:w-120 lg:w-96 h-98 md:h-full flex-col-center">
                     <img
                         src={productData[product].image}
                         alt={productData[product].title}
