@@ -85,7 +85,7 @@ useGSAP(() => {
       <HomeHeader/>
 
       <div className="w-full min-h-screen bg-[url('/landingCashew7.webp')] bg-cover bg-position-[10%_50%] lg:bg-position-[50%_50%]"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%] */}
-         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr from-black to-transparent">
+         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr md:bg-linear-to-r from-black to-transparent">
             
             {/* Main container */}
             <div className="h-fit lg:min-h-[75%] w-full pt-24 lg:pt-14 flex items-center justify-between flex-wrap-reverse">

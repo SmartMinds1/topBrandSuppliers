@@ -201,11 +201,11 @@ body {
 
  /* Cart page */
  .cartTab{
-  @apply cursor-pointer h-10 text-text flex-row-center pl-2 gap-2 rounded-md hover:bg-bg-dark;
+  @apply cursor-pointer h-10 text-text flex-row-center pl-2 p-4 sm:p-0 gap-2 rounded-md hover:bg-bg-dark leading-5 sm:leading-normal;
   
  }
  .activeCartTab{
-  @apply cursor-pointer h-10 bg-secondary text-bg-light pl-2  flex-row-center gap-2 rounded-md;
+  @apply cursor-pointer h-10 bg-bg-light sm:bg-secondary text-maintext sm:text-bg-light font-bold sm:font-normal leading-5 sm:leading-normal  pl-2  p-4 sm:p-0 flex-row-center gap-2 rounded-md;
   
  }
 

@@ -30,10 +30,16 @@ export default function Cart() {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <div className="flex flex-1 pt-20">
+      <div className="flex flex-1 mt-22 relative">
+        {/* cartHeader */}
+          <div className="w-full h-16 border border-r-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 absolute top-0 bg-bg-light">
+            <p className="text-xl font-bold">  <FontAwesomeIcon icon={faShoppingCart} className="text-2xl"/> Cart Manager</p>
+            <p>Fridah <FontAwesomeIcon icon={faUserCircle} className="text-2xl"/> </p>
+          </div>
+
         {/* Sidebar */}
-        <aside className="w-56 bg-bg shadow p-4 shrink flex-col-start justify-between">
-          <ul className="space-y-3 w-full">
+        <aside className="w-56 bg-bg shadow p-4 shrink flex-col-start justify-between hidden">
+          <ul className="space-y-3 w-full hidden">
 
               <li
                 className={`${activeTab === "cart" ? "activeCartTab" : "cartTab"}`}
@@ -65,14 +71,35 @@ export default function Cart() {
           </p>
         </aside>
 
-        {/* Main content */}
-        <main className="flex-1 ">
-          {/* cartHeader */}
-          <div className="w-full h-16 border border-r-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-6 pr-6">
-            <p className="text-xl font-bold">  <FontAwesomeIcon icon={faShoppingCart} className="text-2xl"/> Cart Manager</p>
-            <p>Fridah <FontAwesomeIcon icon={faUserCircle} className="text-2xl"/> </p>
-          </div>
+        
+        {/* Mobile bottom navigation bar */}
+        <aside className="w-full h-fit fixed bottom-0 left-0  bg-bg-dark  p-2">
+          <ul className="space-y-3 w-full grid grid-cols-3">
+              <li
+                className={`${activeTab === "cart" ? "activeCartTab" : "cartTab"}`}
+                onClick={() => setActiveTab("cart")}
+              >
+                <FontAwesomeIcon icon={faCartShopping} /> Cart Items
+              </li>
 
+              <li
+                className={`${activeTab === "history" ? "activeCartTab" : "cartTab"}`}
+                onClick={() => setActiveTab("history")}
+              >
+               <FontAwesomeIcon icon={faHistory}/> Cart History
+              </li>
+
+              <li 
+                className={` ${activeTab === "orders" ? "activeCartTab" : "cartTab"}`}
+                onClick={() => setActiveTab("orders")}
+              >
+               <FontAwesomeIcon  icon={faBoxesPacking}/> Orders
+              </li>
+          </ul>
+        </aside>
+
+        {/* Main content */}
+        <main className="w-full sm:flex-1">
           {/* content data */}
           <div className="w-full p-8 pt-8 h-[74vh] overflow-y-scroll">
                 {/* Cart Items */}
@@ -86,13 +113,13 @@ export default function Cart() {
                     ) : (
                       <div className="flex flex-col items-end justify-evenly">
                         {cartItems.map((item) => (
-                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-300 p-4 rounded mb-2">
-                              <div className="w-fit h-fit flex-row-center">
+                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-300 p-4 rounded mb-2 flex-wrap gap-4">
+                              <div className="w-fit h-fit flex-row-center flex-wrap gap-2">
                                   {/* item image */}
                                       <img
                                           src={item.image}
                                           alt={item.title}
-                                          className="w-36 h-30 object-cover rounded-lg mr-4 bg-bg-dark text-sm border border-gray-300"
+                                          className="w-[95%] m-auto sm:w-36 h-38 sm:h-30 object-cover rounded-lg mr-4 bg-bg-dark text-sm border border-gray-300"
                                       />
                       
                                   {/* item name and price */}
@@ -124,7 +151,7 @@ export default function Cart() {
                           </div>
                         ))}
 
-                          <div className="w-80 h-38 border border-gray-300 rounded-lg mt-4 flex-col-center justify-evenly p-4 py-2 mb-8">
+                          <div className="w-full sm:w-80 h-38 border border-gray-300 rounded-lg mt-4 flex-col-center justify-evenly p-4 py-2 mb-8">
                               <h3 className="text-xl font-semibold w-full flex items-center justify-between">Total: <span>${total.toFixed(2)}</span></h3>
 
                               <button
