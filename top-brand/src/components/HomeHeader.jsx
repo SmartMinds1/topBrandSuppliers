@@ -32,13 +32,13 @@ const HomeHeader = () => {
         gsap.to(".site-header", { duration: 0.3, backgroundColor: "white" });
   
         // Header text
-        gsap.to(".header-text", { color: "#000", duration: 0.3 });
+        gsap.to(".header-text", { color: "#1F4D3A", duration: 0.3 });
 
         // Logo
-        gsap.to(".logo-bg", { borderColor: "#000", duration: 0.3 });
+        gsap.to(".logo-bg", { borderColor: "#1F4D3A", duration: 0.3 });
 
         // brand text
-        gsap.to(".brand-light", { color: "#000", duration: 0.3 });
+        gsap.to(".brand-light", { color: "#1F4D3A", duration: 0.3 });
 
         // Nav links text
         gsap.to(".navLinks-light li", { color: "#000", duration: 0.3 });
@@ -68,14 +68,14 @@ const HomeHeader = () => {
   return (
     <>
       {/* Header */}
-      <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 p-2 pl-[5%] pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
+      <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2 pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
         
         {/* Logo */}
         <div className="w-40 flex flex-row items-end justify-center">
           <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
             <div className="logo-bg w-4/5 h-5/7 border-b-5 border-[#FFF] rounded-br-full rounded-bl-full"></div>
           </div>
-          <p className="text-secondary text-2xl font-extrabold">
+          <p className="text-accent text-2xl font-extrabold">
              topB<span className="header-text text-bg text-2xl font-extralight">rand</span>
           </p>
         </div>
@@ -83,10 +83,10 @@ const HomeHeader = () => {
         {/* Desktop nav */}
         <div className="sm:block hidden w-[55%] md:w-[50%] lg:w-[40%]">
           <ul className="navLinks-light text-bg text-sm headerLink flex-row-center justify-evenly w-full h-fit">
-            <li><NavLink to="/" className={({ isActive }) => isActive ? "text-secondary" : ""}>home</NavLink></li>
-            <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-secondary" : ""}>about</NavLink></li>
-            <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-secondary" : ""}>brands</NavLink></li>
-            <li><NavLink to="/contact" className={({ isActive }) => isActive ? "text-secondary" : ""}>contact</NavLink></li>
+            <li><NavLink to="/" className={({ isActive }) => isActive ? "text-accent" : ""}>home</NavLink></li>
+            <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-accent" : ""}>about</NavLink></li>
+            <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-accent" : ""}>brands</NavLink></li>
+            <li><NavLink to="/contact" className={({ isActive }) => isActive ? "text-accent" : ""}>contact</NavLink></li>
           </ul>
         </div>
 
@@ -103,12 +103,12 @@ const HomeHeader = () => {
 
           {/* Cart */}
           <div className="relative w-1/5 h-full rounded-2xl flex-row-center justify-center">
-            <NavLink to="/cart" className={({ isActive }) => isActive ? "text-secondary" : ""}>
+            <NavLink to="/cart" className={({ isActive }) => isActive ? "text-accent" : ""}>
               <FontAwesomeIcon icon={faCartShopping} className="text-xl" />
             </NavLink>
 
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 bg-secondary text-bg-light text-xs px-2 py-1 rounded-full">
+              <span className="absolute -top-2 -right-2 bg-accent text-bg-light text-xs px-2 py-1 rounded-full">
                 {count}
               </span>
             )}

@@ -30,16 +30,10 @@ export default function Cart() {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <div className="flex flex-1 mt-22 relative">
-        {/* cartHeader */}
-          <div className="w-full h-16 border border-r-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 absolute top-0 bg-bg-light">
-            <p className="text-xl font-bold">  <FontAwesomeIcon icon={faShoppingCart} className="text-2xl"/> Cart Manager</p>
-            <p>Fridah <FontAwesomeIcon icon={faUserCircle} className="text-2xl"/> </p>
-          </div>
-
+      <div className="flex flex-1 mt-22">
         {/* Sidebar */}
-        <aside className="w-56 bg-bg shadow p-4 shrink flex-col-start justify-between hidden">
-          <ul className="space-y-3 w-full hidden">
+        <aside className="w-56 bg-bg shadow p-4 shrink flex-col-start justify-between hidden sm:flex">
+          <ul className="space-y-3 w-full">
 
               <li
                 className={`${activeTab === "cart" ? "activeCartTab" : "cartTab"}`}
@@ -65,7 +59,6 @@ export default function Cart() {
 
           <p 
               className="cursor-pointer hover:bg-bg-dark w-full p-2"
-              onClick={() => setActiveTab("orders")}
             >
               <FontAwesomeIcon icon={faSignOut} /> logout
           </p>
@@ -73,7 +66,7 @@ export default function Cart() {
 
         
         {/* Mobile bottom navigation bar */}
-        <aside className="w-full h-fit fixed bottom-0 left-0  bg-bg-dark  p-2">
+        <aside className="w-full h-fit fixed bottom-0 left-0  bg-bg-dark  p-2 z-50 sm:hidden">
           <ul className="space-y-3 w-full grid grid-cols-3">
               <li
                 className={`${activeTab === "cart" ? "activeCartTab" : "cartTab"}`}
@@ -99,13 +92,20 @@ export default function Cart() {
         </aside>
 
         {/* Main content */}
-        <main className="w-full sm:flex-1">
+        <main className="w-full sm:flex-1 relative pt-16">
+          {/* cartHeader */}
+{           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg-light absolute top-0 ">
+              <p className="text-2xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-2xl text-accent"/> Cart Manager</p>
+              <p>Fridah <FontAwesomeIcon icon={faUserCircle} className="text-2xl"/> </p>
+            </div>}
+
+
           {/* content data */}
           <div className="w-full p-8 pt-8 h-[74vh] overflow-y-scroll">
                 {/* Cart Items */}
                 {activeTab === "cart" && (
                   <div>
-                    <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-primary">Available Cart Items</h2>
                     {cartItems.length === 0 ? (
                       <div className="w-full h-30 flex-col-center justify-center">
                         <p className="text-text">Your cart is empty</p>
@@ -155,7 +155,7 @@ export default function Cart() {
                               <h3 className="text-xl font-semibold w-full flex items-center justify-between">Total: <span>${total.toFixed(2)}</span></h3>
 
                               <button
-                                className="w-full bg-secondary green-shadow text-white px-6 py-3 rounded-lg"
+                                className="w-full bg-primary  cursor-pointer hover:shadow-2xl hover:shadow-primary-light/50 duration-300 text-white px-6 py-3 rounded-lg"
                                 onClick={clearCart}
                               >
                                 Request Order
@@ -169,7 +169,7 @@ export default function Cart() {
                 {/* Cart History */}
                 {activeTab === "history" && (
                   <div>
-                    <h2 className="text-2xl font-semibold mb-4">Cart History</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-primary">Cart History</h2>
                     {cartHistory.length === 0 ? (
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
@@ -196,7 +196,7 @@ export default function Cart() {
                 {/* Orders */}
                 {activeTab === "orders" && (
                   <div>
-                        <h2 className="text-2xl font-semibold mb-4">My Orders</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-primary">My Orders</h2>
                         <div className="p-4 rounded mb-2">
                         <table className="w-full text-left border-collapse ">
                               <thead>
@@ -230,16 +230,16 @@ export default function Cart() {
                                       <td className="py-3 px-4">{order.id}</td>
                                       <td className="py-3 px-4">{order.date}</td>
                                       <td className="py-3 px-4">${order.totalOrder}</td>
-                                      <td className="py-3 px-4 capitalize">{order.status}</td>
+                                      <td className={`${order.status==="processing"?"text-primary":"text-maintext"} py-3 px-4 capitalize`}>{order.status}</td>
 
                                       <td className="py-3 px-4 text-right">
                                         {order.status === "processing" ? (
-                                          <button className="bg-secondary text-white px-4 py-2 rounded-lg shadow-sm hover:opacity-90 duration-300 cursor-pointer">
+                                          <button className="bg-primary-light text-white px-4 py-2 rounded-lg shadow-sm hover:opacity-90 duration-300 cursor-pointer">
                                             Modify
                                           </button>
                                         ) : (
                                           <button
-                                            className="bg-bg-dark text-text/60 px-4 py-2 rounded-lg cursor-not-allowed opacity-50 border border-gray-400"
+                                            className="bg-bg-dark text-text/80 px-4 py-2 rounded-lg cursor-not-allowed opacity-50 border border-gray-300"
                                             disabled
                                           >
                                             Modify

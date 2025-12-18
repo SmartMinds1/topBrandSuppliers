@@ -8,10 +8,10 @@ const ProductCard = ({productImg, price, title, description, viewDetails}) => {
 
 
   return (
-    <div className='mb-8 flex flex-col items-start justify-center p-0 w-70 h-100 shadow-xl hover:shadow-2xl duration-300 rounded-lg '>
+    <div className='mb-8 flex flex-col items-start justify-center p-0 w-70 h-100 shadow-xl hover:shadow-2xl duration-300 rounded-lg'>
        {/*  product Image */}
         <div className=' bg-primary flex-1 lg:flex-1 h-70 w-full flex-col-center justify-end  rounded-lg rounded-br-none rounded-bl-none  sm:rounded-br-lg sm:rounded-bl-lg lg:rounded-br-none lg:rounded-bl-none relative bg-cover bg-center' style={{ backgroundImage: `url(${productImg})`}}>
-            <FontAwesomeIcon icon={farHeart} className=' text-secondary absolute top-4 right-4'/>
+            <FontAwesomeIcon icon={farHeart} className=' text-primary absolute top-4 right-4'/>
             <div className='w-full h-30 p-3 rounded-tr-full bg-bg'>
                 <div className='w-fit p-1 bg-bg-dark h-fit'>
                     {/* product price */}
@@ -33,8 +33,8 @@ const ProductCard = ({productImg, price, title, description, viewDetails}) => {
                     </p>
                 </div>  
                 <div className='flex-row-center justify-between w-full mt-3'>
-                    <button onClick={()=> viewDetails(title)} className=" border border-secondary p-2 font-semibold text-text w-26  rounded-lg green-shadow text-sm shadow-xl">View Details</button>
-                    <button className="w-fit bg-secondary p-2 text-bg-light font-semibold rounded-lg text-sm shadow-xl green-shadow"> Add to Cart</button>
+                    <button onClick={()=> viewDetails(title)} className=" border border-primary p-2 font-semibold text-text w-26  rounded-lg green-shadow text-sm shadow-xl">View Details</button>
+                    <button className="w-fit bg-primary p-2 text-bg-light font-semibold rounded-lg text-sm shadow-xl green-shadow"> Add to Cart</button>
                 </div>
             </div>
         </div> */}

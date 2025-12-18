@@ -75,8 +75,8 @@ const Brands = () => {
 
      {/* ------------------SECTION 1 -------------------------*/}
      <div className='w-full lg:w-[80%] m-auto h-fit pt-10 sm:pt-6 md:pt-16 lg:pt-6  lg:h-[80vh] mt-16 sm:mt-20 flex flex-col items-center sm:justify-evenly justify-center'>
-            <div className='w-full h-fit lg:h-15 flex flex-col sm:flex-row items-center justify-center para'>
-               <FontAwesomeIcon icon={faSeedling} className='mainIcon'/>
+            <div className='w-full h-fit lg:h-15 flex flex-col sm:flex-col items-center justify-center para'>
+               <FontAwesomeIcon icon={faSeedling} className='text-4xl text-primary'/>
                <p className='headerTextGradient text-center sm:text-left'>Our Natural Products</p>           
             </div>
             <p className='bodyText para'>  Discover natural products grown with care and delivered with precision. From rich honey to premium cashews and cloves, we ensure freshness, purity, and high-quality standards from farm to export.</p>
@@ -88,17 +88,17 @@ const Brands = () => {
             {/* Trust badges */}
             <div className="w-full flex-row-center justify-center gap-2 p-2 sm:gap-10 mt-2 md:mt-10 opacity-90 para">
                 <div className="flex items-center gap-2 text-gray-600">
-                  <FontAwesomeIcon icon={faLeaf} className="text-secondary text-lg" />
+                  <FontAwesomeIcon icon={faLeaf} className="text-primary-light text-lg" />
                   <p className="text-sm">100% Organic</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-gray-600">
-                  <FontAwesomeIcon icon={faCheckCircle} className="text-secondary text-lg" />
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-primary-light text-lg" />
                   <p className="text-sm">Certified Export Quality</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-gray-600">
-                  <FontAwesomeIcon icon={faSpa} className="text-secondary text-lg" />
+                  <FontAwesomeIcon icon={faSpa} className="text-primary-light text-lg" />
                   <p className="text-sm">Farm-Fresh Guarantee</p>
                 </div>
             </div>
@@ -107,7 +107,7 @@ const Brands = () => {
 
      {/* ------------------SECTION 2 -------------------------*/}
          {/*  products bar */}
-           <div className='w-[90%] sm:w-[80%] xl:w-[50%] lg:w-[60%] h-fit p-2 sm:h-12 bg-bg-dark rounded-4xl m-auto shadow-md mb-16 mt-12 '>
+           <div className='w-[90%] sm:w-[80%] xl:w-[50%] lg:w-[60%] h-fit p-2 sm:h-12 bg-bg-dark rounded-4xl m-auto shadow-md sm:mb-16 mt-12 '>
               <ul className='flex-row-center justify-evenly flex-wrap text-maintext h-full w-full productLink'>
                 <li onClick={() => setActiveProduct("cloves")}  className={`${activeProduct === "cloves" ? "bg-bg-light" : ""}`}>cloves</li>
                 <li onClick={() => setActiveProduct("honey")}   className={`${activeProduct === "honey" ? "bg-bg-light" : ""}`}>honey</li>
@@ -119,7 +119,7 @@ const Brands = () => {
 
      {/* ------------------SECTION 2 -------------------------*/}
           {activeProduct === "cloves" &&  
-             <div className='w-full h-fit mt-16'>
+             <div className='w-full h-fit mt-8'>
                 {/* proudct caption */}
                   <div className='w-full sm:w-[85%] lg:w-[75%] m-auto h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
                       <p className="productListHeader">Aromatic Cloves</p>

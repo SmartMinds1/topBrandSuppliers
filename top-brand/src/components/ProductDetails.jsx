@@ -34,7 +34,7 @@ export default function ProductDetails({product, onClose}) {
         <div className="w-[80%] flex-row-center justify-between h-8 text-right fixed top-3 right-[7%] md:right-[6%]">
           {/* item count */}
             {singleCount > 0 ? (
-                  <span className="bg-secondary text-xs px-2 py-1 rounded-full text-bg-light">
+                  <span className="bg-accent text-xs px-2 py-1 rounded-full text-bg-light">
                     {singleCount}
                   </span>
                 ) : (
@@ -50,17 +50,17 @@ export default function ProductDetails({product, onClose}) {
   {/* Product image and details */}
         <div className="w-full sm:w-[90%] lg:w-full m-auto h-fit lg:h-screen xl:h-[80vh] flex-row-center justify-evenly flex-wrap lg:flex-nowrap gap-4">
           {/* PRODUCT IMAGES */}
-                <div className="w-full sm:w-120 lg:w-96 h-98 md:h-full flex-col-center">
+                <div className="w-full sm:w-120 lg:w-96 h-84 md:h-full flex-col-center">
                     <img
                         src={productData[product].image}
                         alt={productData[product].title}
-                        className="w-full h-[60vh] object-cover rounded-xl bg-bg-dark object-center"
+                        className="w-full h-65 object-cover rounded-xl bg-bg-dark object-center"
                     />
-                    <div className=" w-full h-20 flex-row-center justify-center gap-4 ">
+                    <div className=" w-full h-20 flex-row-center justify-center gap-4">
                       {/* image1 */}
-                      <div className="w-20 h-12 bg-bg rounded-lg shadow hover:scale-110 ease-in-out duration-500 cursor-pointer"></div>
+                      <div className="w-20 h-12 bg-bg-dark rounded-lg shadow hover:scale-110 ease-in-out duration-500 cursor-pointer"></div>
                       {/* image2 */}
-                      <div className="w-20 h-12 bg-bg shadow rounded-lg hover:scale-110 ease-in-out duration-500 cursor-pointer"></div> 
+                      <div className="w-20 h-12 bg-bg-dark shadow rounded-lg hover:scale-110 ease-in-out duration-500 cursor-pointer"></div> 
                     </div>
                 </div>
 
@@ -71,20 +71,20 @@ export default function ProductDetails({product, onClose}) {
                     
                     <div className="flex fle-row items-start gap-4">
                       {/* price */}
-                      <p className="font-semibold text-2xl text-secondary">{productData[product].price}</p>
+                      <p className="font-semibold text-2xl text-primary">${productData[product].price}</p>
                       {/*  rating */}
                       <div>
-                        <FontAwesomeIcon icon={faStar} className="text-xs text-text"/>
-                        <FontAwesomeIcon icon={faStar} className="text-xs text-text"/>
-                        <FontAwesomeIcon icon={faStar} className="text-xs text-text"/>
-                        <FontAwesomeIcon icon={faStar} className="text-xs text-text"/>
+                        <FontAwesomeIcon icon={faStar} className="text-xs text-accent"/>
+                        <FontAwesomeIcon icon={faStar} className="text-xs text-accent"/>
+                        <FontAwesomeIcon icon={faStar} className="text-xs text-accent"/>
+                        <FontAwesomeIcon icon={faStar} className="text-xs text-accent"/>
                         <FontAwesomeIcon icon={faStarHalfAlt} className="text-xs text-text"/>
                       </div>
                     </div>
 
                     <div>
                         {/* caption */}
-                        <p className="text-maintext text-xl font-semibold mb-1 tracking-wide">{productData[product].caption}</p>
+                        <p className="text-maintext text-2xl font-semibold mb-1 tracking-wide">{productData[product].caption}</p>
                         {/* description */}
                         <p className="text-text w-full leading-relaxed">{productData[product].description} </p>
                     </div>
@@ -95,7 +95,7 @@ export default function ProductDetails({product, onClose}) {
                         <div className="text-text pl-6 grid grid-cols-2">
                           {(productData[product].benefits).map((benefit, index) => (
                             <p key={index} className="list-disc flex-row-center flex-nowrap gap-2 mb-4">
-                             <FontAwesomeIcon icon={faCheck} className="text-lg text-secondary" /> {benefit}
+                             <FontAwesomeIcon icon={faCheck} className="text-lg text-primary" /> {benefit}
                             </p>
                           ))}
                         </div>

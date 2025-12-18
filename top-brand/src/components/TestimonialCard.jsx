@@ -17,7 +17,7 @@ const renderStars = () => {
             <FontAwesomeIcon
                 key={`full-${i}`}
                 icon={faStarSolid}
-                className=" text-secondary text-xs"
+                className=" text-primary text-xs"
             />
             );
         }

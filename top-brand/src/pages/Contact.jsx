@@ -64,7 +64,7 @@ const Contact = () => {
                   {/*  Contact channels */}
                     <div className='w-70 lg:w-2/3  m-auto h-full pt-8 text-text font-light mt-12'>
                       <div className='flex-row-center gap-4  w-70 para'> 
-                          <p className='contactIcon'> <FontAwesomeIcon icon={faMobilePhone} className='text-secondary text-2xl'/></p>
+                          <p className='contactIcon'> <FontAwesomeIcon icon={faMobilePhone} className='text-accent text-2xl'/></p>
                           <div className='text-left'>
                               <p className='text-maintext text-lg font-semibold'>Phone</p>
                               <p> +254 769731071</p>
@@ -72,7 +72,7 @@ const Contact = () => {
                       </div>
                       <br />
                       <div className='flex-row-center gap-4 w-70 para'> 
-                          <p className='contactIcon'> <FontAwesomeIcon icon={faEnvelope} className='text-secondary text-2xl'/></p>
+                          <p className='contactIcon'> <FontAwesomeIcon icon={faEnvelope} className='text-accent text-2xl'/></p>
                           <div className='text-left'>
                               <p className='text-maintext text-lg font-semibold'>Email</p>
                               <p> support@topbrand.co.ke</p>
@@ -86,7 +86,7 @@ const Contact = () => {
                         rel="noopener noreferrer"
                       >
                       <div className='flex-row-center gap-4  w-70 para'> 
-                          <p className='contactIcon'> <FontAwesomeIcon icon={faWhatsapp} className='text-secondary text-2xl'/></p>
+                          <p className='contactIcon'> <FontAwesomeIcon icon={faWhatsapp} className='text-accent text-2xl'/></p>
                           <div className='text-left'>
                               <p className='text-maintext text-lg font-semibold'>Whatsapp</p>
                               <p> Chat on Whatsapp</p>
@@ -114,7 +114,7 @@ const Contact = () => {
                             onChange={handleChange}
                           />
                           <input
-                            className="w-full border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-secondary duration-300 ease-in-out" 
+                            className="w-full border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-primary duration-300 ease-in-out" 
                             type="email"
                             name="email"
                             autoComplete="on"
@@ -126,7 +126,7 @@ const Contact = () => {
                             onChange={handleChange}
                           />
                           <input
-                            className="w-full border-b border-text-light h-10 p-4 outline-none text-sm hover:border-secondary duration-300 ease-in-out" 
+                            className="w-full border-b border-text-light h-10 p-4 outline-none text-sm hover:border-primary duration-300 ease-in-out" 
                             type="text"
                             name="phone"
                             autoComplete="on"
@@ -138,7 +138,7 @@ const Contact = () => {
                             onChange={handleChange}
                           />
                           <textarea 
-                            className="w-full h-20 resize-none p-4 mt-10 outline-none border-b border-text-light text-sm hover:border-secondary duration-300 ease-in-out"
+                            className="w-full h-20 resize-none p-4 mt-10 outline-none border-b border-text-light text-sm hover:border-primary duration-300 ease-in-out"
                             type="text"
                             id="message"
                             name="message"
@@ -154,13 +154,13 @@ const Contact = () => {
          
 
         {/* SECTION 2 */} 
-        <div className="w-full m-auto h-fit mb-16 mt-30">
+        <div className="w-full m-auto h-fit mb-8 mt-20">
                 <p className="headerText text-center w-[80%] m-auto sm:leading-2 ">| Have questions? <span className="headerSpan">You’re not alone.</span></p>
                 <p className="m-auto sm:mt-4 text-text w-[90%] md:w-[70%] lg:w-[50%] text-md text-center">We’ve answered frequently asked questions by clients. If you don’t see your question here, feel free to reach out.</p>
         </div>
 
         {/* FAQ cards */}
-        <div className="h-fit">
+        <div className="h-fit p-2">
             <FAQcard 
               faqTitle="How do I place an order with TopBrand Suppliers?"
               faqAns="You can place an order by contacting us through our website, WhatsApp, or email. Once we understand what you need, we’ll send you a quote and delivery timeline."

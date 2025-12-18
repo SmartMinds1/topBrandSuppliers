@@ -41,8 +41,8 @@ const FAQcard = ({faqAns, faqTitle})=>{
                 e.preventDefault();
                 setToggleIcon(!toggleIcon);
                 }}>    
-               <FontAwesomeIcon icon={faCircleQuestion} className="text-2xl text-secondary translate-y-1 mr-2" /> {faqTitle}
-                { toggleIcon ? <FontAwesomeIcon icon={faAngleUp} className="text-6 text-secondary float-right sm:mr-4 mt-1 " /> : <FontAwesomeIcon icon={faAngleDown} className="text-6 text-secondary float-right sm:mr-4 mt-1" /> }
+               <FontAwesomeIcon icon={faCircleQuestion} className="text-2xl text-accent translate-y-1 mr-2" /> {faqTitle}
+                { toggleIcon ? <FontAwesomeIcon icon={faAngleUp} className="text-6 text-primary float-right sm:mr-4 mt-1 " /> : <FontAwesomeIcon icon={faAngleDown} className="text-6 text-primary float-right sm:mr-4 mt-1" /> }
         </summary>
 
         {toggleIcon && <p className="ml-[4vw] text-text font-light tracking-wide leading-normal mt-4">{faqAns}</p>}

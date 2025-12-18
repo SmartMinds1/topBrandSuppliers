@@ -37,7 +37,7 @@ const Footer = ()=> {
                 <p className="text-text w-full text-center">Be the first to know about new products, special deals, and important industry updates.</p>
                 <form onSubmit={handleSubscribe} className='flex sm:flex-row flex-col items-center sm:gap-8 gap-4 sm:mt-4 mt-12  justify-center'>
                     <input
-                        className="w-full sm:w-1/4 border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-secondary duration-300 ease-in-out" 
+                        className="w-full sm:w-1/4 border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-primary duration-300 ease-in-out" 
                         type="email"
                         name="email"
                         autoComplete="on"
@@ -61,9 +61,9 @@ const Footer = ()=> {
                             {/*  logo */}
                             <div className="w-40 flex flex-row items-end justify-center">
                                 <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
-                                    <div className="logo-bg w-4/5 h-5/7 border-b-5 border-black rounded-br-full rounded-bl-full"></div>
+                                    <div className="logo-bg w-4/5 h-5/7 border-b-5 border-primary rounded-br-full rounded-bl-full"></div>
                                 </div>
-                                <p className="text-secondary text-2xl font-extrabold">topB<span className="text-maintext text-2xl font-extralight">rand</span></p>
+                                <p className="text-accent text-2xl font-extrabold">topB<span className="text-primary text-2xl font-extralight">rand</span></p>
                             </div>
                             <p className="w-[90%] text-md text-text text-sm mt-4 pl-4">Ideas that grow, connections that scale.</p>
                         </div>
@@ -76,10 +76,10 @@ const Footer = ()=> {
                             <div  className="footerList">
                                 <p className="font-bold text-lg text-maintext">Quick links</p>
                                 <ul className="text-text flex flex-col justify-between gap-2 footerLink">
-                                    <li><NavLink to="/" className={({ isActive }) => isActive ? "text-secondary" : ""}>home</NavLink> </li>
-                                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-secondary" : ""}>about</NavLink> </li>
-                                    <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-secondary" : ""}>brands</NavLink> </li>
-                                    <li><NavLink to="/contact" className={({ isActive }) => isActive ? "text-secondary" : ""}>contact</NavLink> </li>
+                                    <li><NavLink to="/" className={({ isActive }) => isActive ? "text-primary" : ""}>home</NavLink> </li>
+                                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-primary" : ""}>about</NavLink> </li>
+                                    <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-primary" : ""}>brands</NavLink> </li>
+                                    <li><NavLink to="/contact" className={({ isActive }) => isActive ? "text-primary" : ""}>contact</NavLink> </li>
                                 </ul>
                             </div>
 
@@ -95,9 +95,9 @@ const Footer = ()=> {
                             <div  className="footerList sm:pt-0 sm:pl-0 pl-[10%] pt-6">
                                 <p className="font-bold text-lg text-maintext">Let's connect</p>
                                 <ul className="footerList gap-6 w-fit sm:w-100 text-text footerLink">
-                                    <li><FontAwesomeIcon icon={faMobileAlt} className="text-xl text-secondary mr-3" /> +254 115 154 402  </li>
-                                    <li><FontAwesomeIcon icon={faEnvelope} className="text-xl text-secondary  mr-3" /> topbrandsuppliers@gmail.com  </li>
-                                    <li className="flex-row-start pl-1 gap-1"><FontAwesomeIcon icon={faLocationDot} className="text-xl text-secondary  mr-3" /> <span> Twiga towers, 6th floor, Room 606, Murang'a Road, Opp Meridian Court Hotel, Nairobi Kenya </span> </li>
+                                    <li><FontAwesomeIcon icon={faMobileAlt} className="text-xl text-primary mr-3" /> +254 115 154 402  </li>
+                                    <li><FontAwesomeIcon icon={faEnvelope} className="text-xl text-primary  mr-3" /> topbrandsuppliers@gmail.com  </li>
+                                    <li className="flex-row-start pl-1 gap-1"><FontAwesomeIcon icon={faLocationDot} className="text-xl text-primary  mr-3" /> <span> Twiga towers, 6th floor, Room 606, Murang'a Road, Opp Meridian Court Hotel, Nairobi Kenya </span> </li>
                                 </ul>
                             </div>
                         
@@ -119,8 +119,8 @@ const Footer = ()=> {
                         <p>&copy; 2025 topbrandsuppliers.com</p>
                     </div>
                     <div className="w-full sm:w-[45%] h-1/2 sm:h-full flex-row-center justify-evenly">  
-                        <p className="text-secondary border-b border-text-muted">Terms of service</p>
-                        <p className="text-secondary border-b border-text-muted">Privacy policy</p>
+                        <p className="text-primary border-b border-text-muted">Terms of service</p>
+                        <p className="text-primary border-b border-text-muted">Privacy policy</p>
                     </div>
                 </div>
             </div>

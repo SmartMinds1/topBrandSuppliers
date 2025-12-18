@@ -2,45 +2,47 @@
 
 @import "tailwindcss";
 
-/* @font-face {
-    font-family: "Modern Negra";
-    src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
-} */
-
 @theme {
+/*   --color-primary: #14B8A6; for future use*/
 /* THEME LIGHT */
-    --color-primary: #E4F1F0;
-    --color-faded-primary: #dce8e7;
-    --color-secondary-shade: #1b7400;
-    
-    --color-secondary: #4FBB2E;
-    
-    --color-secondary: #60A5FA; 
+/* Primary */
+/*     --color-primary: hsl(155, 43%, 21%);
+    --color-primary-muted: hsl(155, 43%, 17%);
+    --color-primary-soft:  hsl(155, 43%, 21%, 0.1); */
 
-    --color-secondary: #10B981; 
-    --color-secondary: #059669; 
+/* Accent */
+/*     --color-accent: hsl(31, 63%, 47%);
+    --color-accent-muted: hsl(31, 63%, 40%);
+    --color-accent-soft: hsl(31, 63%, 47%, 0.1); */
 
+/*     Primary (Forest Green): #1F4D3A
+    Accent  (Amber):        #C47A2C
+    Neutrals:               Black & White */
     
-    
-    --color-secondary: #6B7280; 
-    --color-secondary: #6B7280; 
-    
-    --color-secondary: #0D9488; 
-    --color-secondary: #F97316; /* orange */
-    --color-secondary: #D4A937; /*Premium Gold */
-    --color-secondary: #14B8A6; /* best */
+/* Primary */
+    --color-primary: oklch(0.38 0.06 165);
+    --color-primary-dark: oklch(0.33 0.06 165);
+    --color-primary-light: oklch(0.44 0.06 165);
 
+/* Accent */
+    --color-accent: oklch(0.72 0.14 75);
+    --color-accent-dark: oklch(0.56 0.14 75);
+    --color-accent-light: oklch(0.80 0.14 75);
+    
+
+/* Neutrals */
+    --color-black: hsl(0, 0%, 0%);
+    --color-white: hsl(0, 0%, 100%);
 
 /* bg colors */
     --color-bg: oklch(0.98 0 264);
     --color-bg-dark: oklch(0.96 0 264);
     --color-bg-light: oklch(1 0 264);
 
-    /* text colors */
+/* text colors */
     --color-maintext: oklch(0.15 0 264);
     --color-text: #4a5565; /* oklch(0.4 0 264) */
     --color-text-light: oklch(0.8 0 264);
-
 
 /* fonts */
     --font-sans: "Mona Sans", sans-serif;
@@ -56,7 +58,7 @@ body {
 
 @layer utilities{
     .green-shadow{
-      @apply  cursor-pointer hover:shadow-2xl hover:shadow-secondary duration-300;
+      @apply  cursor-pointer hover:shadow-2xl hover:shadow-accent duration-300;
     }
     .card-scale{
       @apply hover:scale-95 duration-500;
@@ -79,7 +81,7 @@ body {
 
    /*  styling body Icons */
     .mainIcon{
-      @apply text-4xl text-secondary;
+      @apply text-4xl text-accent-light;
     }
     .subIcon{
       @apply text-xl text-maintext;
@@ -92,7 +94,7 @@ body {
 
     /* STYLING THE ITEM LISTS */
       .productListHeader{
-        @apply  w-[95%] sm:w-1/3 h-fit text-maintext headerText font-semibold;
+        @apply  w-[95%] sm:w-1/3 h-fit text-maintext headerText font-semibold ;
       }
       .productListDesc{
         @apply w-full text-left sm:w-2/3 md:w-1/2 p-4 h-fit text-text cardText;
@@ -161,13 +163,13 @@ body {
       @apply px-4 py-2 font-bold rounded ;
     }
     .btn-primary {
-      @apply px-2 py-2 w-32 bg-secondary rounded-sm cursor-pointer text-bg font-medium shadow-md;
+      @apply px-2 py-2 w-32 bg-accent rounded-sm cursor-pointer text-bg font-medium shadow-md;
     }
     .btn-secondary {
-      @apply px-2 py-2 bg-none border w-32 border-secondary rounded-sm cursor-pointer text-maintext font-medium shadow-md;
+      @apply px-2 py-2 bg-none border border-accent-light w-32 rounded-sm cursor-pointer text-maintext font-medium shadow-md;
     }
     .btnHover{
-        @apply cursor-pointer hover:bg-secondary hover:shadow-lg transition duration-400 ease-in-out;
+        @apply cursor-pointer hover:bg-accent  hover:shadow-lg transition duration-400 ease-in-out;
     
     }
 
@@ -179,7 +181,7 @@ body {
       @apply font-light text-3xl;
     }
     .headerLink li{
-      @apply cursor-pointer hover:brightness-90 hover:text-secondary duration-200;
+      @apply cursor-pointer hover:brightness-90 hover:text-primary duration-200;
     }
     .header-dark .headerLink a {
       @apply text-black;
@@ -188,7 +190,7 @@ body {
       @apply text-text hover:bg-bg pl-4 w-full h-10 flex flex-row items-center;
     }
     .mobileNavIcon{
-      @apply text-xl text-secondary mr-3;
+      @apply text-xl text-primary mr-3;
     }
     .navAngleIcon{
       @apply mr-2 float-end text-text text-sm mt-2;
@@ -201,11 +203,11 @@ body {
 
  /* Cart page */
  .cartTab{
-  @apply cursor-pointer h-10 text-text flex-row-center pl-2 p-4 sm:p-0 gap-2 rounded-md hover:bg-bg-dark leading-5 sm:leading-normal;
+  @apply cursor-pointer h-10 text-text flex-row-center p-2 gap-2 rounded-md hover:bg-bg-dark leading-5 sm:leading-normal;
   
  }
  .activeCartTab{
-  @apply cursor-pointer h-10 bg-bg-light sm:bg-secondary text-maintext sm:text-bg-light font-bold sm:font-normal leading-5 sm:leading-normal  pl-2  p-4 sm:p-0 flex-row-center gap-2 rounded-md;
+  @apply cursor-pointer h-10 bg-bg-light sm:bg-primary-light text-maintext sm:text-bg-light font-bold sm:font-normal leading-5 sm:leading-normal p-2 flex-row-center gap-2 rounded-md;
   
  }
 
@@ -214,7 +216,7 @@ body {
         @apply flex flex-col-center items-start justify-evenly w-fit h-fit gap-4 text-bg text-sm;
       }
     .footerLink li{
-    @apply cursor-pointer hover:text-secondary duration-200;
+    @apply cursor-pointer hover:text-primary duration-200;
     }
 
  /*  socials section */

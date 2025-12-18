@@ -5,10 +5,10 @@ import React from 'react'
 
 const ProductCard = ({productImg, price, title, description}) => {
   return (
-    <div className='mb-8 flex flex-col sm:flex-row sm:justify-evenly lg:flex-col items-center lg:justify-start lg:items-start justify-center w-[90%] h-120 sm:h-fit sm:w-full sm:p-2 lg:p-0 lg:w-70 lg:h-100 shadow-xl hover:shadow-2xl duration-300 rounded-lg '>
+    <div className='mb-8 flex flex-col sm:flex-row sm:justify-evenly lg:flex-col items-center lg:justify-start lg:items-start justify-center w-[90%] h-120 sm:h-fit sm:w-full sm:p-2 lg:p-0 lg:w-70 lg:h-100 shadow-xl hover:shadow-2xl duration-300 rounded-lg'>
        {/*  product Image */}
         <div className=' w-full bg-primary flex-1 md:flex-none lg:h-[60%] sm:h-70 sm:w-100 md:w-80 lg:w-full flex-col-center justify-end  rounded-lg rounded-br-none rounded-bl-none  sm:rounded-br-lg sm:rounded-bl-lg lg:rounded-br-none lg:rounded-bl-none relative bg-cover bg-center' style={{ backgroundImage: `url(${productImg})`}}> {/* '60% 40% 30% 70% / 60% 30% 70% 40%' */}
-            <FontAwesomeIcon icon={farHeart} className=' text-secondary absolute top-4 right-4'/>
+            <FontAwesomeIcon icon={farHeart} className=' text-primary absolute top-4 right-4'/>
             <div className='w-full h-6 sm:h-0 lg:h-6 rounded-tr-full rounded-tl-full bg-bg-light hidden'></div>
             <div className="w-72 h-72 clip-wave bg-amber-500"> {/* style={{ borderRadius: '70% 20% 60% 30% / 30% 70% 20% 80%'}} */}
                 <p className='font-bold text-xl font-serif tracking-wider text-green-900'>{price}</p>
@@ -29,8 +29,8 @@ const ProductCard = ({productImg, price, title, description}) => {
                         </p>
                     </div>
                     <div className='flex-row-center justify-between w-full mt-3'>
-                        <button className=" border border-secondary p-2 w-26  rounded-full green-shadow text-sm shadow-xl">View details</button>
-                        <button className="w-fit bg-secondary p-2 text-bg-light font-semibold rounded-lg text-sm shadow-xl green-shadow "> Add to Cart</button>
+                        <button className=" border border-primary p-2 w-26  rounded-full green-shadow text-sm shadow-xl">View details</button>
+                        <button className="w-fit bg-primary p-2 text-bg-light font-semibold rounded-lg text-sm shadow-xl green-shadow "> Add to Cart</button>
                     </div>
              
 
