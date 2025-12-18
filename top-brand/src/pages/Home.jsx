@@ -84,8 +84,8 @@ useGSAP(() => {
       {/*  Nav bar */}
       <HomeHeader/>
 
-      <div className="w-full min-h-screen bg-[url('/honeyLanding2fliped.jpg')] bg-cover bg-position-[70%_50%] lg:bg-position-[50%_50%]"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%] */}
-         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-r md:bg-linear-to-r from-primary-dark via-primary/50 sm:via-primary/30 lg:via-primary/20 to-transparent">
+      <div className="w-full min-h-screen bg-[url('/honeyLanding2fliped.jpg')] bg-cover bg-position-[95%_50%] lg:bg-position-[50%_50%]"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%] */}
+         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr md:bg-linear-to-r from-primary-dark via-primary/50 sm:via-primary/30 lg:via-primary/20 to-transparent">
             
             {/* Main container */}
             <div className="h-fit lg:min-h-[75%] w-full pt-24 lg:pt-14 flex items-center justify-between flex-wrap-reverse">
@@ -97,7 +97,7 @@ useGSAP(() => {
                         Naturally Harvested, Globally Supplied. Cashews, Cloves & Honey
                      </p>
                      {/* Description */}
-                     <p className="text-gray-200 w-full sm:w-[60%] lg:w-[95%] text-left para sm:text-left ">
+                     <p className="text-gray-200 w-full sm:w-[60%] lg:w-[95%] text-left para sm:text-left">
                        From farm to destination, we partner with sustainable growers to bring
                        you natural products. A global supply chain where quality enriches lives.
                      </p>
