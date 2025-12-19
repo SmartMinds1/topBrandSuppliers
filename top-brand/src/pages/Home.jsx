@@ -84,7 +84,7 @@ useGSAP(() => {
       {/*  Nav bar */}
       <HomeHeader/>
 
-      <div className="w-full min-h-screen bg-[url('/honeyLanding2fliped.jpg')] bg-cover bg-position-[95%_50%] lg:bg-position-[50%_50%]"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%] */}
+      <div className="w-full min-h-screen bg-[url('/topbrandLanding.webp')] bg-cover bg-position-[95%_50%] lg:bg-position-[50%_50%]"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%] */}
          <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr md:bg-linear-to-r from-primary-dark via-primary/50 sm:via-primary/30 lg:via-primary/20 to-transparent">
             
             {/* Main container */}
