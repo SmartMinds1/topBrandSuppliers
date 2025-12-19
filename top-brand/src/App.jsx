@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Home from './pages/Home.jsx';
@@ -22,18 +22,21 @@ const App = () => {
   )
 }
 
-export default App; */
+export default App;
 
 
-import React, { lazy, Suspense } from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop.jsx";
+
+
+
+//import React, { lazy, Suspense } from "react";
+//import { HashRouter as Router, Routes, Route } from "react-router-dom";
+//import ScrollToTop from "./components/ScrollToTop.jsx";
 
 /* Eager-loaded (critical) */
-import Home from "./pages/Home.jsx";
+//import Home from "./pages/Home.jsx";
 
 /* Lazy-loaded (non-critical) */
-const About = lazy(() => import("./pages/About.jsx"));
+/* const About = lazy(() => import("./pages/About.jsx"));
 const Brands = lazy(() => import("./pages/Brands.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 const Cart = lazy(() => import("./pages/Cart.jsx"));
@@ -56,5 +59,5 @@ const App = () => {
   );
 };
 
-export default App;
+export default App; */
 
