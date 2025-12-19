@@ -81,7 +81,7 @@ body {
 
    /*  styling body Icons */
     .mainIcon{
-      @apply text-4xl text-accent-light;
+      @apply text-4xl text-accent;
     }
     .subIcon{
       @apply text-xl text-maintext;
@@ -166,7 +166,7 @@ body {
       @apply px-2 py-2 w-32 bg-accent rounded-sm cursor-pointer text-bg font-medium shadow-md;
     }
     .btn-secondary {
-      @apply px-2 py-2 bg-none border border-accent-light w-32 rounded-sm cursor-pointer text-maintext font-medium shadow-md;
+      @apply px-2 py-2 bg-none border border-accent w-32 rounded-sm cursor-pointer text-maintext font-medium shadow-md;
     }
     .btnHover{
         @apply cursor-pointer hover:bg-accent  hover:shadow-lg transition duration-400 ease-in-out;
@@ -181,7 +181,7 @@ body {
       @apply font-light text-3xl;
     }
     .headerLink li{
-      @apply cursor-pointer hover:brightness-90 hover:text-primary duration-200;
+      @apply cursor-pointer hover:brightness-90 hover:text-accent duration-200;
     }
     .header-dark .headerLink a {
       @apply text-black;
