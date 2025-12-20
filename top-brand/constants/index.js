@@ -56,6 +56,7 @@ export const productData = {
       "Strong aroma ideal for blending",
       "Preferred by global spice buyers",
     ],
+    category: "cloves",
   },
 
   "Madagascar Cloves": {
@@ -70,6 +71,7 @@ export const productData = {
       "Consistent size and color",
       "Suitable for food and beverage industries",
     ],
+    category: "cloves",
   },
 
   "Comoros Cloves": {
@@ -84,6 +86,7 @@ export const productData = {
       "Budget-friendly alternative",
       "Ideal for bulk spice processing",
     ],
+    category: "cloves",
   },
 
   "Tanzania Cloves": {
@@ -98,6 +101,7 @@ export const productData = {
       "Uniform size and color",
       "High essential oil concentration",
     ],
+    category: "cloves",
   },
 
   "Sri Lanka Cloves": {
@@ -112,6 +116,7 @@ export const productData = {
       "Milder refined aroma",
       "Preferred in beverage and tea blends",
     ],
+    category: "cloves",
   },
 
   "India Cloves": {
@@ -126,6 +131,7 @@ export const productData = {
       "Versatile culinary uses",
       "Strong demand in Asian markets",
     ],
+    category: "cloves",
   },
 
   "Indonesia Cloves": {
@@ -140,6 +146,7 @@ export const productData = {
       "Intense aromatic profile",
       "Reliable large-scale supply",
     ],
+    category: "cloves",
   },
 
   "Brazil Cloves": {
@@ -154,6 +161,7 @@ export const productData = {
       "Attractive deep color",
       "Stable supply volume",
     ],
+    category: "cloves",
   },
 
   /* --------------------------------------------------------------------
@@ -171,6 +179,7 @@ export const productData = {
       "High demand in global snack markets",
       "Perfect for roasting and gourmet packaging",
     ],
+    category: "cashews",
   },
 
   "W320 Cashew Nuts": {
@@ -185,6 +194,7 @@ export const productData = {
       "Great balance between price and size",
       "Works well for snacks, baking, and mixing",
     ],
+    category: "cashews",
   },
 
   "W450 Cashew Nuts": {
@@ -199,6 +209,7 @@ export const productData = {
       "Perfect for large-scale food processing",
       "Consistent taste for flavored snacks",
     ],
+    category: "cashews",
   },
 
   "WS Cashew Nuts": {
@@ -213,6 +224,7 @@ export const productData = {
       "Creamy flavor blends well in recipes",
       "Cost-effective alternative to whole kernels",
     ],
+    category: "cashews",
   },
 
   "LP Cashew Nuts": {
@@ -227,6 +239,7 @@ export const productData = {
       "Consistent size for industrial processing",
       "Rich aroma and natural taste",
     ],
+    category: "cashews",
   },
 
   "BB Cashew Nuts": {
@@ -241,6 +254,7 @@ export const productData = {
       "High oil content for smooth blending",
       "Cost-efficient for industrial use",
     ],
+    category: "cashews",
   },
 
   "Scorched W240": {
@@ -255,6 +269,7 @@ export const productData = {
       "Ideal for roasted and seasoned snacks",
       "Preferred by bulk exporters",
     ],
+    category: "cashews",
   },
 
   "Scorched W320": {
@@ -269,6 +284,7 @@ export const productData = {
       "Great for seasoned nut production",
       "Excellent option for high-volume buyers",
     ],
+    category: "cashews",
   },
 
   /* --------------------------------------------------------------------
@@ -286,6 +302,7 @@ export const productData = {
       "Strong natural flavor",
       "Perfect for organic markets",
     ],
+    category: "honey",
   },
 
   "Acacia Honey": {
@@ -300,6 +317,7 @@ export const productData = {
       "Gentle mild sweetness",
       "Premium international demand",
     ],
+    category: "honey",
   },
 
   "White Comb Honey": {
@@ -314,6 +332,7 @@ export const productData = {
       "High gourmet appeal",
       "Zero processing involved",
     ],
+    category: "honey",
   },
 
   "Eucalyptus Honey": {
@@ -328,6 +347,7 @@ export const productData = {
       "Great for beverages",
       "Stable export quality",
     ],
+    category: "honey",
   },
 
   "Sunflower Honey": {
@@ -342,6 +362,7 @@ export const productData = {
       "Perfect for breakfast foods",
       "Attractive natural color",
     ],
+    category: "honey",
   },
 
   "Mountain Flora Honey": {
@@ -356,6 +377,7 @@ export const productData = {
       "High nutrition profile",
       "Ideal for premium buyers",
     ],
+    category: "honey",
   },
 
   "Orange Blossom Honey": {
@@ -370,6 +392,7 @@ export const productData = {
       "Perfect for desserts",
       "Gourmet-market favorite",
     ],
+    category: "honey",
   },
 
   "Multiflora Honey": {
@@ -384,12 +407,12 @@ export const productData = {
       "Consistent quality flavor",
       "High global demand",
     ],
+    category: "honey",
   },
 
   /* --------------------------------------------------------------------
             ALL AVAILABLE TYPES OF GINGER
 -------------------------------------------------------------------- */
-
   "Fresh Whole Ginger": {
     title: "Fresh Whole Ginger",
     price: 32.0,
@@ -398,6 +421,7 @@ export const productData = {
       "Handpicked fresh ginger known for its strong aroma and vibrant flavor. Ideal for cooking, beverages, and food processing. Highly demanded by wholesalers and international spice buyers.",
     image: "link to free online image",
     benefits: ["Strong aroma", "Highly versatile", "Export-ready freshness"],
+    category: "ginger",
   },
 
   "Dry Split Ginger": {
@@ -412,6 +436,7 @@ export const productData = {
       "Cost-effective quality",
       "High flavor strength",
     ],
+    category: "ginger",
   },
 
   "Ginger Powder": {
@@ -422,6 +447,7 @@ export const productData = {
       "Finely milled ginger powder ideal for baking, seasoning blends, and instant beverages. Saves preparation time while maintaining strong natural flavor. Popular with manufacturers and packaged-food brands.",
     image: "link to free online image",
     benefits: ["Easy to use", "Strong warm flavor", "Perfect for blends"],
+    category: "ginger",
   },
 
   "Organic Ginger": {
@@ -436,6 +462,7 @@ export const productData = {
       "Clean natural taste",
       "Perfect for organic buyers",
     ],
+    category: "ginger",
   },
 
   "Baby Ginger": {
@@ -446,6 +473,7 @@ export const productData = {
       "Young ginger with smooth skin and a mild, delicate taste. Easy to cut and perfect for gourmet recipes and fresh beverages. A favorite for premium kitchens and specialty food brands.",
     image: "link to free online image",
     benefits: ["Soft texture", "Mild gentle taste", "Great for fresh use"],
+    category: "ginger",
   },
 
   "Ginger Flakes": {
@@ -456,6 +484,7 @@ export const productData = {
       "Thinly sliced ginger flakes dried to preserve aroma and color. Ideal for tea blends, spice mixes, and bulk food production. Keeps flavor strong while offering easy handling.",
     image: "link to free online image",
     benefits: ["Strong aroma", "Easy blending", "Consistent quality"],
+    category: "ginger",
   },
 
   "Ginger Oil": {
@@ -470,6 +499,7 @@ export const productData = {
       "Industrial-grade quality",
       "Strong warm essence",
     ],
+    category: "ginger",
   },
 
   "Crushed Ginger": {
@@ -480,6 +510,7 @@ export const productData = {
       "Coarsely crushed ginger ideal for instant cooking, sauces, and marinades. Reduces preparation time while delivering fresh natural flavor. Great for restaurants, processors, and busy kitchens.",
     image: "link to free online image",
     benefits: ["Time-saving", "Fresh strong taste", "Great for cooking"],
+    category: "ginger",
   },
 
   /* --------------------------------------------------------------------
@@ -497,6 +528,7 @@ export const productData = {
       "Great for snacking",
       "High global demand",
     ],
+    category: "macadamia",
   },
 
   "Macadamia Kernel Halves": {
@@ -507,6 +539,7 @@ export const productData = {
       "Clean, evenly sized macadamia halves ideal for confectionery and nut mixes. Offers great value while maintaining excellent taste and freshness. Loved by manufacturers needing consistent, high-quality ingredients.",
     image: "link to free online image",
     benefits: ["Uniform sizing", "Value for processing", "Reliable quality"],
+    category: "macadamia",
   },
 
   "Macadamia Kernel Pieces": {
@@ -517,6 +550,7 @@ export const productData = {
       "High-quality broken macadamia pieces ideal for baking, cereals, and spreads. Delivers great flavor at a friendly price point for bulk buyers. A smart choice for high-volume food brands.",
     image: "link to free online image",
     benefits: ["Budget-friendly", "Great for baking", "Strong flavor"],
+    category: "macadamia",
   },
 
   "Roasted Macadamia Nuts": {
@@ -527,6 +561,7 @@ export const productData = {
       "Perfectly roasted to bring out a rich, nutty aroma and satisfying crunch. Ideal for snack brands, gift packs, and premium retail shelves. Offers irresistible taste and consistent quality.",
     image: "link to free online image",
     benefits: ["Strong nutty aroma", "Perfect crunch", "Great retail appeal"],
+    category: "macadamia",
   },
 
   "Salted Macadamia Nuts": {
@@ -537,6 +572,7 @@ export const productData = {
       "Macadamias seasoned with a gentle touch of salt for a balanced, satisfying taste. A crowd-favorite snack for supermarkets and gourmet stores. Perfect for clients seeking ready-to-sell products.",
     image: "link to free online image",
     benefits: ["Ready-to-eat", "Balanced seasoning", "Strong customer demand"],
+    category: "macadamia",
   },
 
   "Macadamia Oil": {
@@ -547,6 +583,7 @@ export const productData = {
       "Cold-pressed macadamia oil with a smooth, buttery flavor profile. Popular for cooking, skincare, and specialty food products. High in healthy fats and widely demanded globally.",
     image: "link to free online image",
     benefits: ["Cold-pressed purity", "Versatile usage", "Rich healthy fats"],
+    category: "macadamia",
   },
 
   "Macadamia Flour": {
@@ -557,6 +594,7 @@ export const productData = {
       "Finely milled macadamia flour perfect for gluten-free baking and healthy recipes. Loved by specialty food brands and wellness markets. Provides rich flavor and smooth texture to baked goods.",
     image: "link to free online image",
     benefits: ["Gluten-free", "Smooth fine texture", "Great for baking"],
+    category: "macadamia",
   },
 
   "Macadamia Nut Butter": {
@@ -571,6 +609,7 @@ export const productData = {
       "Natural ingredients",
       "Premium market appeal",
     ],
+    category: "macadamia",
   },
 
   /* --------------------------------------------------------------------

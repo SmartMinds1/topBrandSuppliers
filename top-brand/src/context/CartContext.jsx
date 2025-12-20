@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
   }, [cartHistory]);
 
   // Add new item or increase qty
-  const addToCart = (item) => {
+   const addToCart = (item) => {
     setCartItems((prev) => {
       const existing = prev.find((x) => x.id === item.id);
 
@@ -37,7 +37,8 @@ export const CartProvider = ({ children }) => {
 
       return [...prev, { ...item, qty: 1 }];
     });
-  };
+  }; 
+
 
   // Increment quantity
   const increaseQty = (id) => {

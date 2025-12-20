@@ -21,10 +21,13 @@ export default function Cart() {
 
   //States to manage what's displayed on the customer dashboard
   const [activeTab, setActiveTab] = useState("cart");
+
+  /* calculating total cost */
   const total = cartItems.reduce(
-    (t, item) => t + parseFloat(item.price) * item.qty,
+    (t, item) => t + parseFloat(item.price) * (item.sizeKg || 1) * item.qty,
     0
   );
+  
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -125,7 +128,8 @@ export default function Cart() {
                                   {/* item name and price */}
                                   <div className="w-fit h-30 flex-col-start justify-evenly">
                                         <h3 className="font-semibold">{item.title}</h3>
-                                        <p>${item.price}</p>
+                                         <p>Total item cost: ${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</p>
+
                                     
                                       <div className="flex items-center gap-2">
                                         <button
@@ -152,7 +156,7 @@ export default function Cart() {
                         ))}
 
                           <div className="w-full sm:w-80 h-38 border border-gray-300 rounded-lg mt-4 flex-col-center justify-evenly p-4 py-2 mb-8">
-                              <h3 className="text-xl font-semibold w-full flex items-center justify-between">Total: <span>${total.toFixed(2)}</span></h3>
+                              <h3 className="text-xl font-semibold w-full flex items-center justify-between">Grand Total: <span>${total.toFixed(2)}</span></h3>
 
                               <button
                                 className="w-full bg-primary  cursor-pointer hover:shadow-2xl hover:shadow-primary-light/50 duration-300 text-white px-6 py-3 rounded-lg"
