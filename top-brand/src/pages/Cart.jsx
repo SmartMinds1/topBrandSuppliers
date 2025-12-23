@@ -69,7 +69,7 @@ export default function Cart() {
 
         
         {/* Mobile bottom navigation bar */}
-        <aside className="w-full h-fit fixed bottom-0 left-0  bg-bg-dark  p-2 z-50 sm:hidden">
+        <aside className="w-full h-fit fixed bottom-0 left-0  bg-bg-dark  p-2 pb-0 z-40 sm:hidden">
           <ul className="space-y-3 w-full grid grid-cols-3">
               <li
                 className={`${activeTab === "cart" ? "activeCartTab" : "cartTab"}`}
@@ -98,7 +98,7 @@ export default function Cart() {
         <main className="w-full sm:flex-1 relative pt-16">
           {/* cartHeader */}
 {           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg-light absolute top-0 ">
-              <p className="text-2xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-2xl text-accent"/> Cart Manager</p>
+              <p className="text-xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-xl text-accent"/> Cart Manager</p>
               <p>Fridah <FontAwesomeIcon icon={faUserCircle} className="text-2xl"/> </p>
             </div>}
 
@@ -108,7 +108,7 @@ export default function Cart() {
                 {/* Cart Items */}
                 {activeTab === "cart" && (
                   <div>
-                    <h2 className="text-xl font-semibold mb-4 text-primary">Available Cart Items</h2>
+                    <h2 className="text-lg lg:text-xl font-semibold mb-4 text-primary">Available Cart Items</h2>
                     {cartItems.length === 0 ? (
                       <div className="w-full h-30 flex-col-center justify-center">
                         <p className="text-text">Your cart is empty</p>
@@ -130,7 +130,6 @@ export default function Cart() {
                                         <h3 className="font-semibold">{item.title}</h3>
                                          <p>Total item cost: ${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</p>
 
-                                    
                                       <div className="flex items-center gap-2">
                                         <button
                                           className="w-9 h-8 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"

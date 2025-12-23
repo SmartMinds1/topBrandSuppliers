@@ -203,11 +203,11 @@ body {
 
  /* Cart page */
  .cartTab{
-  @apply cursor-pointer h-10 text-text flex-row-center p-2 gap-2 rounded-md hover:bg-bg-dark leading-5 sm:leading-normal;
+  @apply cursor-pointer h-10 text-text flex-row-center p-2 gap-2 rounded-md hover:bg-bg-dark leading-5 sm:leading-normal text-sm;
   
  }
  .activeCartTab{
-  @apply cursor-pointer h-10 bg-bg-light sm:bg-primary-light text-maintext sm:text-bg-light font-bold sm:font-normal leading-5 sm:leading-normal p-2 flex-row-center gap-2 rounded-md;
+  @apply cursor-pointer h-10 bg-bg-light sm:bg-primary-light text-maintext sm:text-bg-light font-bold sm:font-normal leading-5 sm:leading-normal p-2 flex-row-center gap-2 rounded-md text-sm;
   
  }
 
@@ -224,7 +224,26 @@ body {
     @apply text-xl text-maintext hover:brightness-80 transition-all duration-300 cursor-pointer;
   }
 
+
+/*  ADMIN DASHBORD SECTION */
+.dashSideBarLinks li{
+@apply w-full p-4 text-text flex-row-center gap-2 hover:bg-bg-light border-l-2 border-transparent hover:border-accent duration-300 cursor-pointer;
+} 
+
+.dashSideBarIcon{
+  @apply text-maintext text-xl;
 }
+
+/* content area  */
+.dataTable tr{
+  @apply  text-text;
+}
+
+}
+
+
+
+
 /* src/index.css (after your @tailwind directives) */
 .clip-wave {
   clip-path: path("M0,40 C120,10 300,10 420,40 L420,240 L0,240 Z");

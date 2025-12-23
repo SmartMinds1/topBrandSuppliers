@@ -80,6 +80,7 @@ const Footer = ()=> {
                                     <li><NavLink to="/about" className={({ isActive }) => isActive ? "text-primary" : ""}>about</NavLink> </li>
                                     <li><NavLink to="/brands" className={({ isActive }) => isActive ? "text-primary" : ""}>brands</NavLink> </li>
                                     <li><NavLink to="/contact" className={({ isActive }) => isActive ? "text-primary" : ""}>contact</NavLink> </li>
+                                    <li><NavLink to="/admin" className={({ isActive }) => isActive ? "text-accent" : ""}>admin</NavLink></li>
                                 </ul>
                             </div>
 
