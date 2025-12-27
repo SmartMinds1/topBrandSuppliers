@@ -128,7 +128,7 @@ const clearSearch = () => {
                     {/* Sidebar */}
                     <div className={`transition-all duration-400 overflow-x-hidden flex-col-center h-full bg-bg-dark  ${sidebarOpen ? 'w-54' : 'w-0'}`}>{/*  border-r border-gray-300 */}
                         <div className="w-54 h-40 border-b border-gray-300 flex-row-center justify-evenly shrink-0">
-                            <div className="w-14 h-14 rounded-full bg-[url('./Lauracia.webp')] bg-cover"></div>
+                            <div className="w-14 h-14 rounded-full bg-[url('/Lauracia.webp')] bg-cover"></div>
                             <div className="welcome-text">
                                 <p className='font-light text-text'>Welcome back,</p>
                                 <p className="font-semibold text-xl">Fridah{/* {activeAdmin} */}!</p>
