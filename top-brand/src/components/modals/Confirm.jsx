@@ -1,0 +1,68 @@
+import React,{useState, useEffect} from "react";
+import axios from "axios";
+import "./Confirm.css";
+import DeleteModal from "./DeleteModal";
+import DeleteAlert from "./DeleteAlert";
+
+const Confirm = ({children, onCloseConfirm, deleteUrl, deleteName, fetchData})=>{
+
+//setting up feedback message using a popUp
+  const [showModal, setShowModal] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
+
+//HANDLING DELETE
+    const handleDelete = async () => {
+        try {
+          const response = await axios.delete(deleteUrl, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          });
+          setResponseMessage(response.data.message); 
+  
+        } catch (error) {
+          setResponseMessage(`Failed to delete ${deleteName}`, error.response?.data || error);
+        }
+      };
+  
+   
+// Show modal only when responseMessage changes and is not empty
+        useEffect(() => {
+          if (responseMessage) {
+            setShowModal(true);
+          }
+        }, [responseMessage]);
+
+    return(
+     <>
+      <div className="h-[25vh] min-w-67.5 md:min-w-85.5 max-w-[25%] bg-bg m-auto flex-col-center justify-evenly z-50 text-center">
+          <div>
+              {children}
+          </div>
+          <div className="w-[60%] h-fit p-2 flex-row-center justify-evenly">
+              <button className="w-16 h-8 rounded-xl bg-bg text-maintext border border-gray-300 transition-all cursor-pointer hover:brightness-90" onClick={onCloseConfirm}>Cancel</button>
+              <button className="w-16 h-8 rounded-xl bg-primary text-bg transition-all cursor-pointer hover:brightness-90" onClick={()=>handleDelete()}>Confirm</button>
+          </div> 
+      </div>
+        
+{/*  Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}
+       <DeleteModal isOpen={showModal}  onCloseConfirm={() => onCloseConfirm()}  fetchData={()=>fetchData()}  onClose={() => {
+              setShowModal(false); 
+              setResponseMessage("");//reset so that to trigger useEffect on the second time
+          }}>
+          <DeleteAlert onClose={() => {
+              setShowModal(false); 
+              setResponseMessage(""); 
+                }
+              }
+              onCloseConfirm={() => onCloseConfirm()} 
+              fetchData={()=>fetchData()} 
+          >
+              <p className="responseMessage">{responseMessage}</p>
+          </DeleteAlert>
+      </DeleteModal>
+      
+        </>
+    );
+}
+export default Confirm

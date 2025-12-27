@@ -18,7 +18,7 @@ export const testimonialCards = [
     rateName: "Samuel Josh - Tanzania",
     rateImg: Juzman,
     rateMessage:
-      "Their products are always fresh and delivered on time, cwe trust them completely.",
+      "Their products are always fresh and delivered on time, we trust them completely.",
     cardRating: "4",
   },
 

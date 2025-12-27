@@ -47,7 +47,7 @@ const About = () => {
       <Header/>
 
 {/* ------------------SECTION 1 ------------------------- */}
-      <div className='w-full h-fit md:h-[85vh] mt-16  flex-col-center start gap-10 md:gap-20 pt-20'>
+      <div className="w-full h-fit  mt-16 md:h-[85vh]  flex-col-center start gap-10 md:gap-20 pt-20"> {/* bg-[url('./aboutLanding1.jpg')] bg-cover */}
         <p className='w-[90%] m-auto sm:w-140  h-fit text-maintext text-4xl md:text-5xl font-bold leading-normal lg:leading-18 text-center'>Kenya To The World, One <span className='font-light'>Quality Shipment At A Time</span> </p>
         <p className='text-text w-[80%] text-center'>Your trusted partner for global Trade, Logistics and Supply services</p>
         <button className='btn-primary green-shadow '>Get Started</button>

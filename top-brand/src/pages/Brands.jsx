@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'
 import ProductDetails from '../components/ProductDetails';
-import Modal from '../components/Modal';
+import Modal from '../components/modals/Modal';
 import { cashewList, clovesList, gingerList, honeyList, macadamiaList } from '../../constants/ProductList'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 
@@ -238,7 +238,7 @@ const Brands = () => {
      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
               
       <Footer/>
-
+  
     {/* A modal to show every project's additional details */}
       <Modal isOpen={showModal} onClose={() => {setShowModal(false)}}>
           <ProductDetails product={productLink} onClose={() => {setShowModal(false)}}/>

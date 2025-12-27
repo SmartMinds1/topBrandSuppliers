@@ -61,7 +61,7 @@ export default function Cart() {
           </ul>
 
           <p 
-              className="cursor-pointer hover:bg-bg-dark w-full p-2"
+              className="cursor-pointer hover:bg-bg-dark w-full p-2 text-sm"
             >
               <FontAwesomeIcon icon={faSignOut} /> logout
           </p>
@@ -75,14 +75,14 @@ export default function Cart() {
                 className={`${activeTab === "cart" ? "activeCartTab" : "cartTab"}`}
                 onClick={() => setActiveTab("cart")}
               >
-                <FontAwesomeIcon icon={faCartShopping} /> Cart Items
+                <FontAwesomeIcon icon={faCartShopping} /> Items
               </li>
 
               <li
                 className={`${activeTab === "history" ? "activeCartTab" : "cartTab"}`}
                 onClick={() => setActiveTab("history")}
               >
-               <FontAwesomeIcon icon={faHistory}/> Cart History
+               <FontAwesomeIcon icon={faHistory}/> History
               </li>
 
               <li 
@@ -116,7 +116,7 @@ export default function Cart() {
                     ) : (
                       <div className="flex flex-col items-end justify-evenly">
                         {cartItems.map((item) => (
-                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-300 p-4 rounded mb-2 flex-wrap gap-4">
+                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-200 shadow p-4 rounded mb-2 flex-wrap gap-4">
                               <div className="w-fit h-fit flex-row-center flex-wrap gap-2">
                                   {/* item image */}
                                       <img
@@ -146,7 +146,7 @@ export default function Cart() {
 
                              {/* remove button */}
                             <button
-                              className="text-red-600 bg-bg p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300"
+                              className="text-red-600 bg-bg p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300 text-sm"
                               onClick={() => removeFromCart(item.id)}
                             >
                               Remove
@@ -177,7 +177,7 @@ export default function Cart() {
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
                       cartHistory.map((cart, index) => (
-                        <div key={index} className="border border-gray-300 p-4 rounded mb-2">
+                        <div key={index} className="border border-gray-100 shadow p-4 rounded mb-2">
                           <h3 className="font-semibold text-xl">Cart {index + 1} Items</h3>
                           <ul className="ml-4 list-disc">
                             {cart.map((item) => (

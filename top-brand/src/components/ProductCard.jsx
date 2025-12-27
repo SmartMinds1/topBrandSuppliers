@@ -15,7 +15,7 @@ const ProductCard = ({productImg, price, title, description, viewDetails}) => {
             {/* product title */}
                 <p className="text-maintext text-lg tracking-normal text-left font-semibold">{title}</p>
             {/*  product description */}
-                <p className='text-text text-sm text-left line-clamp-2'>{description}</p>
+                <p className='text-text text-sm text-left line-clamp-2 tracking-wide'>{description}</p>
             {/* product price */}
                 <div className='w-fit p-1 bg-bg-dark h-fit mt-1'>
                     <p className='font-bold text-primary font-serif tracking-wider shadow'>${price}</p>

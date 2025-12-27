@@ -75,7 +75,7 @@ const HomeHeader = () => {
           <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
             <div className="logo-bg w-4/5 h-5/7 border-b-5 border-[#FFF] rounded-br-full rounded-bl-full"></div>
           </div>
-          <p className="text-accent text-2xl font-extrabold">
+          <p className="text-accent-light text-2xl font-extrabold">
              topB<span className="header-text text-bg text-2xl font-extralight">rand</span>
           </p>
         </div>
@@ -93,22 +93,22 @@ const HomeHeader = () => {
         {/* Right section */}
         <div className="w-36 bg-transparent border-0"></div>
 
-        <div className="absolute right-4 w-12 sm:w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-lg bg-bg flex-row-center shadow">
+        <div className="absolute right-4 w-9 sm:w-36 hover:w-60 duration-800 ease-in-out h-9 rounded-full bg-bg  flex-row-center justify-center shadow">
           <div className="w-2/3 h-full rounded-2xl flex-row-center gap-1 pl-1 hidden sm:flex">
             <FontAwesomeIcon icon={faSearch} className="text-lg text-text" />
             <p className="text-text text-sm">Search</p>
           </div>
 
-          <p className="text-2xl mr-2 text-text">|</p>
+          <p className="text-2xl mr-2 text-text hidden sm:block">|</p>
 
           {/* Cart */}
           <div className="relative w-1/5 h-full rounded-2xl flex-row-center justify-center">
-            <NavLink to="/cart" className={({ isActive }) => isActive ? "text-accent" : ""}>
-              <FontAwesomeIcon icon={faCartShopping} className="text-xl" />
+            <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
+              <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
             </NavLink>
 
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 bg-accent text-bg-light text-xs px-2 py-1 rounded-full">
+              <span className="absolute -top-2 -right-4 sm:-right-1.5 bg-accent text-bg-light text-xs px-1.5 py-0.5 rounded-full">
                 {count}
               </span>
             )}

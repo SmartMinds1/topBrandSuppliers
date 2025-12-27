@@ -227,7 +227,7 @@ body {
 
 /*  ADMIN DASHBORD SECTION */
 .dashSideBarLinks li{
-@apply w-full p-4 text-text flex-row-center gap-2 hover:bg-bg-light border-l-2 border-transparent hover:border-accent duration-300 cursor-pointer;
+@apply w-full p-3 font-light text-text flex-row-center gap-2 hover:bg-bg-light border-l-4 border-transparent hover:border-accent duration-300 cursor-pointer;
 } 
 
 .dashSideBarIcon{

@@ -13,7 +13,7 @@ const TopProductCard = ({title, description, productImage}) => {
                         <p className="subHeader text-center sm:text-left mt-5 lg:mt-0">{title}</p>
     
                     {/*  product description */}
-                        <p className='cardText text-center sm:text-left mt-2' >{description}</p>
+                        <p className='cardText text-center sm:text-left mt-2 font-light leading-7' >{description}</p>
                 </div>
         </div>
     )  

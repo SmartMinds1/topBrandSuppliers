@@ -3,10 +3,7 @@ import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-  faHouse, 
-  faUser, 
-  faGears, 
-  faBriefcase, 
+  faHouse,  
   faAngleRight,
   faUserCircle,
   faTags,

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 //import useSearch from "../utils/useSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import exportToCSV from "../utils/exportToCSV";
 
 
 const MessagesList = () => {
@@ -56,6 +57,19 @@ const MessagesList = () => {
    const { query, setQuery, filteredData } = useSearch(messages, ["username", "email"]);
 
   if (loading) return <p>Loading messages...</p>;
+
+
+ /*  Exporting messages to CSV */
+      exportToCSV(messages, {
+        filename: "messages.csv",
+        columns: [
+          { key: "name", label: "Sender Name" },
+          { key: "email", label: "Email" },
+          { key: "message", label: "Message" },
+          { key: "created_at", label: "Date" },
+        ],
+      });
+
 
   return (
     <div>
