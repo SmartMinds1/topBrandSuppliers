@@ -114,7 +114,7 @@ const clearSearch = () => {
                             </button>
                         </div>
                         <div className="flex-row-center gap-2">
-                            <div className="w-10 h-10 rounded-full bg-[url('./Lauracia.webp')] bg-cover"></div>
+                            <div className="w-10 h-10 rounded-full bg-[url('/Lauracia.webp')] bg-cover"></div>
                             <div className="flex-col-start">
                                 <p className="font-semibold text-maintext">Fridah</p> {/* {activeAdmin} */}
                                 <span className="font-light text-sm text-text">Administrator</span>
