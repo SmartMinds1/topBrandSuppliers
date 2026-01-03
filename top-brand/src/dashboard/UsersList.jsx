@@ -11,13 +11,20 @@ import useSearch from "../utils/useSearch";
 
 const UsersList = ({openDashboard}) => {
  /* action button */
-    const [actionBtn, setActionBtn] = useState(false)
+    const [openActionId, setOpenActionId] = useState(null);
+
     const [users, setUsers] = useState(testUsers); /* useState([]); */
     const [loading, setLoading] = useState(true);
 
   //setting up feedback message using a popUp
     const [showModal, setShowModal] = useState(false);
     const [user_ID, setUser_ID] = useState("");
+
+  //Action button ToggleEvent
+   const toggleActions = (id) => {
+    setOpenActionId(prev => (prev === id ? null : id));
+  };
+  
 
   //fetching users
      const fetchUsers = async () => {
@@ -133,7 +140,7 @@ const UsersList = ({openDashboard}) => {
       </div>
     
     <div className={`w-full pl-8 not-odd:overflow-y-scroll ${openDashboard ? "h-[43vh]" : "h-[66vh]"}`}>
-      <table  className="w-full mt-4 text-left leading-9 tracking-wide dataTable">
+      <table  className="w-full mt-4 text-left leading-12 tracking-wide dataTable">
         <thead>
           <tr>
             <th>Index</th>
@@ -148,20 +155,34 @@ const UsersList = ({openDashboard}) => {
               <td>{idx + 1}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
-              <td className="">
-                <p onClick={()=>setActionBtn(!actionBtn)} className="cursor-pointer">...</p> <FontAwesomeIcon icon={faDropletSlash}/>
-                  <ul className={`${actionBtn ? "block": "hidden"}`}> 
-                   {/*  This opens the confirm popUp  */}
-                    <li onClick={()=>{setShowModal(true); handleConfirm(user.id);}}>delete</li>
-                    <li><button
-                          onClick={() => makeAdmin(user.id)}
+              <td className="relative">
+                    <p className="cursor-pointer  text-lg" onClick={() => toggleActions(user.id)}>
+                      ⋮
+                    </p>
+                    <ul className={`absolute right-0 mt-2 w-34 bg-bg-dark shadow-lg rounded-md border border-gray-200 2-50 p-1 ${openActionId === user.id ? "block" : "hidden"}`}>
+                      <li onClick={() => {
+                          setShowModal(true);
+                          handleConfirm(user.id);
+                          setOpenActionId(null);
+                        }}
+                        className="px-4 py-1 hover:bg-red-200c cursor-pointer text-red-600 text-sm"
+                      >
+                        Delete
+                      </li>
+
+                      <li className="px-4 py-1">
+                        <button onClick={() => {
+                            makeAdmin(user.id);
+                            setOpenActionId(null);
+                          }}
                           disabled={user.role === "admin"}
+                          className="w-full text-left disabled:text-gray-400 text-sm bg-bg-dark hover:bg-amber-200"
                         >
                           Make Admin
                         </button>
                       </li>
-                  </ul>
-              </td>
+                    </ul>
+                  </td>
             </tr>
           ))} 
         </tbody>

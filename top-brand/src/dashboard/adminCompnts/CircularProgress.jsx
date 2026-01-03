@@ -1,7 +1,7 @@
 const CircularProgress = ({
-  completed = 100,
-  inProgress = 50,
-  pending = 50,
+  completed = 250,
+  inProgress = 100,
+  pending = 100,
 }) => {
   const radius = 90; /* 60 */
   const circumference = 2 * Math.PI * radius;
