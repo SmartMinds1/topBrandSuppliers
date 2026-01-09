@@ -35,7 +35,7 @@ const HomeHeader = () => {
         gsap.to(".header-text", { color: "#1F4D3A", duration: 0.3 });
 
         // Logo
-        gsap.to(".logo-bg", { borderColor: "#1F4D3A", duration: 0.3 });
+       // gsap.to(".logo-bg", { duration: 0.3, backgroundImage: url("/LOGOWHITE.png")});
 
         // brand text
         gsap.to(".brand-light", { color: "#1F4D3A", duration: 0.3 });
@@ -52,7 +52,7 @@ const HomeHeader = () => {
         gsap.to(".header-text", { color: "#FFF", duration: 0.3 });
 
       // revert Logo
-        gsap.to(".logo-bg", { borderColor: "#FFF", duration: 0.3 });
+       // gsap.to(".logo-bg", { duration: 0.3, backgroundImage: url("/LOGODARK.png")});
   
        // revert nav links text
         gsap.to(".navLinks-light li", { color: "#FFF", duration: 0.2 });
@@ -69,16 +69,18 @@ const HomeHeader = () => {
     <>
       {/* Header */}
       <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2 pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
-        
+        {/* logo */}
+        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO1.png')] bg-contain bg-no-repeat logo-bg"></div> {/* bg-[url('/ORIGINAL_LOGO3.png')] */}
+
         {/* Logo */}
-        <div className="w-40 flex flex-row items-end justify-center">
-          <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
+    {/*     <div className="w-40 flex flex-row items-end justify-center">
+          <div className="w-9 h-9 flex-col-center justify-start mr-0.5">
             <div className="logo-bg w-4/5 h-5/7 border-b-5 border-[#FFF] rounded-br-full rounded-bl-full"></div>
           </div>
           <p className="text-accent-light text-2xl font-extrabold">
              topB<span className="header-text text-bg text-2xl font-extralight">rand</span>
           </p>
-        </div>
+        </div> */}
 
         {/* Desktop nav */}
         <div className="sm:block hidden w-[55%] md:w-[50%] lg:w-[40%]">

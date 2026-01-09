@@ -95,15 +95,8 @@ const clearSearch = () => {
                         <h2 className='text-primary font-semibold sm:text-2xl text-xl'>Dashboard</h2>
                     </div>
 
-                    {/* Logo */}
-                    <div className="w-40 flex-row items-end justify-center hidden sm:flex">
-                        <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
-                            <div className="logo-bg w-4/5 h-5/7 border-b-5 border-primary rounded-br-full rounded-bl-full"></div>
-                        </div>
-                        <p className="text-accent-light text-2xl font-extrabold">
-                            topB<span className="text-primary text-2xl font-extralight">rand</span>
-                        </p>
-                    </div>
+                    {/* logo */}
+                    <div className="w-30 h-9 ml-4 bg-[url('/LOGODARK.png')] bg-contain bg-no-repeat"></div>
 
                     {/* current user */}
                     <div className="flex-row-center justify-between w-fit sm:w-50 gap-2">

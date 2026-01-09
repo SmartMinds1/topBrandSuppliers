@@ -58,13 +58,9 @@ const Footer = ()=> {
                     {/* logo div */}
                     <div className=" w-full lg:w-70 h-fit flex-row-center lg:flex-col-start flex-wrap lg:justify-start justify-evenly gap-2 p-2">
                         <div className="mb-6 sm:mb-0"> 
-                            {/*  logo */}
-                            <div className="w-40 flex flex-row items-end justify-center">
-                                <div className="w-9 h-9 flex-col-center justify-start mr-0.5"> {/* bg-[#111111] */}
-                                    <div className="logo-bg w-4/5 h-5/7 border-b-5 border-primary rounded-br-full rounded-bl-full"></div>
-                                </div>
-                                <p className="text-accent text-2xl font-extrabold">topB<span className="text-primary text-2xl font-extralight">rand</span></p>
-                            </div>
+                             {/* logo */}
+                            <div className="w-30 h-9 bg-[url('/ORIGINAL_LOGO3.png')] bg-contain bg-no-repeat"></div>
+                             {/* caption */}
                             <p className="w-[90%] text-md text-text text-sm mt-4 pl-4">Ideas that grow, connections that scale.</p>
                         </div>
                         <button className="btn-primary mt-0 lg:mt-12 green-shadow">Call Now</button>
@@ -112,7 +108,6 @@ const Footer = ()=> {
                 </div>
                 
                 <WhatsapChat/>
-
 
                 {/* footer copyright */}
                 <div className="flex-row-center flex-wrap w-full h-fit pt-4 pb-4 gap-2 sm:gap-0 text-text bg-bg-dark text-xs">
