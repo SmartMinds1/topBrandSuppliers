@@ -35,7 +35,8 @@ const HomeHeader = () => {
         gsap.to(".header-text", { color: "#1F4D3A", duration: 0.3 });
 
         // Logo
-       // gsap.to(".logo-bg", { duration: 0.3, backgroundImage: url("/LOGOWHITE.png")});
+        gsap.to(".logo-light", { duration: 0.3, opacity: 0});
+        gsap.to(".logo-dark", { duration: 0.3, opacity: 1});
 
         // brand text
         gsap.to(".brand-light", { color: "#1F4D3A", duration: 0.3 });
@@ -52,7 +53,8 @@ const HomeHeader = () => {
         gsap.to(".header-text", { color: "#FFF", duration: 0.3 });
 
       // revert Logo
-       // gsap.to(".logo-bg", { duration: 0.3, backgroundImage: url("/LOGODARK.png")});
+        gsap.to(".logo-light", { duration: 0.3, opacity: 1});
+        gsap.to(".logo-dark", { duration: 0.3, opacity: 0});
   
        // revert nav links text
         gsap.to(".navLinks-light li", { color: "#FFF", duration: 0.2 });
@@ -70,7 +72,9 @@ const HomeHeader = () => {
       {/* Header */}
       <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2 pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
         {/* logo */}
-        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO1.png')] bg-contain bg-no-repeat logo-bg"></div> {/* bg-[url('/ORIGINAL_LOGO3.png')] */}
+        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO1.png')] bg-contain bg-no-repeat logo-light relative"></div>
+        {/* logo */}
+        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO3.png')] bg-contain bg-no-repeat logo-dark opacity-0 absolute top-0 left-0"></div>
 
         {/* Logo */}
     {/*     <div className="w-40 flex flex-row items-end justify-center">
