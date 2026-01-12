@@ -202,7 +202,7 @@ const HomeHeader = () => {
                     </NavLink>
 
                     {count > 0 && (
-                      <span className="absolute -top-1 -right-4 sm:-right-1.5 bg-accent text-bg-light text-xs px-1.5 py-0.5 rounded-full">
+                      <span className="absolute -top-1 -right-2 sm:-right-1.5 bg-accent text-bg-light text-xs px-1 py-0 sm:px-1.5 sm:py-0.5 rounded-full">
                         {count}
                       </span>
                     )}
