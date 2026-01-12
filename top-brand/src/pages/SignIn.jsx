@@ -55,9 +55,9 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
 
          //Determine the role of the loged in user and direct them to the right dashboard     
             const role = localStorage.getItem("userRole");
-            if (role === "admin") navigate("/admin-dashboard");
-            else if (role === "agent") navigate("/agent-dashboard");
-            else navigate("/user-dashboard");
+            if (role === "admin") navigate("/admin");
+            else if (role === "agent") navigate("/admin");
+            else navigate("/cart");
               
 
 
@@ -84,7 +84,7 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
       <div className="bg-bg-light h-130 w-80 sm:w-90 rounded-lg p-6">
         {/* Header */}
           <div className="w-full flex-row-center justify-between mb-8">
-            <div className='text-2xl'> {signUpResponse ? <h2>{signUpResponse} <br /> Proceed to login</h2> : <h2>Welcome Back!</h2> }</div>
+            <div className='text-xl'> {signUpResponse ? <h2> <span className='font-semibold'>{signUpResponse}</span> <br /> <span className='text-lg text-text'>Proceed to login</span></h2> : <h2>Welcome Back!</h2> }</div>
             <button onClick={closeSignIn} className="bg-bg-dark w-6 h-6 rounded-full cursor-pointer hover:opacity-45">✕</button>
           </div>
 

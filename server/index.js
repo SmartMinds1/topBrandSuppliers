@@ -1,7 +1,7 @@
 // Main entry point
 require("dotenv").config();
 const express = require("express");
-const pool = require("./database/db");
+const pool = require("./config/db");
 const logger = require("./utils/logger");
 const errorHandler = require("./middlewares/errorHandler");
 const commonMiddleware = require("./middlewares/common");
@@ -41,10 +41,7 @@ if (process.env.NODE_ENV === "production") {
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/messages", require("./routes/messageRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/bookings", require("./routes/bookingRoutes"));
-app.use("/api/testimonials", require("./routes/testimonialRoutes"));
-app.use("/api/payments", require("./routes/paymentRoutes"));
-app.use("/api/mpesa", require("./routes/mpesaRoutes"));
+//app.use("/api/mpesa", require("./routes/mpesaRoutes"));
 
 // Health check route
 app.get("/health", (req, res) => {

@@ -58,7 +58,7 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-//navigate to admin dashboard on successfull login
+//navigate to admin dashboard on successfull login (this works if there's a direct admin button)
   const handleAdminAccess = async () => {
     const isAuthenticated = await verifyAccessToken();
 

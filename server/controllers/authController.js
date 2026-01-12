@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
 
     // Add user to database with audit fields
     await query(
-      `INSERT INTO smartygrand_users 
+      `INSERT INTO topbrand_users 
         (username, email, password, created_by, updated_by, created_at, updated_at)
        VALUES ($1, $2, $3, $4, $5, NOW(), NOW())`,
       [username, email, hashedPassword, createdBy, updatedBy]
@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT id, username, password, role, is_active FROM smartygrand_users WHERE username = $1",
+      "SELECT id, username, password, role, is_active FROM topbrand_users WHERE username = $1",
       [username]
     );
 
@@ -90,9 +90,9 @@ exports.login = async (req, res) => {
 
     // -- LIMITING1 CONCURRENT SESSIONS ---
     const activeSessions = await query(
-      `SELECT id, loggedin_at FROM smartygrand_user_sessions 
+      `SELECT id, logged_in_at FROM topbrand_user_sessions 
        WHERE user_id = $1 AND is_active = true 
-       ORDER BY loggedin_at ASC`, // oldest first
+       ORDER BY logged_in_at ASC`, // oldest first
       [user.id]
     );
 
@@ -100,7 +100,7 @@ exports.login = async (req, res) => {
       const oldestSession = activeSessions.rows[0]; // oldest active one
 
       await query(
-        `UPDATE smartygrand_user_sessions 
+        `UPDATE topbrand_user_sessions 
          SET is_active = false 
          WHERE id = $1`,
         [oldestSession.id]
@@ -136,8 +136,8 @@ exports.login = async (req, res) => {
 
     // Store new session in DB
     await query(
-      `INSERT INTO smartygrand_user_sessions 
-      (user_id, refresh_token_hash, ip_address, device_info, is_active, loggedin_at, last_activity_at)
+      `INSERT INTO topbrand_user_sessions 
+      (user_id, refresh_token_hash, ip_address, device_info, is_active, logged_in_at, last_activity_at)
       VALUES ($1, $2, $3, $4, true, NOW(), NOW())`,
       [user.id, refreshTokenHash, ipAddress, deviceInfo]
     );
@@ -201,7 +201,7 @@ exports.refreshToken = async (req, res) => {
     // Fetch all active sessions for this user
     const result = await query(
       `SELECT id, refresh_token_hash, ip_address, device_info
-    FROM smartygrand_user_sessions
+    FROM topbrand_user_sessions
     WHERE user_id = $1 AND is_active = true`,
       [payload.id]
     );
@@ -233,7 +233,7 @@ exports.refreshToken = async (req, res) => {
     if (ipMismatch || deviceMismatch) {
       // Mark session as suspicious and deactivate immediately
       await query(
-        `UPDATE smartygrand_user_sessions
+        `UPDATE topbrand_user_sessions
          SET is_active = false, logged_out_at = NOW()
          WHERE id = $1`,
         [validSession.id]
@@ -253,7 +253,7 @@ exports.refreshToken = async (req, res) => {
 
     //OTHERWISE, UPDATE last activity session
     await query(
-      `UPDATE smartygrand_user_sessions
+      `UPDATE topbrand_user_sessions
        SET last_activity_at = NOW()
        WHERE id = $1`,
       [validSession.id]
@@ -328,7 +328,7 @@ exports.logout = async (req, res) => {
 
     // Fetch all sessions for this user
     const sessions = await query(
-      `SELECT id, refresh_token_hash FROM smartygrand_user_sessions WHERE user_id = $1 AND is_active = true`,
+      `SELECT id, refresh_token_hash FROM topbrand_user_sessions WHERE user_id = $1 AND is_active = true`,
       [payload2.id]
     );
 
@@ -352,7 +352,7 @@ exports.logout = async (req, res) => {
 
     // Deactivate the correct session and update logout time
     await query(
-      `UPDATE smartygrand_user_sessions
+      `UPDATE topbrand_user_sessions
        SET is_active = false,
            logged_out_at = NOW()
        WHERE id = $1`,
@@ -390,7 +390,7 @@ exports.forgotPassword = async (req, res) => {
     const cleanEmail = email.trim().toLowerCase();
 
     const userResult = await query(
-      "SELECT id FROM smartygrand_users WHERE email = $1",
+      "SELECT id FROM topbrand_users WHERE email = $1",
       [cleanEmail]
     );
 
@@ -402,7 +402,7 @@ exports.forgotPassword = async (req, res) => {
     const expires = new Date(Date.now() + 3600000);
 
     await query(
-      "UPDATE smartygrand_users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3",
+      "UPDATE topbrand_users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3",
       [token, expires, cleanEmail]
     );
 
@@ -441,7 +441,7 @@ exports.resetPassword = async (req, res) => {
 
   try {
     const result = await query(
-      "SELECT id, reset_token_expires FROM smartygrand_users WHERE reset_token = $1",
+      "SELECT id, reset_token_expires FROM topbrand_users WHERE reset_token = $1",
       [token]
     );
 
@@ -455,7 +455,7 @@ exports.resetPassword = async (req, res) => {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     await query(
-      `UPDATE smartygrand_users 
+      `UPDATE topbrand_users 
        SET password = $1, reset_token = NULL, reset_token_expires = NULL 
        WHERE reset_token = $2`,
       [hashedPassword, token]

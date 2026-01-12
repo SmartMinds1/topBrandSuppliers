@@ -21,7 +21,7 @@ exports.makeAdmin = async (req, res) => {
   try {
     // Ensure the target user exists
     const userCheck = await query(
-      "SELECT * FROM smartygrand_users WHERE id = $1",
+      "SELECT * FROM topbrand_users WHERE id = $1",
       [id]
     );
     if (userCheck.rows.length === 0) {
@@ -30,7 +30,7 @@ exports.makeAdmin = async (req, res) => {
 
     // Update user role to admin
     const result = await query(
-      `UPDATE smartygrand_users 
+      `UPDATE topbrand_users 
        SET role = 'admin', updated_at = NOW(), updated_by = $1
        WHERE id = $2 RETURNING id, username, role`,
       [req.user.username, id]

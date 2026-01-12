@@ -4,7 +4,7 @@ const { query } = require("../utils/pgHelper");
 // Select All from the database
 const getAllUsers = async () => {
   const result = await query(
-    "SELECT id, username, email FROM smartygrand_users ORDER BY id DESC"
+    "SELECT id, username, email FROM topbrand_users ORDER BY id DESC"
   );
   return result;
 };
@@ -12,7 +12,7 @@ const getAllUsers = async () => {
 // Delete from the database
 const deleteUser = async (userId) => {
   const result = await query(
-    "DELETE FROM smartygrand_users WHERE id = $1 RETURNING *",
+    "DELETE FROM topbrand_users WHERE id = $1 RETURNING *",
     [userId]
   );
   return result;
