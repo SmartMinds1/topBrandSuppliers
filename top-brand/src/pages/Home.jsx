@@ -84,7 +84,7 @@ useGSAP(() => {
       {/*  Nav bar */}
       <HomeHeader/>
 
-      <div className="w-full min-h-screen bg-[url('/landingPage2.png')] bg-cover bg-position-[65%_50%] lg:bg-position-[50%_100%] bg-no-repeat"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%]     bg-position-[95%_50%] lg:bg-position-[50%_50%]*/}
+      <div className="w-full min-h-screen bg-[url('/landingPage3.png')] bg-cover bg-position-[65%_50%] lg:bg-position-[50%_100%] bg-no-repeat"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%]     bg-position-[95%_50%] lg:bg-position-[50%_50%]*/}
          <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr md:bg-linear-to-r from-primary-dark via-primary/50 sm:via-primary/30 lg:via-primary/20 to-transparent">
             
             {/* Main container */}
@@ -120,7 +120,7 @@ useGSAP(() => {
                      <div className="w-35 sm:w-50 h-44 p-2 bg-[url('/landingCloves.webp')] bg-cover bg-position-[50%_50%] rounded-2xl"></div>
                      <div className="w-38 sm:w-70 h-44 p-2 bg-[url('/landingCashews.webp')] bg-cover bg-position-[50%_50%] "></div>
                   </div> */}
-                  <div className="w-70 h-70 p-2 bg-black/30 hidden lg:block rounded-bl-full rounded-br-full rounded-tr-full pl-16 pt-12 rotate-45">
+                  <div className="w-70 h-70 p-2 bg-black/30 hidden lg:block rounded-full pl-16 pt-12 rotate-45">
                      <p className='text-gray-200 font-bold text-xl text-left pl-4 pt-1 leading-12 border-l-2 border-primary -rotate-45'> <span className='text-amber-300 text-4xl animate-pulse font-serif'>FREE!</span> <br /> Samples <br /> Available <FontAwesomeIcon icon={faArrowRightLong} className='font-light text-lg bg-[#FFF]/20 cursor-pointer hover:bg-primary duration-300  p-2 rounded-full ml-4 translate-y-2'/></p>
                   </div>
                </div>

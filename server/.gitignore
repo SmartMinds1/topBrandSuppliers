@@ -1,0 +1,8 @@
+# Server env
+.env
+
+# Node
+node_modules/
+
+# Build
+dist/

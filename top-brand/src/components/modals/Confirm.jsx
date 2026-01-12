@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from "react";
 import axios from "axios";
-import "./Confirm.css";
 import DeleteModal from "./DeleteModal";
 import DeleteAlert from "./DeleteAlert";
 

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Alert.css";
 
 const DeleteAlert = ({children, onCloseConfirm, onClose, fetchData})=>{
 
