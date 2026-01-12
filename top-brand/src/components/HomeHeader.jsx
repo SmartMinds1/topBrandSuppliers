@@ -121,7 +121,7 @@ const HomeHeader = () => {
   return (
     <>
       {/* Header */}
-      <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2 pr-[5%] backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
+      <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2 backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
         {/* logo light */}
         <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO1.png')] bg-contain bg-no-repeat logo-light relative"></div>
         {/* logo dark*/}
