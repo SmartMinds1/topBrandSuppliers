@@ -94,14 +94,14 @@ const Header = () => {
 
         <div className="w-14 flex-row-center justify-evenly relative pt-1 mr-4">
            {/* search bar */}
-                <div className="w-36 h-9 hover:w-60 duration-800 ease-in-out absolute top-2 right-42 rounded-2xl flex-row-center gap-1 pl-1 hidden xl:flex bg-bg-dark">
+                <div className="w-36 h-8 hover:w-60 duration-800 ease-in-out absolute top-2 right-44 rounded-2xl flex-row-center gap-1 pl-1 hidden xl:flex bg-bg-dark">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-text" />
                     <p className="text-text text-sm">Search</p>
                 </div>
 
             {/* user account */}
-                <div className="absolute w-24 right-15 top-2">
-                    <div className="w-15 p-1 flex-row-end justify-evenly">
+                <div className="absolute w-28 right-15 top-2">
+                    <div className="w-full xl:w-15 p-1 flex-row-end justify-end xl:justify-evenly">
                       <FontAwesomeIcon icon={faUser} className="text-primary text-xl" />
                       <button onClick={() => setOpenAcc(prev => !prev)}>
                           {openAcc ? (
@@ -140,7 +140,7 @@ const Header = () => {
                 </div>
 
             {/* Cart */}
-                <div className="relative w-10 h-10 rounded-full flex-row-center justify-center bg-bg-dark">
+                <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark">
                     <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
                     </NavLink>
