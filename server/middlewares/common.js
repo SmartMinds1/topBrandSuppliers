@@ -14,7 +14,7 @@ const commonMiddleware = (app) => {
 
   const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(",")
-    : ["https://topbrandsuppliers.com"];
+    : ["https://smartminds1.github.io"];
 
   const corsOptions = {
     origin: (origin, callback) => {
