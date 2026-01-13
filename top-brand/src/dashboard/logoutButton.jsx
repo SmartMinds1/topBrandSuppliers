@@ -1,6 +1,7 @@
 import React from "react";
 //import axios from "axios";
 import { useNavigate } from "react-router-dom";
+//import { BASE_URL } from "../api/api";
 
 const LogoutButton = () => {
  // const navigate = useNavigate();
@@ -8,10 +9,10 @@ const LogoutButton = () => {
  /*  const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${BASE_URL}/api/auth/logout`,
         {}, // no body needed — refresh token will come from cookie
         {
-          withCredentials: true, // ✅ send cookies along with request
+          withCredentials: true, //  send cookies along with request
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // still needed for access validation
           },

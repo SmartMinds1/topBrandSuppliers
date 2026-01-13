@@ -4,6 +4,7 @@ import AuthModal from '../components/modals/AuthModal';
 import Alert from '../components/modals/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { BASE_URL } from "../api/api";
 
 const SignUp = ({ closeSignUp, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ const SignUp = ({ closeSignUp, onSuccess }) => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", normalizedFormData);
+      const response = await axios.post(`${BASE_URL}/api/auth/register`, normalizedFormData);
       setResponseMessage(response.data.message);
       setFormData({
         username: "",

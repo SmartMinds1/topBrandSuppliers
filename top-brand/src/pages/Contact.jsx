@@ -7,6 +7,7 @@ import { faEnvelope, faMobilePhone, faPhoneAlt } from '@fortawesome/free-solid-s
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'
+import { BASE_URL } from "../api/api";
 
 const Contact = () => {
     //state controlled inputs
@@ -22,15 +23,15 @@ const Contact = () => {
         e.preventDefault();
         console.log("submitting user message", formData);
 
-    /*       try {
-              const response = await axios.post("http://localhost:5000/api/messages", formData);
+     try {
+              const response = await axios.post(`${BASE_URL}/api/messages`, formData);
               setResponseMessage(response.data.message);
               setFormData({username:"", email:"", message:""});
               }
               
           catch(error){
             setResponseMessage("ERROR! sending message, Kindly try again later!");
-          } */
+          } 
       }
 
 /* Animating contact page landing text */

@@ -3,6 +3,7 @@ import UsersList from './UsersList';
 import MessagesList from './MessagesList';
 import LogoutButton from './logoutButton';
 import CircularProgress from './adminCompnts/CircularProgress';
+import { BASE_URL } from "../api/api";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -50,7 +51,7 @@ const clearSearch = () => {
 
     const fetchUsers = async () => {
         try {
-            const res = await api.get("http://localhost:5000/api/users");
+            const res = await api.get(`${BASE_URL}/api/users`);
             setUsersCount(res.data);
         } catch (err) {
             console.error("Error fetching users count:", err);
@@ -59,7 +60,7 @@ const clearSearch = () => {
 
     const fetchMessages = async () => {
         try {
-            const res = await api.get("http://localhost:5000/api/messages");
+            const res = await api.get(`${BASE_URL}/api/messages`);
             setMessagesCount(res.data);
         } catch (err) {
             console.error("Error fetching messages count:", err);

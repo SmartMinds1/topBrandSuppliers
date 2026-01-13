@@ -7,7 +7,7 @@ import { faDropletSlash, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { testUsers } from "../../constants/testUsers";
 import exportToCSV from "../utils/exportToCSV";
 import useSearch from "../utils/useSearch";
-
+//import { BASE_URL } from "../api/api";
 
 const UsersList = ({openDashboard}) => {
  /* action button */
@@ -29,7 +29,7 @@ const UsersList = ({openDashboard}) => {
   //fetching users
      const fetchUsers = async () => {
       try {
-   /*   const res = await api.get("http://localhost:5000/api/users");
+   /*   const res = await api.get(`${BASE_URL}/api/users`);
         setUsers(res.data); */
         setLoading(false);
 
@@ -44,7 +44,7 @@ const UsersList = ({openDashboard}) => {
   //const token = localStorage.getItem("accessToken");
    /*    try {
         const res = await api.patch(
-          `http://localhost:5000/api/users/make-admin/${id}`,
+          `${BASE_URL}/api/users/make-admin/${id}`,
           {},
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -197,7 +197,7 @@ const UsersList = ({openDashboard}) => {
               setShowModal(false); 
           }}>
           <Confirm onCloseConfirm={() => onCloseConfirm()}
-                   deleteUrl={`http://localhost:5000/api/users/${user_ID}`}
+                   deleteUrl={`${BASE_URL}/api/users/${user_ID}`}
                    deleteName="user"
                    fetchData={()=>fetchUsers()}
           >

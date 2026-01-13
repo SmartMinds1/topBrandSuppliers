@@ -5,6 +5,7 @@ import Alert from '../components/modals/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import AuthModal from '../components/modals/AuthModal';
+import { BASE_URL } from "../api/api";
 
 
 const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) => {
@@ -41,7 +42,7 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
         };
 
         try{
-              const response = await axios.post("http://localhost:5000/api/auth/login", normalizedFormData,  { withCredentials: true })
+              const response = await axios.post(`${BASE_URL}/api/auth/login`, normalizedFormData,  { withCredentials: true })
               //set up this credentials in local storage
               localStorage.setItem("accessToken", response.data.accessToken);
               localStorage.setItem("userRole", response.data.role);

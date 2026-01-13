@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../api/api";
 
 axios.defaults.withCredentials = true; // ensures cookies are always sent
 
@@ -9,7 +10,7 @@ export const verifyAccessToken = async () => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/verify-access",
+      `${BASE_URL}/api/auth/verify-access`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -33,7 +34,7 @@ export const verifyAccessToken = async () => {
 export const refreshAccessToken = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/refresh-token", // ✅ match backend route
+      `${BASE_URL}/api/auth/refresh-token`, // ✅ match backend route
       {},
       { withCredentials: true }
     );

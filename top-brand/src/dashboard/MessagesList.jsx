@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import exportToCSV from "../utils/exportToCSV";
-
+import { BASE_URL } from "../api/api";
 
 const MessagesList = () => {
   const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ const MessagesList = () => {
 //now fetching messages
     /* const fetchMessages = async () => {
       try {
-        const res = await api.get("http://localhost:5000/api/messages");
+        const res = await api.get(`${BASE_URL}/api/messages`);
         setMessages(res.data);
         setLoading(false);
       } catch (err) {
@@ -140,7 +140,7 @@ const MessagesList = () => {
               setShowModal(false); 
           }}>
           <Confirm onCloseConfirm={() => onCloseConfirm()}
-                   deleteUrl={`http://localhost:5000/api/messages/${message_ID}`}
+                   deleteUrl={`${BASE_URL}/api/messages/${message_ID}`}
                    deleteName="Message"
                    fetchData={()=>fetchMessages()}
           >

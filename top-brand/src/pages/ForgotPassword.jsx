@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Alert from "../components/modals/Alert";
 import axios from "axios";
 import AuthModal from "../components/modals/AuthModal";
+import { BASE_URL } from "../api/api";
 
 const ForgotPassword = ({closeForgotPass}) => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const ForgotPassword = ({closeForgotPass}) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        `${BASE_URL}/api/auth/forgot-password`,
         {
           email: email.trim().toLowerCase(), //sending 'email' key
         }
