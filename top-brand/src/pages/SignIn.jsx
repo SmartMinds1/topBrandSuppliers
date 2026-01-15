@@ -82,10 +82,10 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
 
   return (
     <>
-      <div className="bg-bg-light h-130 w-80 sm:w-90 rounded-lg p-6">
+      <div className="bg-bg-light h-110 sm:h-130 w-80 sm:w-90 rounded-lg p-6">
         {/* Header */}
           <div className="w-full flex-row-center justify-between mb-8">
-            <div className='text-xl'> {signUpResponse ? <h2> <span className='font-semibold'>{signUpResponse}</span> <br /> <span className='text-lg text-text'>Proceed to login</span></h2> : <h2>Welcome Back!</h2> }</div>
+            <div className='text-xl'> {signUpResponse ? <h2> <span className='font-semibold text-green-600'>{signUpResponse}</span> <br /> <span className='text-lg text-text'>Proceed to login</span></h2> : <h2>Welcome Back!</h2> }</div>
             <button onClick={closeSignIn} className="bg-bg-dark w-6 h-6 rounded-full cursor-pointer hover:opacity-45">✕</button>
           </div>
 

@@ -77,7 +77,7 @@ const Header = () => {
       {/* Header */}
       <div className="w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2  backdrop-blur-[5px]">{/* bg-[#ffffff7c] pr-[5%]*/}
         {/* logo */}
-        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO7.png')] bg-contain bg-no-repeat"></div>
+        <div className="w-22 h-8 ml-4 bg-[url('/dropletLogoBlack2.png')] bg-contain bg-no-repeat"></div>
 
         {/* Desktop nav */}
         <div className="sm:block hidden w-[55%] md:w-[50%] lg:w-[40%]">

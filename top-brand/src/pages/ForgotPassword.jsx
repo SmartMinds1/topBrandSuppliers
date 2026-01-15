@@ -35,7 +35,7 @@ const ForgotPassword = ({closeForgotPass}) => {
 
   return (
     <>
-      <div className="bg-bg-light h-130 w-80 sm:w-90 rounded-lg p-6">
+      <div className="bg-bg-light h-110 sm:h-130 w-80 sm:w-90 rounded-lg p-6">
           {/* Header */}
             <div className="w-full flex-row-center justify-between mb-16">
               <h2 className='text-2xl font-semibold'>OOPS!</h2>

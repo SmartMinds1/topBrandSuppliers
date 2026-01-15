@@ -123,9 +123,9 @@ const HomeHeader = () => {
       {/* Header */}
       <div className="site-header w-full h-14 m-auto flex-row-end justify-between sm:h-13 fixed top-0 left-0 z-50 pb-2 backdrop-blur-[5px]">{/* bg-[#ffffff7c] */}
         {/* logo light */}
-        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO1.png')] bg-contain bg-no-repeat logo-light relative"></div>
+        <div className="w-22 h-6 ml-4 bg-[url('/dropletLogoWhite4.png')] bg-contain bg-no-repeat logo-light relative"></div>
         {/* logo dark*/}
-        <div className="w-30 h-9 ml-4 bg-[url('/ORIGINAL_LOGO3.png')] bg-contain bg-no-repeat logo-dark opacity-0 absolute top-0 left-0"></div>
+        <div className="w-22 h-8 mt-3 ml-4 bg-[url('/dropletLogoBlack2.png')] bg-contain bg-no-repeat logo-dark opacity-0 absolute top-0 left-0"></div>
 
         {/* Logo */}
     {/*     <div className="w-40 flex flex-row items-end justify-center">

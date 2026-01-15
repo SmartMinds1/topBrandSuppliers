@@ -389,7 +389,7 @@ exports.forgotPassword = async (req, res) => {
   try {
     const cleanEmail = email.trim().toLowerCase();
 
-    // 1️⃣ Check if user exists
+    // Check if user exists
     const userResult = await query(
       "SELECT id FROM topbrand_users WHERE email = $1",
       [cleanEmail]
@@ -399,20 +399,20 @@ exports.forgotPassword = async (req, res) => {
       return res.status(404).json({ message: "Email not found." });
     }
 
-    // 2️⃣ Generate secure token & expiry
+    // Generate secure token & expiry
     const token = crypto.randomBytes(32).toString("hex");
     const expires = new Date(Date.now() + 3600000); // 1 hour
 
-    // 3️⃣ Save token & expiry in DB
+    // Save token & expiry in DB
     await query(
       "UPDATE topbrand_users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3",
       [token, expires, cleanEmail]
     );
 
-    // 4️⃣ Send reset email via helper
+    // Send reset email via helper
     await sendResetEmail(cleanEmail, token);
 
-    logger.info(`✅ Password reset token sent to ${cleanEmail}`);
+    logger.info(`Password reset token sent to ${cleanEmail}`);
     res.json({ message: "Password reset link sent to email." });
   } catch (error) {
     logger.error(`Forgot password error: ${error.message}`);

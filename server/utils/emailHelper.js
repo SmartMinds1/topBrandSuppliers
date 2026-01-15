@@ -5,7 +5,7 @@ require("dotenv").config();
 // Validate required environment variables
 ["MAILERSEND_API_KEY", "MAILER_FROM_EMAIL", "CLIENT_URL"].forEach((key) => {
   if (!process.env[key]) {
-    throw new Error(`❌ Missing environment variable: ${key}`);
+    throw new Error(`Missing environment variable: ${key}`);
   }
 });
 
@@ -48,9 +48,9 @@ const sendResetEmail = async (to, token) => {
 
     await client.email.send(params);
 
-    console.log(`✅ Reset email sent to ${to}`);
+    console.log(`Reset email sent to ${to}`);
   } catch (err) {
-    console.error("❌ Error sending reset email:", err);
+    console.error("Error sending reset email:", err);
     throw new Error("Unable to send reset email");
   }
 };
