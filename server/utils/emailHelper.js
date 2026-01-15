@@ -1,5 +1,5 @@
 // utils/emailHelper.js
-const MailerSend = require("mailersend");
+const { MailerSend } = require("mailersend");
 require("dotenv").config();
 
 // Validate required environment variables
