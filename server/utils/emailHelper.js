@@ -52,7 +52,7 @@ const sendResetEmail = async (to, token) => {
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
-      secure: true, //new
+      //secure: true, //new
       auth: {
         type: "OAuth2",
         user: EMAIL_USER,
@@ -90,7 +90,7 @@ const sendResetEmail = async (to, token) => {
 
     return await transporter.sendMail(mailOptions);
   } catch (error) {
-    console.error("❌ Error sending reset email:", error);
+    console.error(" Error sending reset email:", error);
     throw new Error("Unable to send reset email.");
   }
 };
