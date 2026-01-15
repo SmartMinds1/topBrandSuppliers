@@ -1,5 +1,5 @@
 // utils/emailHelper.js
-const MailerSend = require("@mailersend/mailersend").default;
+const MailerSend = require("mailersend");
 require("dotenv").config();
 
 // Validate required environment variables
@@ -10,10 +10,11 @@ require("dotenv").config();
 });
 
 const client = new MailerSend({
-  apiKey: process.env.MAILERSEND_API_KEY,
+  api_key: process.env.MAILERSEND_API_KEY,
 });
 
 const EMAIL_FROM = process.env.MAILER_FROM_EMAIL;
+const FROM_NAME = "SmartyGrand Support"; // Can customize sender name
 
 // Send password reset email
 const sendResetEmail = async (to, token) => {
@@ -21,8 +22,15 @@ const sendResetEmail = async (to, token) => {
     const resetLink = `${process.env.CLIENT_URL}/reset-password/${token}`;
 
     const params = {
-      from: EMAIL_FROM,
-      to: [to],
+      from: {
+        email: EMAIL_FROM,
+        name: FROM_NAME,
+      },
+      to: [
+        {
+          email: to,
+        },
+      ],
       subject: "Password Reset Request",
       html: `
         <div style="font-family: Arial, sans-serif;">
@@ -35,6 +43,7 @@ const sendResetEmail = async (to, token) => {
           </p>          
         </div>
       `,
+      text: `You requested to reset your password. Open this link to set a new password: ${resetLink} \nThis link will expire in 1 hour. If you did not request this, ignore this email.`,
     };
 
     await client.email.send(params);
