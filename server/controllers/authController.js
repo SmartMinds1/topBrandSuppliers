@@ -378,7 +378,7 @@ exports.logout = async (req, res) => {
   }
 };
 
-//FORGOT PASSWORD login <---------------------------------------------------------------
+// FORGOT PASSWORD <----------------------------------------------------------
 exports.forgotPassword = async (req, res) => {
   const email = req.body?.email;
 
@@ -389,6 +389,7 @@ exports.forgotPassword = async (req, res) => {
   try {
     const cleanEmail = email.trim().toLowerCase();
 
+    // Check if user exists
     const userResult = await query(
       "SELECT id FROM topbrand_users WHERE email = $1",
       [cleanEmail]
@@ -398,23 +399,20 @@ exports.forgotPassword = async (req, res) => {
       return res.status(404).json({ message: "Email not found." });
     }
 
+    // Generate secure token
     const token = crypto.randomBytes(32).toString("hex");
-    const expires = new Date(Date.now() + 3600000);
+    const expires = new Date(Date.now() + 3600000); // 1 hour
 
+    // Save token & expiry in DB
     await query(
       "UPDATE topbrand_users SET reset_token = $1, reset_token_expires = $2 WHERE email = $3",
       [token, expires, cleanEmail]
     );
 
-    const resetLink = `${process.env.CLIENT_URL}/reset-password/${token}`;
-    console.log("Sending reset email to", cleanEmail, "with link:", resetLink);
+    console.log(`Sending reset email to ${cleanEmail} with token: ${token}`);
 
-    await sendResetEmail(cleanEmail, resetLink); // Only this call is needed
-
-    // console.log("Sending reset email to", cleanEmail, "with token:", token);
-
-    // Pass only the token; helper builds full link
-    //await sendResetEmail(cleanEmail, token);
+    // Send email using production-ready helper
+    await sendResetEmail(cleanEmail, token);
 
     logger.info(`Password reset token sent to ${cleanEmail}`);
     res.json({ message: "Password reset link sent to email." });
@@ -430,6 +428,7 @@ exports.resetPassword = async (req, res) => {
   const token = req.params?.token;
   const newPassword = req.body?.newPassword;
 
+  // 1️⃣ Validate inputs
   if (!token || typeof token !== "string") {
     return res.status(400).json({ message: "Invalid or missing token." });
   }
@@ -445,11 +444,13 @@ exports.resetPassword = async (req, res) => {
   }
 
   try {
+    // 2️⃣ Fetch user with matching token
     const result = await query(
       "SELECT id, reset_token_expires FROM topbrand_users WHERE reset_token = $1",
       [token]
     );
 
+    // 3️⃣ Validate token exists and not expired
     if (
       result.rows.length === 0 ||
       new Date(result.rows[0].reset_token_expires) < new Date()
@@ -457,19 +458,24 @@ exports.resetPassword = async (req, res) => {
       return res.status(400).json({ message: "Invalid or expired token." });
     }
 
+    const userId = result.rows[0].id;
+
+    // 4️⃣ Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
+    // 5️⃣ Update password and clear token fields
     await query(
       `UPDATE topbrand_users 
        SET password = $1, reset_token = NULL, reset_token_expires = NULL 
-       WHERE reset_token = $2`,
-      [hashedPassword, token]
+       WHERE id = $2`,
+      [hashedPassword, userId]
     );
 
-    logger.info(`Password reset successful for token ${token}`);
+    logger.info(`✅ Password reset successful for user ID ${userId}`);
     res.json({ message: "Password has been reset successfully." });
   } catch (error) {
     logger.error(`Reset password error: ${error.message}`);
+    console.error(error.stack);
     res.status(500).json({ message: "Internal server error." });
   }
 };
