@@ -406,10 +406,10 @@ exports.forgotPassword = async (req, res) => {
       [token, expires, cleanEmail]
     );
 
-    const resetLink = `${process.env.CLIENT_URL}/reset-password/${token}`;
-    console.log("Sending reset email to", cleanEmail, "with link:", resetLink);
+    console.log("Sending reset email to", cleanEmail, "with token:", token);
 
-    await sendResetEmail(cleanEmail, resetLink); // Only this call is needed
+    // Pass only the token; helper builds full link
+    await sendResetEmail(cleanEmail, token);
 
     logger.info(`Password reset token sent to ${cleanEmail}`);
     res.json({ message: "Password reset link sent to email." });

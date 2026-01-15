@@ -2,6 +2,20 @@ const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 require("dotenv").config();
 
+//validating if the credentials exist
+[
+  "GOOGLE_CLIENT_ID",
+  "GOOGLE_CLIENT_SECRET",
+  "GOOGLE_REDIRECT_URI",
+  "GOOGLE_REFRESH_TOKEN",
+  "GMAIL_SENDER_EMAIL",
+  "CLIENT_URL",
+].forEach((key) => {
+  if (!process.env[key]) {
+    throw new Error(`❌ Missing environment variable: ${key}`);
+  }
+});
+
 const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
@@ -26,7 +40,8 @@ const getAccessToken = async () => {
     }
     return accessTokenResponse.token;
   } catch (err) {
-    throw new Error("Failed to obtain access token.");
+    console.error("❌ OAuth Access Token Error:", err.message);
+    throw err;
   }
 };
 
@@ -37,6 +52,7 @@ const sendResetEmail = async (to, token) => {
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      secure: true, //new
       auth: {
         type: "OAuth2",
         user: EMAIL_USER,
@@ -61,7 +77,9 @@ const sendResetEmail = async (to, token) => {
           <p>You requested to reset your password. Click the link below to set a new password:</p>
           <a href="${resetLink}" style="background: #007bff; padding: 10px 20px; color: white; text-decoration: none;">Reset Password</a>
           <p>This link will expire in 1 hour.</p>
-          <p>If you didn't request a password reset, please ignore this email.</p>
+          <p style="font-size: 12px; color: #777;">
+          This email was sent by SmartyGrand. If you did not request this action, you can safely ignore this message.
+          </p>          
         </div>
       `,
       headers: {
