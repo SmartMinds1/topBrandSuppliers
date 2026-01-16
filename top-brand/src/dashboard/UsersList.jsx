@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/axiosInstance";
-import Confirm from "../components/modals/Confirm";
 import DeleteModal from "../components/modals/DeleteModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +8,7 @@ import useSearch from "../utils/useSearch";
 import { BASE_URL } from "../api/api";
 import LoadingModal from "../components/modals/LoadingModal";
 import AuthModal from "../components/modals/AuthModal";
+import DeleteConfirm from "../components/modals/DeleteConfirm";
 
 const UsersList = ({openDashboard}) => {
   //loading state
@@ -20,6 +20,10 @@ const UsersList = ({openDashboard}) => {
   //setting up feedback message using a popUp
     const [showModal, setShowModal] = useState(false);
     const [user_ID, setUser_ID] = useState("");
+
+  //admin count to prevent deleting all admins
+    const adminCount = users.filter(u => u.role === "admin").length;
+
 
   //Action button ToggleEvent
    const toggleActions = (id) => {
@@ -45,7 +49,7 @@ const UsersList = ({openDashboard}) => {
  
   //Making user an admin
      const makeAdmin = async (id) => {
-  //const token = localStorage.getItem("accessToken");
+     const token = localStorage.getItem("accessToken");
      try {
         const res = await api.patch(
           `${BASE_URL}/api/users/make-admin/${id}`,
@@ -61,11 +65,6 @@ const UsersList = ({openDashboard}) => {
         alert("Failed to promote user");
       }
   };  
-
-//handle confirm sets given ID to a state variable
-    const handleConfirm=(userId)=>{
-      setUser_ID(userId);
-    }
 
 //This handles closing of confirm Modal
     const onCloseConfirm=() => {setShowModal(false);}
@@ -162,24 +161,24 @@ const UsersList = ({openDashboard}) => {
                     <p className="cursor-pointer  text-lg" onClick={() => toggleActions(user.id)}>
                       ⋮
                     </p>
-                    <ul className={`absolute right-0 mt-2 w-34 bg-bg-dark shadow-lg rounded-md border border-gray-200 2-50 p-1 ${openActionId === user.id ? "block" : "hidden"}`}>
+                    <ul className={`absolute right-0 mt-2 z-10 w-34 bg-bg-dark shadow-lg rounded-md border border-gray-200 2-50 p-1 ${openActionId === user.id ? "block" : "hidden"}`}>
                       <li onClick={() => {
                           setShowModal(true);
-                          handleConfirm(user.id);
+                          setUser_ID(user.id);
                           setOpenActionId(null);
                         }}
-                        className="px-4 py-1 hover:bg-red-200c cursor-pointer text-red-600 text-sm"
+                        className="px-4 py-2 hover:bg-red-50 cursor-pointer text-red-500 text-sm"
                       >
-                        Delete
+                         Delete
                       </li>
 
-                      <li className="px-4 py-1">
+                      <li className="">
                         <button onClick={() => {
                             makeAdmin(user.id);
                             setOpenActionId(null);
                           }}
                           disabled={user.role === "admin"}
-                          className="w-full text-left disabled:text-gray-400 text-sm bg-bg-dark hover:bg-amber-200"
+                          className="px-4 py-2 w-full text-left disabled:text-gray-400 text-sm bg-bg-dark hover:bg-bg-light"
                         >
                           Make Admin
                         </button>
@@ -199,13 +198,13 @@ const UsersList = ({openDashboard}) => {
       <DeleteModal isOpen={showModal}  fetchData={()=>fetchUsers()} onCloseConfirm={() => onCloseConfirm()} onClose={() => {
               setShowModal(false); 
           }}>
-          <Confirm onCloseConfirm={() => onCloseConfirm()}
+          <DeleteConfirm onCloseConfirm={() => onCloseConfirm()}
                    deleteUrl={`${BASE_URL}/api/users/${user_ID}`}
                    deleteName="user"
                    fetchData={()=>fetchUsers()}
           >
               <p className="responseMessage">Please confirm to Delete</p>
-          </Confirm>
+          </DeleteConfirm>
       </DeleteModal>
 
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 //import api from "../api/axiosInstance";
 //import DeleteModal from "../components/popUps/DeleteModal";
-//import Confirm from "../components/popUps/Confirm";
 //import useSearch from "../utils/useSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import exportToCSV from "../utils/exportToCSV";
 import { BASE_URL } from "../api/api";
+import DeleteConfirm from "../components/modals/DeleteConfirm";
 
 const MessagesList = () => {
   const [messages, setMessages] = useState([]);
@@ -139,13 +139,13 @@ const MessagesList = () => {
       <DeleteModal isOpen={showModal}  fetchData={()=>fetchMessages()} onCloseConfirm={() => onCloseConfirm()} onClose={() => {
               setShowModal(false); 
           }}>
-          <Confirm onCloseConfirm={() => onCloseConfirm()}
+          <DeleteConfirm onCloseConfirm={() => onCloseConfirm()}
                    deleteUrl={`${BASE_URL}/api/messages/${message_ID}`}
                    deleteName="Message"
                    fetchData={()=>fetchMessages()}
           >
               <p className="responseMessage">Please confirm to Delete</p>
-          </Confirm>
+          </DeleteConfirm>
       </DeleteModal>
 </div>
   );

@@ -7,6 +7,7 @@ import {
   faBars, 
   faCartShopping, 
   faSearch, 
+  faSignOut, 
   faTimes, 
   faUser
 } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +25,7 @@ import AuthModal from "./modals/AuthModal";
 import ForgotPassword from "../pages/ForgotPassword";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
+import LogoutButton from "../dashboard/logoutButton";
 gsap.registerPlugin(ScrollTrigger);
 
 const HomeHeader = () => {
@@ -192,6 +194,10 @@ const HomeHeader = () => {
                         >
                           Sign Up
                         </li>
+                        <li className="cursor-pointer hover:bg-red-50 text-text w-full pl-2 flex-row-start p-1">
+                            <FontAwesomeIcon icon={faSignOut} className='pr-2 p-1 text-sm' />
+                            <LogoutButton />
+                        </li> 
                       </ul>     
                 </div>
 

@@ -4,7 +4,7 @@ const redisClient = require("./redisClient");
 const logger = require("./logger");
 
 const JWT_SECRET = process.env.JWT_SECRET; //used to sign and verify tokens
-const ACCESS_TOKEN_EXPIRY = "1d";
+const ACCESS_TOKEN_EXPIRY = "1h";
 const REFRESH_TOKEN_EXPIRY = "7d";
 
 //Ensuring my server won't run if the secret is missing

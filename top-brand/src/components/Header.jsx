@@ -8,7 +8,8 @@ import {
   faTimes,
   faAngleDown, 
   faUser, 
-  faAngleUp
+  faAngleUp,
+  faSignOut
 } from "@fortawesome/free-solid-svg-icons";
 
 import MobileMenu from "./MobileMenu";
@@ -21,6 +22,7 @@ import AuthModal from "../components/modals/AuthModal";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import ForgotPassword from "../pages/ForgotPassword";
+import LogoutButton from "../dashboard/logoutButton";
 
 
 const Header = () => {
@@ -59,16 +61,9 @@ const Header = () => {
   const navigate = useNavigate();
 
 //navigate to admin dashboard on successfull login (this works if there's a direct admin button)
-  const handleAdminAccess = async () => {
-    const isAuthenticated = await verifyAccessToken();
-
-    if (isAuthenticated) {
-      // Already logged in, go straight to dashboard
-      navigate("/admin");
-    } else {
-      // Not logged in, show Sign In modal
-      setShowSignIn(true);
-    }
+  const handleCartAccess = async () => {
+        await verifyAccessToken();
+        navigate("/cart");
   };
 
 
@@ -135,15 +130,25 @@ const Header = () => {
                         >
                           Sign Up
                         </li>
+                        <li className="cursor-pointer hover:bg-red-50 text-text w-full pl-2 flex-row-start p-1">
+                            <FontAwesomeIcon icon={faSignOut} className='pr-2 p-1 text-sm' />
+                            <LogoutButton />
+                        </li> 
                       </ul>
                             
                 </div>
 
             {/* Cart */}
                 <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark">
-                    <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
+                  {/*   <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
-                    </NavLink>
+                    </NavLink> */}
+                    <p 
+                       className={({ isActive }) => isActive ? "text-primary" : ""}
+                       onClick={()=>handleCartAccess()}
+                    >
+                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
+                    </p>
 
                     {count > 0 && (
                       <span className="absolute -top-1 -right-2 sm:-right-1.5 bg-accent text-bg-light text-xs px-1 py-0 sm:px-1.5 sm:py-0.5 rounded-full">

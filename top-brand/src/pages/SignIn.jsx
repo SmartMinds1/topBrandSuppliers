@@ -52,7 +52,7 @@ const [isLoading, setIsLoading] = useState(false);
 
         try{
               const response = await axios.post(`${BASE_URL}/api/auth/login`, normalizedFormData,  { withCredentials: true })
-              //set up this credentials in local storage
+          //set up this credentials in local storage
               localStorage.setItem("accessToken", response.data.accessToken);
               localStorage.setItem("userRole", response.data.role);
               localStorage.setItem("username", response.data.username);
@@ -61,32 +61,29 @@ const [isLoading, setIsLoading] = useState(false);
               setFormData({
                 username:"",
                 password:"",
-              });//resetting the input fields
+          });//resetting the input fields
 
          //Determine the role of the loged in user and direct them to the right dashboard     
-            const role = localStorage.getItem("userRole");
+          const role = localStorage.getItem("userRole");
             if (role === "admin") navigate("/admin");
-            else if (role === "agent") navigate("/admin");
-            else navigate("/cart");
-              
-
-
+             else if (role === "agent") navigate("/admin");
+             else navigate("/cart");
               
         }catch(error){
           setResponseMessage(
             error.response?.data?.message || <p className='loginFailed'><span>Login failed!</span> Please try again</p> 
-          );
-          
+        );
+
         }finally {
           setIsLoading(false); // unlock UI
-        }
+     }
 
   }
 
 // Show modal only when responseMessage changes and is not empty
-        useEffect(() => {
+      useEffect(() => {
           if (responseMessage) {
-            setShowModal(true);
+              setShowModal(true);
           }
         }, [responseMessage]);
 
