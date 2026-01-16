@@ -6,9 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import AuthModal from '../components/modals/AuthModal';
 import { BASE_URL } from "../api/api";
+import LoadingModal from '../components/modals/LoadingModal';
 
 
 const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) => {
+//loading state
+const [isLoading, setIsLoading] = useState(false);
+
 //setting up the initial states ot the form
   const [formData, setFormData] = useState({
       username:"",
@@ -34,6 +38,11 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
    //preventing default form submition
         e.preventDefault();
         console.log("submitting Sign In Details", formData);
+
+    //show loading state
+      setIsLoading(true);
+      setShowModal(false); 
+      setResponseMessage("");
 
     // Normalize username before sending
         const normalizedFormData = {
@@ -68,6 +77,8 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
             error.response?.data?.message || <p className='loginFailed'><span>Login failed!</span> Please try again</p> 
           );
           
+        }finally {
+          setIsLoading(false); // unlock UI
         }
 
   }
@@ -81,11 +92,11 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
 
 
   return (
-    <>
+    <div>
       <div className="bg-bg-light h-110 sm:h-130 w-80 sm:w-90 rounded-lg p-6">
         {/* Header */}
           <div className="w-full flex-row-center justify-between mb-8">
-            <div className='text-xl'> {signUpResponse ? <h2> <span className='font-semibold text-green-600'>{signUpResponse}</span> <br /> <span className='text-lg text-text'>Proceed to login</span></h2> : <h2>Welcome Back!</h2> }</div>
+            <div> {signUpResponse ? <h2> <span className=' text-green-600 text-xl'>{signUpResponse}</span> <br /> <span className='text-text'>Proceed to log in</span></h2> : <h2 className='text-xl'>Welcome Back!</h2> }</div>
             <button onClick={closeSignIn} className="bg-bg-dark w-6 h-6 rounded-full cursor-pointer hover:opacity-45">✕</button>
           </div>
 
@@ -132,7 +143,7 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
         </div>   
       </div>
       
-    {/*  Displaying the response messsage using a popUP */}
+        {/*  Displaying the response messsage using a popUP */}
                 <AuthModal isOpen={showModal} onClose={() => {
                         setShowModal(false); 
                         setResponseMessage("");//reset so that to trigger useEffect on the second time
@@ -146,7 +157,16 @@ const SignIn = ({signUpResponse, closeSignIn, onDontHaveAccount, onForgotPass}) 
                         <p className="responseMessage">{responseMessage}</p>
                     </Alert>
                 </AuthModal>
-    </>
+
+        {/*  Displaying the loading modal */}
+                <AuthModal isOpen={isLoading} onClose={() => {}}>
+                  <LoadingModal
+                     text="Signing you in..."
+                     subText="Verifying your credentials"
+                  />
+                </AuthModal>
+
+    </div>
   );
 };
 

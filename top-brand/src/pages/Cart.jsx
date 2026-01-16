@@ -1,9 +1,10 @@
 // src/pages/CartPage.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { jwtDecode } from "jwt-decode";
 
 export default function Cart() {
   const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory } =
@@ -21,6 +22,7 @@ export default function Cart() {
 
   //States to manage what's displayed on the customer dashboard
   const [activeTab, setActiveTab] = useState("cart");
+  const [activeUser, setActiveUser] = useState("");
 
   /* calculating total cost */
   const total = cartItems.reduce(
@@ -28,6 +30,14 @@ export default function Cart() {
     0
   );
   
+  //Fetching active User from access token
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+        const decoded = jwtDecode(token);
+        setActiveUser(decoded.username);
+    }
+    }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -99,7 +109,10 @@ export default function Cart() {
           {/* cartHeader */}
 {           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg-light absolute top-0 ">
               <p className="text-xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-xl text-accent"/> Cart Manager</p>
-              <p>Fridah <FontAwesomeIcon icon={faUserCircle} className="text-2xl"/> </p>
+              <p>
+                <span className="text-maintext"> {activeUser ? `Hi, ${activeUser}` : "Guest"} </span> 
+                <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
+              </p>
             </div>}
 
 

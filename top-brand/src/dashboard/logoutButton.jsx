@@ -1,12 +1,12 @@
 import React from "react";
-//import axios from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//import { BASE_URL } from "../api/api";
+import { BASE_URL } from "../api/api";
 
 const LogoutButton = () => {
- // const navigate = useNavigate();
+const navigate = useNavigate();
 
- /*  const handleLogout = async () => {
+ const handleLogout = async () => {
     try {
       await axios.post(
         `${BASE_URL}/api/auth/logout`,
@@ -17,21 +17,21 @@ const LogoutButton = () => {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // still needed for access validation
           },
         }
-      ); */
+      ); 
 
-      // Optional: clear any stored access token
-/*       localStorage.removeItem("accessToken");
+  // Clear any stored access token and naviagate back to home page
+    localStorage.removeItem("accessToken");
+    navigate("/");
 
-      navigate("/");
     } catch (error) {
       console.error(
         "Logout failed:",
         error.response?.data?.message || error.message
       );
     }
-  }; */
+  };
 
-  return <button /* onClick={handleLogout} */ className="text-sm cursor-pointer">Logout</button>;
+  return <button onClick={handleLogout} className="text-sm cursor-pointer">Logout</button>;
 };
  
 export default LogoutButton;

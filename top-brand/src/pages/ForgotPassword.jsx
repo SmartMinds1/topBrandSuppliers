@@ -3,8 +3,12 @@ import Alert from "../components/modals/Alert";
 import axios from "axios";
 import AuthModal from "../components/modals/AuthModal";
 import { BASE_URL } from "../api/api";
+import LoadingModal from "../components/modals/LoadingModal";
 
 const ForgotPassword = ({closeForgotPass}) => {
+  //loading state
+  const [isLoading, setIsLoading] = useState(false);
+
   const [email, setEmail] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
 
@@ -13,6 +17,12 @@ const ForgotPassword = ({closeForgotPass}) => {
 
   const handleReset = async (e) => {
     e.preventDefault();
+
+  //show loading state
+    setIsLoading(true);
+    setShowModal(false); 
+    setResponseMessage("");
+
     try {
       const response = await axios.post(
         `${BASE_URL}/api/auth/forgot-password`,
@@ -23,6 +33,8 @@ const ForgotPassword = ({closeForgotPass}) => {
       setResponseMessage(response.data.message);
     } catch (error) {
       setResponseMessage(error.response?.data?.message || "Something went wrong. Please try again later");
+    }finally {
+          setIsLoading(false); // unlock UI
     }
   };
 
@@ -80,6 +92,14 @@ const ForgotPassword = ({closeForgotPass}) => {
                 <p className="responseMessage">{responseMessage}</p>
             </Alert>
         </AuthModal>
+
+   {/*  Displaying the loading modal */}
+        <AuthModal isOpen={isLoading} onClose={() => {}}>
+            <LoadingModal
+                text="Sending reset instructions..."
+                subText="Check your email in a moment"                
+            />
+        </AuthModal>         
   </>
   );
 };

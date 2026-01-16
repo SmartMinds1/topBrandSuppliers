@@ -17,12 +17,12 @@ import {
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import AdminStatCard from './AdminStatCard';
-//import api from "../api/axiosInstance";
-//import { jwtDecode } from "jwt-decode";
+import api from "../api/axiosInstance";
+import { jwtDecode } from "jwt-decode";
 
 const Admin = () => {
     const [openDashboard, setOpenDashboard] = useState(true)
-    const [activeAdmin, setActiveAdmin] = useState("");
+    const [activeAdmin, setActiveAdmin] = useState("Admin");
     const [activeTab, setActiveTab] = useState("dashboard");
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [usersCount, setUsersCount] = useState("");
@@ -32,16 +32,18 @@ const Admin = () => {
     const [commentsCount, setCommentsCount] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
 
-// Search handler function
-const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
-};
+    // Search handler function
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
-// Clear search function
-const clearSearch = () => {
-    setSearchTerm("");
-};
-/*     useEffect(() => {
+    // Clear search function
+    const clearSearch = () => {
+        setSearchTerm("");
+    };
+
+    //Fetching activeAdmin from access token
+     useEffect(() => {
         const token = localStorage.getItem("accessToken");
         if (token) {
             const decoded = jwtDecode(token);
@@ -49,35 +51,38 @@ const clearSearch = () => {
         }
     }, []);
 
+    //Fetching user's count
     const fetchUsers = async () => {
         try {
             const res = await api.get(`${BASE_URL}/api/users`);
-            setUsersCount(res.data);
+            setUsersCount(res.data.length);
         } catch (err) {
             console.error("Error fetching users count:", err);
         }
     };
 
-    const fetchMessages = async () => {
+    //Fetching message's count
+  /*   const fetchMessages = async () => {
         try {
             const res = await api.get(`${BASE_URL}/api/messages`);
-            setMessagesCount(res.data);
+            setMessagesCount(res.data.length);
         } catch (err) {
             console.error("Error fetching messages count:", err);
         }
-    };
-
- */
+    }; */
 
 
-/*     useEffect(() => {
+
+
+    useEffect(() => {
         fetchUsers();
-        fetchMessages();
-    }, []); */
+       /*  fetchMessages(); */
+    }, []); 
 
-    const handleTabClick = (tab, fetchFunction) => {
+    const handleTabClick = (tab, fetchFunction, state) => {
         setActiveTab(tab);
         fetchFunction();
+        setOpenDashboard(state);
     };
 
     return (
@@ -97,7 +102,7 @@ const clearSearch = () => {
                     </div>
 
                     {/* logo */}
-                    <div className="w-30 h-9 ml-4 bg-[url('/LOGODARK.png')] bg-contain bg-no-repeat"></div>
+                    <div className="w-23 h-8 ml-4 bg-[url('/dropletLogoBlack2.png')] bg-contain bg-no-repeat"></div>
 
                     {/* current user */}
                     <div className="flex-row-center justify-between w-fit sm:w-50 gap-2">
@@ -108,9 +113,9 @@ const clearSearch = () => {
                             </button>
                         </div>
                         <div className="flex-row-center gap-2">
-                            <div className="w-10 h-10 rounded-full bg-[url('/Lauracia.webp')] bg-cover"></div>
+                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-bg-light to-accent"></div>
                             <div className="flex-col-start">
-                                <p className="font-semibold text-maintext">Fridah</p> {/* {activeAdmin} */}
+                                <p className="font-semibold text-maintext">{activeAdmin}</p>
                                 <span className="font-light text-sm text-text">Administrator</span>
                             </div>
                         </div>
@@ -122,10 +127,10 @@ const clearSearch = () => {
                     {/* Sidebar */}
                     <div className={`transition-all duration-400 overflow-x-hidden flex-col-center h-full bg-bg-dark  ${sidebarOpen ? 'w-54' : 'w-0'}`}>{/*  border-r border-gray-300 */}
                         <div className="w-54 h-40 border-b border-gray-300 flex-row-center justify-evenly shrink-0">
-                            <div className="w-14 h-14 rounded-full bg-[url('/Lauracia.webp')] bg-cover"></div>
+                            <div className="w-14 h-14 rounded-full bg-linear-to-br from-bg-light to-accent"></div>
                             <div className="welcome-text">
                                 <p className='font-light text-text'>Welcome back,</p>
-                                <p className="font-semibold text-xl">Fridah{/* {activeAdmin} */}!</p>
+                                <p className="font-semibold text-xl">{activeAdmin}!</p>
                             </div>
                         </div>
 
@@ -140,8 +145,7 @@ const clearSearch = () => {
                                 </li>
                                 <li 
                                        className={activeTab === "users" ? "bg-bg-light border-accent" : ""}
-                                       onClick={() => {setOpenDashboard(false); setActiveTab("users")}}
-                                   /*  onClick={() => handleTabClick("users", fetchUsers)} */
+                                       onClick={() => {handleTabClick("users", fetchUsers, false)}}
                                 >
                                     <FontAwesomeIcon icon={faUsers} className='dashSideBarIcon'/>
                                     <span>Users</span>
@@ -183,7 +187,7 @@ const clearSearch = () => {
                     <div className="flex-1 bg-bg-light">
                        {/*  stat cards */}
                         <div className={`w-full grid-cols-4 place-items-center ${openDashboard ? "grid" : "hidden"}`}>
-                             <AdminStatCard icon={faUsers} statsName="Total Users" statsNumber="54" profit="12"/>
+                             <AdminStatCard icon={faUsers} statsName="Total Users" statsNumber={usersCount} profit="12"/>
                              <AdminStatCard icon={faCalendarCheck} statsName="Orders" statsNumber="201" profit="47"/>
                              <AdminStatCard icon={faBoxesPacking} statsName="Bulk Quote" statsNumber="64" profit="33"/>
                              <AdminStatCard icon={faEnvelope} statsName="Messages" statsNumber="28" profit="60"/>
@@ -213,16 +217,16 @@ const clearSearch = () => {
                     }
 
                {/* Rendering db content */}
-                           <div>
-                                {activeTab === "users" && <UsersList openDashboard={openDashboard} searchTerm={searchTerm} />}
-                               {/*  {activeTab === "messages" && <MessagesList searchTerm={searchTerm} />} */}
-                            </div> 
-                        </div>
-
-                    </div>
+                    <div>
+                        {activeTab === "users" && <UsersList openDashboard={openDashboard} searchTerm={searchTerm} />}
+                        {/*  {activeTab === "messages" && <MessagesList searchTerm={searchTerm} />} */}
+                    </div> 
                 </div>
+
             </div>
         </div>
+    </div>
+</div>
     );
 }
 

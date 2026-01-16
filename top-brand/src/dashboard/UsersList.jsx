@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-//import api from "../api/axiosInstance";
-//import Confirm from "../components/popUps/Confirm";
-//import DeleteModal from "../components/popUps/DeleteModal";
+import api from "../api/axiosInstance";
+import Confirm from "../components/modals/Confirm";
+import DeleteModal from "../components/modals/DeleteModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDropletSlash, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { testUsers } from "../../constants/testUsers";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import exportToCSV from "../utils/exportToCSV";
 import useSearch from "../utils/useSearch";
-//import { BASE_URL } from "../api/api";
+import { BASE_URL } from "../api/api";
+import LoadingModal from "../components/modals/LoadingModal";
+import AuthModal from "../components/modals/AuthModal";
 
 const UsersList = ({openDashboard}) => {
+  //loading state
+    const [isLoading, setIsLoading] = useState(false);
  /* action button */
     const [openActionId, setOpenActionId] = useState(null);
-
-    const [users, setUsers] = useState(testUsers); /* useState([]); */
-    const [loading, setLoading] = useState(true);
+    const [users, setUsers] = useState([]);
 
   //setting up feedback message using a popUp
     const [showModal, setShowModal] = useState(false);
@@ -27,22 +28,25 @@ const UsersList = ({openDashboard}) => {
   
 
   //fetching users
-     const fetchUsers = async () => {
+   const fetchUsers = async () => {
+      //show loading modal
+      setIsLoading(true)
+
       try {
-   /*   const res = await api.get(`${BASE_URL}/api/users`);
-        setUsers(res.data); */
-        setLoading(false);
+     const res = await api.get(`${BASE_URL}/api/users`);
+        setUsers(res.data);
 
       } catch (err) {
         console.error("Error fetching users:", err);
-        setLoading(false);
+      }finally {
+        setIsLoading(false); // unlock UI
       }
     };
  
   //Making user an admin
      const makeAdmin = async (id) => {
   //const token = localStorage.getItem("accessToken");
-   /*    try {
+     try {
         const res = await api.patch(
           `${BASE_URL}/api/users/make-admin/${id}`,
           {},
@@ -55,7 +59,7 @@ const UsersList = ({openDashboard}) => {
       } catch (err) {
         console.error(err.response?.data || err.message);
         alert("Failed to promote user");
-      } */
+      }
   };  
 
 //handle confirm sets given ID to a state variable
@@ -66,7 +70,7 @@ const UsersList = ({openDashboard}) => {
 //This handles closing of confirm Modal
     const onCloseConfirm=() => {setShowModal(false);}
  
-   /* The data refresher when the tab is still open and a change is made */
+/* The data refresher when the tab is still open and a change is made */
     useEffect(() => {
       // Initial load
         fetchUsers(); 
@@ -87,7 +91,6 @@ const UsersList = ({openDashboard}) => {
  // Reusable search hook.
     const { query, setQuery, filteredData } = useSearch(users, ["username", "email"]);
 
-  if (loading) return <p>Loading users...</p>;
 
  /* Handle export to CSV file */
       const handleExportUsers = () => {
@@ -189,11 +192,11 @@ const UsersList = ({openDashboard}) => {
       </table>
 
       {/* response message if the table is empty or failed to retrieve */}
-      {/* {filteredData.length===0 ? <p className="emptyTable">No Users found!</p> : ""} */}
+      {filteredData.length===0 ? <p className="emptyTable">No Users found!</p> : ""}
     </div>
 
-{/*  Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}
-{/*        <DeleteModal isOpen={showModal}  fetchData={()=>fetchUsers()} onCloseConfirm={() => onCloseConfirm()} onClose={() => {
+{/* Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}
+      <DeleteModal isOpen={showModal}  fetchData={()=>fetchUsers()} onCloseConfirm={() => onCloseConfirm()} onClose={() => {
               setShowModal(false); 
           }}>
           <Confirm onCloseConfirm={() => onCloseConfirm()}
@@ -203,7 +206,16 @@ const UsersList = ({openDashboard}) => {
           >
               <p className="responseMessage">Please confirm to Delete</p>
           </Confirm>
-      </DeleteModal> */}
+      </DeleteModal>
+
+
+{/*  Displaying the loading modal */}
+        <AuthModal isOpen={isLoading} onClose={() => {}}>
+            <LoadingModal
+               text="Retrieving user records..."
+               subText="Please wait while data is securely loaded"               
+            />
+        </AuthModal>
     </div>
   );
 };

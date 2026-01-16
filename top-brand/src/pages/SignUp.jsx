@@ -5,8 +5,12 @@ import Alert from '../components/modals/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { BASE_URL } from "../api/api";
+import LoadingModal from '../components/modals/LoadingModal';
 
 const SignUp = ({ closeSignUp, onSuccess }) => {
+ //loading state
+  const [isLoading, setIsLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -26,6 +30,11 @@ const SignUp = ({ closeSignUp, onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting SignUp Details", formData);
+  
+  //show loading state
+     setIsLoading(true);
+     setShowModal(false); 
+     setResponseMessage("");
 
   // Normalize email before sending
     const normalizedFormData = {
@@ -49,6 +58,8 @@ const SignUp = ({ closeSignUp, onSuccess }) => {
     } catch (error) {
       //Use specific message from backend if available
       setResponseMessage(error.response?.data?.message || "Registration failed. Please try again.");
+    }finally {
+      setIsLoading(false); // unlock UI
     }
   };
 
@@ -136,6 +147,15 @@ const SignUp = ({ closeSignUp, onSuccess }) => {
             <p className="">{responseMessage}</p>
           </Alert>
       </AuthModal>
+
+ {/*  Displaying the loading modal */}
+      <AuthModal isOpen={isLoading} onClose={() => {}}>
+        <LoadingModal
+           text="Creating your account..."
+           subText="Setting things up for you, please wait"           
+        />
+      </AuthModal>    
+
     </>
   );
 };
