@@ -108,20 +108,20 @@ export default function Cart() {
         <main className="w-full sm:flex-1 relative pt-16">
           {/* cartHeader */}
 {           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg-light absolute top-0 ">
-              <p className="text-xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-xl text-accent"/> Cart Manager</p>
-              <p>
-                <span className="text-maintext"> {activeUser ? `Hi, ${activeUser}` : "Guest"} </span> 
+              <p className="text-xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-lg lg:text-xl text-accent"/> Cart Manager</p>
+              <p className="mr-4">
+                <span className="text-maintext text-sm"> {activeUser ? `Hi, ${activeUser}` : "Guest"} </span> 
                 <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
               </p>
             </div>}
 
 
           {/* content data */}
-          <div className="w-full p-8 pt-8 h-[74vh] overflow-y-scroll">
+          <div className="w-full p-2 lg:p-8 pt-8 h-[74vh] overflow-y-scroll">
                 {/* Cart Items */}
                 {activeTab === "cart" && (
                   <div>
-                    <h2 className="text-lg lg:text-xl font-semibold mb-4 text-primary">Available Cart Items</h2>
+                    <h2 className="text-lg lg:text-xl mb-4 text-primary">Available Cart Items</h2>
                     {cartItems.length === 0 ? (
                       <div className="w-full h-30 flex-col-center justify-center">
                         <p className="text-text">Your cart is empty</p>
@@ -129,28 +129,28 @@ export default function Cart() {
                     ) : (
                       <div className="flex flex-col items-end justify-evenly">
                         {cartItems.map((item) => (
-                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-200 shadow p-4 rounded mb-2 flex-wrap gap-4">
-                              <div className="w-fit h-fit flex-row-center flex-wrap gap-2">
+                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-200 shadow p-1 sm:p-4 rounded mb-2 flex-wrap gap-4">
+                              <div className="w-fit h-fit flex-row-center flex-wrap ">
                                   {/* item image */}
                                       <img
                                           src={item.image}
                                           alt={item.title}
-                                          className="w-[95%] m-auto sm:w-36 h-38 sm:h-30 object-cover rounded-lg mr-4 bg-bg-dark text-sm border border-gray-300"
+                                          className="m-auto w-24 h-24 sm:w-36 sm:h-30 object-cover rounded-lg mr-3 sm:mr-4 bg-bg-dark text-sm border border-gray-300"
                                       />
                       
                                   {/* item name and price */}
-                                  <div className="w-fit h-30 flex-col-start justify-evenly">
-                                        <h3 className="font-semibold">{item.title}</h3>
-                                         <p>Total item cost: ${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</p>
+                                  <div className="w-fit h-30 flex-col-start justify-start">
+                                        <h3 className="font-semibold pt-2">{item.title}</h3>
+                                         <p className="text-text text-sm mb-4 mt-0.5">Total item cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</span></p>
 
                                       <div className="flex items-center gap-2">
                                         <button
-                                          className="w-9 h-8 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"
+                                          className="w-7 h-6 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"
                                           onClick={() => decreaseQty(item.id)}
                                         >-</button>
-                                        <span  className="w-16 h-10 bg-gray-200 rounded-lg flex-col-center justify-center">{item.qty}</span>
+                                        <span  className="w-14 h-8 bg-gray-200 rounded-lg flex-col-center justify-center">{item.qty}</span>
                                         <button
-                                           className="w-9 h-8 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"
+                                          className="w-7 h-6 border border-gray-300 text-sm rounded-md hover:bg-bg-dark cursor-pointer"
                                           onClick={() => increaseQty(item.id)}
                                         >+</button>
                                       </div>
@@ -159,7 +159,7 @@ export default function Cart() {
 
                              {/* remove button */}
                             <button
-                              className="text-red-600 bg-bg p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300 text-sm"
+                              className="text-red-600 bg-bg p-1 sm:p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300 text-sm"
                               onClick={() => removeFromCart(item.id)}
                             >
                               Remove
