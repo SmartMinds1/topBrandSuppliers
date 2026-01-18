@@ -191,14 +191,14 @@ export default function Cart() {
 
                 {/* Cart History */}
                 {activeTab === "history" && (
-                  <div>
-                    <h2 className="text-lg  mb-4 text-primary">Cart History</h2>
+                  <div className="mb-12">
+                    <h2 className="text-lg  sm:mb-4 text-primary">Cart History</h2>
                     {cartHistory.length === 0 ? (
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
                       cartHistory.map((cart, index) => (
                         <div key={index} className="border border-gray-100 shadow p-4 rounded mb-2">
-                          <h3 className="font-semibold text-xl mb-2">Cart {index + 1}</h3>
+                          <h3 className="font-bold mb-2">Cart {index + 1}</h3>
 
                           <div>
                             {cart.map((item) => (
@@ -234,11 +234,11 @@ export default function Cart() {
                 {/* Orders */}
                 {activeTab === "orders" && (
                   <div>
-                        <h2 className="text-xl font-semibold mb-4 text-primary">My Orders</h2>
+                        <h2 className="text-lg sm:mb-4 text-primary ">My Orders</h2>
                         <div className="p-4 rounded mb-2">
                         <table className="w-full text-left border-collapse ">
                               <thead>
-                                <tr className="bg-bg-dark text-maintext font-semibold">
+                                <tr className="bg-bg-dark text-maintext font-semibold text-sm">
                                   <th className="py-3 px-4">Order ID</th>
                                   <th className="py-3 px-4">Date</th>
                                   <th className="py-3 px-4">Order Total</th>
