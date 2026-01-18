@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrash, faTrashAlt, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { jwtDecode } from "jwt-decode";
 
 export default function Cart() {
@@ -121,7 +121,7 @@ export default function Cart() {
                 {/* Cart Items */}
                 {activeTab === "cart" && (
                   <div>
-                    <h2 className="text-lg lg:text-xl mb-4 text-primary">Available Cart Items</h2>
+                    <h2 className="text-lg lg:text-xl mb-4 text-primary hidden sm:block">Available Cart Items</h2>
                     {cartItems.length === 0 ? (
                       <div className="w-full h-30 flex-col-center justify-center">
                         <p className="text-text">Your cart is empty</p>
@@ -129,8 +129,8 @@ export default function Cart() {
                     ) : (
                       <div className="flex flex-col items-end justify-evenly">
                         {cartItems.map((item) => (
-                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-200 shadow p-1 sm:p-4 rounded mb-2 flex-wrap gap-4">
-                              <div className="w-fit h-fit flex-row-center flex-wrap ">
+                          <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-200 shadow p-1 sm:p-4 rounded mb-2 flex-wrap ">
+                              <div className="w-fit h-fit flex-row-center flex-wrap">
                                   {/* item image */}
                                       <img
                                           src={item.image}
@@ -157,12 +157,19 @@ export default function Cart() {
                                   </div>
                               </div>
 
-                             {/* remove button */}
+                          {/* remove button */}
                             <button
-                              className="text-red-600 bg-bg p-1 sm:p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300 text-sm"
+                              className="text-red-600 bg-bg p-1 sm:p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300 text-sm hidden sm:flex"
                               onClick={() => removeFromCart(item.id)}
                             >
                               Remove
+                            </button>
+                          {/* button for mobiles */}
+                            <button
+                              className="text-red-500 rounded-md hover:brightness-75 cursor-pointer duration-300 text-sm sm:hidden"
+                              onClick={() => removeFromCart(item.id)}
+                            >
+                              <FontAwesomeIcon icon={faTrashAlt}/>
                             </button>
                           </div>
                         ))}
@@ -185,20 +192,35 @@ export default function Cart() {
                 {/* Cart History */}
                 {activeTab === "history" && (
                   <div>
-                    <h2 className="text-xl font-semibold mb-4 text-primary">Cart History</h2>
+                    <h2 className="text-lg  mb-4 text-primary">Cart History</h2>
                     {cartHistory.length === 0 ? (
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
                       cartHistory.map((cart, index) => (
                         <div key={index} className="border border-gray-100 shadow p-4 rounded mb-2">
-                          <h3 className="font-semibold text-xl">Cart {index + 1} Items</h3>
-                          <ul className="ml-4 list-disc">
+                          <h3 className="font-semibold text-xl mb-2">Cart {index + 1}</h3>
+
+                          <div>
                             {cart.map((item) => (
-                              <li key={item.id}>{item.title} x {item.qty} (${item.price})</li>
+                              <div key={item.id} className="w-fit h-fit flex-row-center flex-wrap sm:mb-4">
+                                  {/* item image */}
+                                      <img
+                                          src={item.image}
+                                          alt={item.title}
+                                          className="m-auto w-24 h-24 sm:w-36 sm:h-30 object-cover rounded-lg mr-3 sm:mr-4 bg-bg-dark text-sm border border-gray-300"
+                                      />
+
+                                  {/* item name and price */}
+                                  <div className="w-fit h-30 flex-col-start justify-center">
+                                        <h3 className="font-semibold pt-2">{item.title} x {item.qty} </h3>
+                                        <p className="text-text text-sm mb-4 mt-0.5">Total cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</span></p>
+                                  </div>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
+
                           <button
-                                className="mt-4 bg-red-300 text-white px-4 py-2 rounded"
+                                className="mt-4 bg-red-400 cursor-pointer text-white px-4 py-2 rounded"
                                 onClick={clearCartHistory}
                               >
                                 Clear Cart History
