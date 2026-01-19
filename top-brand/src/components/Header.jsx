@@ -139,12 +139,12 @@ const Header = () => {
                 </div>
 
             {/* Cart */}
-                <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark">
+                <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark cursor-pointer">
                   {/*   <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
                     </NavLink> */}
                     <p 
-                       className={({ isActive }) => isActive ? "text-primary" : ""}
+                       className={`({ isActive }) => isActive ? "text-primary" : "text-maintext"}`}
                        onClick={()=>handleCartAccess()}
                     >
                        <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />

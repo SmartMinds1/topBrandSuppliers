@@ -1,32 +1,29 @@
 // src/pages/CartPage.jsx
 import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
+import OrdersTable from "../context/OrdersTable";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrash, faTrashAlt, faUser, faUserAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrashAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { jwtDecode } from "jwt-decode";
+import AuthModal from "../components/modals/AuthModal";
+import ModifyOrder from "../context/ModifyOrder";
 
 export default function Cart() {
-  const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory } =
+  const { cartItems, cartHistory, orders, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory } =
     useCart();
-
-  // For demo: mock orders
-  const [orders, setOrders] = useState([
-    { id: "TPBS002", date: "8/11/25", totalOrder: 254, status: "processing" },
-    { id: "TPBS002", date: "4/9/25", totalOrder:600, status: "processing" },
-    { id: "TPBS003", date: "22/8/25", totalOrder: 120, status: "completed" },
-    { id: "TPBS004", date: "1/5/25", totalOrder:900, status: "cancelled" },
-    { id: "TPBS005", date: "31/3/25", totalOrder: 114, status: "completed" },
-    { id: "TPBS006", date: "26/2/25", totalOrder:550, status: "completed" },
-  ]);
 
   //States to manage what's displayed on the customer dashboard
   const [activeTab, setActiveTab] = useState("cart");
   const [activeUser, setActiveUser] = useState("");
 
+  //modify order states
+  const [editingOrder, setEditingOrder] = useState(null); // the order being modified
+  const [showModal, setShowModal] = useState(false);
+
   /* calculating total cost */
   const total = cartItems.reduce(
-    (t, item) => t + parseFloat(item.price) * (item.sizeKg || 1) * item.qty,
+    (t, item) => t + parseFloat(item.price) * (item.sizeKg) * item.qty,
     0
   );
   
@@ -38,6 +35,25 @@ export default function Cart() {
         setActiveUser(decoded.username);
     }
     }, []);
+
+  //MODIFYING order state  
+    //const handleModifyOrder = (orderId) => {
+      // later:
+      // - load order items back to cart
+      // - or open edit modal
+     // console.log("Modify order:", orderId);
+   // };
+
+  //Client Order Modification
+    const handleModifyOrder = (orderId) => {
+      const orderToEdit = orders.find(o => o.id === orderId);
+      if (!orderToEdit) return;
+    
+      // Deep copy to prevent accidental mutation
+      setEditingOrder(JSON.parse(JSON.stringify(orderToEdit)));
+      setShowModal(true);
+    };
+    
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -107,7 +123,7 @@ export default function Cart() {
         {/* Main content */}
         <main className="w-full sm:flex-1 relative pt-16">
           {/* cartHeader */}
-{           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg-light absolute top-0 ">
+{           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg sm:bg-bg-light absolute top-0 ">
               <p className="text-xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-lg lg:text-xl text-accent"/> Cart Manager</p>
               <p className="mr-4">
                 <span className="text-maintext text-sm"> {activeUser ? `Hi, ${activeUser}` : "Guest"} </span> 
@@ -131,27 +147,27 @@ export default function Cart() {
                         {cartItems.map((item) => (
                           <div key={item.id} className="h-fit w-full flex justify-between items-center border border-gray-200 shadow p-1 sm:p-4 rounded mb-2 flex-wrap ">
                               <div className="w-fit h-fit flex-row-center flex-wrap">
-                                  {/* item image */}
-                                      <img
-                                          src={item.image}
-                                          alt={item.title}
-                                          className="m-auto w-24 h-24 sm:w-36 sm:h-30 object-cover rounded-lg mr-3 sm:mr-4 bg-bg-dark text-sm border border-gray-300"
-                                      />
+                                {/* item image */}
+                                  <img
+                                      src={item.image}
+                                      alt={item.title}
+                                      className="m-auto w-24 h-24 sm:w-36 sm:h-30 object-cover rounded-lg mr-3 sm:mr-4 bg-bg-dark text-sm border border-gray-300"
+                                  />
                       
-                                  {/* item name and price */}
+                                {/* item name and price */}
                                   <div className="w-fit h-30 flex-col-start justify-start">
                                         <h3 className="font-semibold pt-2">{item.title}</h3>
-                                         <p className="text-text text-sm mb-4 mt-0.5">Total item cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</span></p>
+                                         <p className="text-text text-sm mb-4 mt-0.5">Total item cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg) * item.qty).toFixed(2)}</span></p>
 
                                       <div className="flex items-center gap-2">
                                         <button
                                           className="w-7 h-6 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"
-                                          onClick={() => decreaseQty(item.id)}
+                                          onClick={() => decreaseQty(item.id, item.sizeKg)}
                                         >-</button>
                                         <span  className="w-14 h-8 bg-gray-200 rounded-lg flex-col-center justify-center">{item.qty}</span>
                                         <button
                                           className="w-7 h-6 border border-gray-300 text-sm rounded-md hover:bg-bg-dark cursor-pointer"
-                                          onClick={() => increaseQty(item.id)}
+                                          onClick={() => increaseQty(item.id, item.sizeKg)}
                                         >+</button>
                                       </div>
                                   </div>
@@ -160,14 +176,14 @@ export default function Cart() {
                           {/* remove button */}
                             <button
                               className="text-red-600 bg-bg p-1 sm:p-2 rounded-md hover:bg-bg-dark cursor-pointer duration-300 text-sm hidden sm:flex"
-                              onClick={() => removeFromCart(item.id)}
+                              onClick={() => removeFromCart(item.id, item.sizeKg)}
                             >
                               Remove
                             </button>
                           {/* button for mobiles */}
                             <button
                               className="text-red-500 rounded-md hover:brightness-75 cursor-pointer duration-300 text-sm sm:hidden"
-                              onClick={() => removeFromCart(item.id)}
+                              onClick={() => removeFromCart(item.id, item.sizeKg)}
                             >
                               <FontAwesomeIcon icon={faTrashAlt}/>
                             </button>
@@ -197,31 +213,42 @@ export default function Cart() {
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
                       cartHistory.map((cart, index) => (
-                        <div key={index} className="border border-gray-100 shadow p-4 rounded mb-2">
-                          <h3 className="font-bold mb-2">Cart {index + 1}</h3>
-
+                      <div key={cart.id} className="border border-gray-100 shadow p-4 rounded mb-2">
+                          {/* Header */}
+                          <div className="flex justify-between items-center mb-3">
+                              <h3 className="font-bold">Cart {index + 1}</h3>
+                              <span className="text-xs text-gray-500">{new Date(cart.createdAt).toLocaleString()}</span>
+                          </div>
+                          
+                          {/* Item info */}
                           <div>
-                            {cart.map((item) => (
-                              <div key={item.id} className="w-fit h-fit flex-row-center flex-wrap sm:mb-4">
+                            {cart.items.map((item) => (
+                              <div key={`${item.id}_${item.sizeKg}`} className="w-fit h-fit flex-row-center flex-wrap sm:mb-4">
                                   {/* item image */}
-                                      <img
-                                          src={item.image}
-                                          alt={item.title}
-                                          className="m-auto w-24 h-24 sm:w-36 sm:h-30 object-cover rounded-lg mr-3 sm:mr-4 bg-bg-dark text-sm border border-gray-300"
-                                      />
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="m-auto w-24 h-24 sm:w-36 sm:h-30 object-cover rounded-lg mr-3 sm:mr-4 bg-bg-dark text-sm border border-gray-300"
+                                    />
 
                                   {/* item name and price */}
                                   <div className="w-fit h-30 flex-col-start justify-center">
-                                        <h3 className="font-semibold pt-2">{item.title} x {item.qty} </h3>
-                                        <p className="text-text text-sm mb-4 mt-0.5">Total cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg || 1) * item.qty).toFixed(2)}</span></p>
+                                        <h4 className="font-semibold pt-2">{item.sizeKg}kg {item.title} x {item.qty} </h4>
+                                        <p className="text-text text-sm mb-4 mt-0.5">Total cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg) * item.qty).toFixed(2)}</span></p>
                                   </div>
                               </div>
                             ))}
                           </div>
 
+                          {/* total order cost */}
+                          <h4 className="font-semibold mt-2">
+                              Order Total: {cart.items.reduce((sum, item) => sum + item.price * item.sizeKg * item.qty,0)}
+                          </h4>
+
+                          {/* clear cart history button */}
                           <button
                                 className="mt-4 bg-red-400 cursor-pointer text-white px-4 py-2 rounded"
-                                onClick={clearCartHistory}
+                                onClick={() => clearCartHistory(cart.id)}
                               >
                                 Clear Cart History
                           </button>
@@ -234,61 +261,12 @@ export default function Cart() {
                 {/* Orders */}
                 {activeTab === "orders" && (
                   <div>
-                        <h2 className="text-lg sm:mb-4 text-primary ">My Orders</h2>
-                        <div className="p-4 rounded mb-2">
-                        <table className="w-full text-left border-collapse ">
-                              <thead>
-                                <tr className="bg-bg-dark text-maintext font-semibold text-sm">
-                                  <th className="py-3 px-4">Order ID</th>
-                                  <th className="py-3 px-4">Date</th>
-                                  <th className="py-3 px-4">Order Total</th>
-                                  <th className="py-3 px-4">Status</th>
-                                  <th className="py-3 px-4 text-right">Action</th>
-                                </tr>
-                              </thead>
-
-                              <tbody>
-                                {orders.length === 0 ? (
-                                  <tr>
-                                    <td
-                                      colSpan="5"
-                                      className="py-8 text-center text-text opacity-70"
-                                    >
-                                      No Orders Found
-                                    </td>
-                                  </tr>
-                                ) : (
-                                  orders.map((order, index) => (
-                                    <tr
-                                      key={order.id}
-                                      className={`${
-                                        index % 2 === 0 ? "bg-bg-light" : "bg-transparent"
-                                      } hover:bg-bg duration-300 text-sm`}
-                                    >
-                                      <td className="py-3 px-4">{order.id}</td>
-                                      <td className="py-3 px-4">{order.date}</td>
-                                      <td className="py-3 px-4">${order.totalOrder}</td>
-                                      <td className={`${order.status==="processing"?"text-primary":"text-maintext"} py-3 px-4 capitalize`}>{order.status}</td>
-
-                                      <td className="py-3 px-4 text-right">
-                                        {order.status === "processing" ? (
-                                          <button className="bg-primary-light text-white px-4 py-2 rounded-lg shadow-sm hover:opacity-90 duration-300 cursor-pointer">
-                                            Modify
-                                          </button>
-                                        ) : (
-                                          <button
-                                            className="bg-bg-dark text-text/80 px-4 py-2 rounded-lg cursor-not-allowed opacity-50 border border-gray-300"
-                                            disabled
-                                          >
-                                            Modify
-                                          </button>
-                                        )}
-                                      </td>
-                                    </tr>
-                                  ))
-                                )}
-                              </tbody>
-                            </table>
+                    <h2 className="text-lg sm:mb-4 text-primary ">My Orders</h2>
+                    <div className="p-4 rounded mb-2">
+                            <OrdersTable
+                              orders={orders}
+                              onModify={handleModifyOrder}
+                            />
                         </div>
                   </div>
                 )}
@@ -296,6 +274,25 @@ export default function Cart() {
 
         </main>
       </div>
+
+  {/*  Displaying the Cliet order editing modal */}
+  {showModal && editingOrder && (
+        <AuthModal isOpen={showModal} onClose={() => {
+                  setShowModal(false);   
+              }}>
+              <ModifyOrder 
+                 closeModify={() => {setShowModal(false)}}
+                 order={editingOrder}
+                 onSave={(updatedOrder) => {
+                  setOrders(prev =>
+                    prev.map(o => o.id === updatedOrder.id ? updatedOrder : o)
+                  );
+                }}
+              >
+              </ModifyOrder>
+        </AuthModal>
+        )}
+
     </div>
   );
 }
