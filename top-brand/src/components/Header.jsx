@@ -15,9 +15,7 @@ import {
 import MobileMenu from "./MobileMenu";
 import { useCart } from "../context/CartContext";
 
-
 import { verifyAccessToken } from "../utils/authHelper";
-import { useNavigate } from "react-router-dom";
 import AuthModal from "../components/modals/AuthModal";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
@@ -39,6 +37,28 @@ const Header = () => {
  //displaying cart items count 
   const count = cartItems.reduce((t, i) => t + i.qty, 0);
 
+  //Current active user
+  const [activeUser, setActiveUser] = useState("");
+
+  //Fetching active User from access token
+  useEffect(() => {
+    const loadUser = async () => {
+      const result = await verifyAccessToken();
+  
+      if (result && typeof result === "object") {
+        setActiveUser(result.username);
+      } else if (result === true) {
+        // token refreshed — get username from storage
+        setActiveUser(localStorage.getItem("username"));
+      } else {
+        setActiveUser(null);
+      }
+    };
+  
+    loadUser();
+  }, []);
+  
+
   //hadling switch to signIn
   const handleSwitchToSignIn = (message) => {
     setShowSignUp(false);
@@ -57,15 +77,6 @@ const Header = () => {
     setShowSignIn(false);
     setShowForgotPass(true);
   };
-
-  const navigate = useNavigate();
-
-//navigate to admin dashboard on successfull login (this works if there's a direct admin button)
-  const handleCartAccess = async () => {
-        await verifyAccessToken();
-        navigate("/cart");
-  };
-
 
   return (
     <>
@@ -89,14 +100,15 @@ const Header = () => {
 
         <div className="w-14 flex-row-center justify-evenly relative pt-1 mr-4">
            {/* search bar */}
-                <div className="w-36 h-8 hover:w-60 duration-800 ease-in-out absolute top-2 right-44 rounded-2xl flex-row-center gap-1 pl-1 hidden xl:flex bg-bg-dark">
+                <div className="w-36 h-8 hover:w-60 duration-800 ease-in-out absolute top-2 right-54 rounded-2xl flex-row-center gap-1 pl-1 hidden lg:flex bg-bg-dark">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-text" />
                     <p className="text-text text-sm">Search</p>
                 </div>
 
             {/* user account */}
-                <div className="absolute w-28 right-15 top-2">
-                    <div className="w-full xl:w-15 p-1 flex-row-end justify-end xl:justify-evenly">
+                <div className="absolute w-28 right-25 top-0.5 lg:top-2 bg-transparent">
+                    <div className="w-40 p-1 flex-row-end justify-end xl:justify-evenly">
+                      <p className="text-xs md:text-sm text-primary mr-1">{activeUser ? `Hi, ${activeUser}` : "Guest"}</p>
                       <FontAwesomeIcon icon={faUser} className="text-primary text-xl" />
                       <button onClick={() => setOpenAcc(prev => !prev)}>
                           {openAcc ? (
@@ -107,7 +119,7 @@ const Header = () => {
                       </button>
                     </div>
                     
-                      <ul className={`bg-bg transition-all duration-300 overflow-hidden shadow flex-col-start justify-evenly ${openAcc ? 'h-29' : 'h-0'}`}>
+                      <ul className={`bg-bg mt-2 transition-all duration-300 overflow-hidden shadow flex-col-start justify-evenly ${openAcc ? 'h-29' : 'h-0'}`}>
                         <li
                             className="text-sm cursor-pointer hover:bg-bg-dark duration-300 w-full p-2 text-text"
                             onClick={() => {
@@ -140,16 +152,9 @@ const Header = () => {
 
             {/* Cart */}
                 <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark cursor-pointer">
-                  {/*   <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
+                    <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
-                    </NavLink> */}
-                    <p 
-                       className={`({ isActive }) => isActive ? "text-primary" : "text-maintext"}`}
-                       onClick={()=>handleCartAccess()}
-                    >
-                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
-                    </p>
-
+                    </NavLink> 
                     {count > 0 && (
                       <span className="absolute -top-1 -right-2 sm:-right-1.5 bg-accent text-bg-light text-xs px-1 py-0 sm:px-1.5 sm:py-0.5 rounded-full">
                         {count}

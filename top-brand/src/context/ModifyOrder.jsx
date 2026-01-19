@@ -25,8 +25,7 @@ const ModifyOrder = ({ order, closeModify, onSave }) => {
     };
   
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-white p-6 rounded w-full max-w-lg">
+        <div className="bg-white p-6 w-75 sm:w-90 h-100 sm:h-120 rounded-md">
           <h3 className="text-lg font-bold mb-4">Modify Order</h3>
   
           {items.map(item => (
@@ -50,7 +49,6 @@ const ModifyOrder = ({ order, closeModify, onSave }) => {
             <button onClick={handleSave} className="px-3 py-1 bg-primary text-white rounded">Save</button>
           </div>
         </div>
-      </div>
     );
   };
 

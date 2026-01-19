@@ -67,7 +67,9 @@ const [isLoading, setIsLoading] = useState(false);
           const role = localStorage.getItem("userRole");
             if (role === "admin") navigate("/admin");
              else if (role === "agent") navigate("/admin");
-             else navigate("/cart");
+             else {
+              window.location.href = "/";
+             }
               
         }catch(error){
           setResponseMessage(

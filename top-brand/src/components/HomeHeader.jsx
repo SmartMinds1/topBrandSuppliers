@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -41,6 +41,27 @@ const HomeHeader = () => {
   //displaying cart items count 
   const { cartItems } = useCart();
   const count = cartItems.reduce((t, i) => t + i.qty, 0);
+
+  //Current active user
+  const [activeUser, setActiveUser] = useState("");
+
+  //Fetching active User from access token
+  useEffect(() => {
+    const loadUser = async () => {
+      const result = await verifyAccessToken();
+  
+      if (result && typeof result === "object") {
+        setActiveUser(result.username);
+      } else if (result === true) {
+        // token refreshed — get username from storage
+        setActiveUser(localStorage.getItem("username"));
+      } else {
+        setActiveUser(null);
+      }
+    };
+  
+    loadUser();
+  }, []);
 
   //hadling switch to signIn
   const handleSwitchToSignIn = (message) => {
@@ -153,25 +174,27 @@ const HomeHeader = () => {
         <div className="w-36 bg-transparent border-0"></div>
 
         <div className="w-14 flex-row-center justify-evenly relative pt-1 mr-4">
-           {/* search bar */}
-                <div className="w-36 h-8 hover:w-60 duration-800 ease-in-out absolute top-2 right-44 rounded-2xl flex-row-center gap-1 pl-1 hidden xl:flex bg-bg">
+        {/* search bar */}
+        <div className="w-36 h-8 hover:w-60 duration-800 ease-in-out absolute top-2 right-54 rounded-2xl flex-row-center gap-1 pl-1 hidden lg:flex bg-bg-dark">
                     <FontAwesomeIcon icon={faSearch} className="text-lg text-text" />
                     <p className="text-text text-sm">Search</p>
                 </div>
 
             {/* user account */}
-                <div className="absolute w-28 right-15 top-2">
-                    <div className="p-1 flex-row-end justify-end w-full xl:w-15 xl:justify-evenly">
-                      <FontAwesomeIcon icon={faUser} className="text-bg header-text text-xl" />
+                <div className="absolute w-28 right-25 top-0.5 lg:top-2 bg-transparent">
+                    <div className="w-40 p-1 flex-row-end justify-end xl:justify-evenly">
+                      <p className="text-xs md:text-sm text-bg-dark mr-1 header-text">{activeUser ? `Hi, ${activeUser}` : "Guest"}</p>
+                      <FontAwesomeIcon icon={faUser} className="text-primary-light text-xl" />
                       <button onClick={() => setOpenAcc(prev => !prev)}>
                           {openAcc ? (
-                              <FontAwesomeIcon icon={faAngleUp} className="text-sm text-bg header-text font-extralight cursor-pointer hover:text-accent" />
+                              <FontAwesomeIcon icon={faAngleUp} className="text-sm text-bg-dark font-extralight cursor-pointer hover:text-accent header-text" />
                           ) : (
-                              <FontAwesomeIcon icon={faAngleDown} className="text-sm text-bg header-text cursor-pointer hover:text-accent" />
+                              <FontAwesomeIcon icon={faAngleDown} className="text-sm text-bg-dark cursor-pointer hover:text-accent header-text" />
                           )}
                       </button>
                     </div>
-                      <ul className={`bg-bg transition-all duration-300 overflow-hidden shadow flex-col-start justify-evenly ${openAcc ? 'h-29' : 'h-0'}`}>
+                    
+                      <ul className={`bg-bg mt-2 transition-all duration-300 overflow-hidden shadow flex-col-start justify-evenly ${openAcc ? 'h-29' : 'h-0'}`}>
                         <li
                             className="text-sm cursor-pointer hover:bg-bg-dark duration-300 w-full p-2 text-text"
                             onClick={() => {
@@ -198,15 +221,15 @@ const HomeHeader = () => {
                             <FontAwesomeIcon icon={faSignOut} className='pr-2 p-1 text-sm' />
                             <LogoutButton />
                         </li> 
-                      </ul>     
+                      </ul>
+                            
                 </div>
 
             {/* Cart */}
-                <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark">
+                <div className="relative w-8 h-8 rounded-full flex-row-center justify-center bg-bg-dark cursor-pointer">
                     <NavLink to="/cart" className={({ isActive }) => isActive ? "text-primary" : ""}>
                       <FontAwesomeIcon icon={faCartShopping} className="text-xl pt-2" />
-                    </NavLink>
-
+                    </NavLink> 
                     {count > 0 && (
                       <span className="absolute -top-1 -right-2 sm:-right-1.5 bg-accent text-bg-light text-xs px-1 py-0 sm:px-1.5 sm:py-0.5 rounded-full">
                         {count}

@@ -5,7 +5,6 @@ import OrdersTable from "../context/OrdersTable";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrashAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { jwtDecode } from "jwt-decode";
 import AuthModal from "../components/modals/AuthModal";
 import ModifyOrder from "../context/ModifyOrder";
 
@@ -15,7 +14,6 @@ export default function Cart() {
 
   //States to manage what's displayed on the customer dashboard
   const [activeTab, setActiveTab] = useState("cart");
-  const [activeUser, setActiveUser] = useState("");
 
   //modify order states
   const [editingOrder, setEditingOrder] = useState(null); // the order being modified
@@ -26,15 +24,6 @@ export default function Cart() {
     (t, item) => t + parseFloat(item.price) * (item.sizeKg) * item.qty,
     0
   );
-  
-  //Fetching active User from access token
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-        const decoded = jwtDecode(token);
-        setActiveUser(decoded.username);
-    }
-    }, []);
 
   //MODIFYING order state  
     //const handleModifyOrder = (orderId) => {
@@ -123,12 +112,8 @@ export default function Cart() {
         {/* Main content */}
         <main className="w-full sm:flex-1 relative pt-16">
           {/* cartHeader */}
-{           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg sm:bg-bg-light absolute top-0 ">
+{           <div className="w-full ml-2 h-16 border border-r-0 border-t-0 border-l-0 border-gray-300 text-maintext  flex-row-center justify-start pl-2 pr-2 sm:pl-6 sm:pr-6 bg-bg sm:bg-bg-light absolute top-0 ">
               <p className="text-xl font-semibold">  <FontAwesomeIcon icon={faShoppingCart} className="text-lg lg:text-xl text-accent"/> Cart Manager</p>
-              <p className="mr-4">
-                <span className="text-maintext text-sm"> {activeUser ? `Hi, ${activeUser}` : "Guest"} </span> 
-                <FontAwesomeIcon icon={faUserCircle} className="text-2xl" />
-              </p>
             </div>}
 
 

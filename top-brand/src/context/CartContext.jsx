@@ -130,8 +130,6 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
   
-  
-  
 
   // Clear all cart history
   const clearCartHistory = (cartId) => {

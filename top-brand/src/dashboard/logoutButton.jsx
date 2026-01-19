@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../api/api";
 import Confirm from "../components/modals/Confirm";
 import AuthModal from "../components/modals/AuthModal";
@@ -9,8 +8,6 @@ import LoadingModal from "../components/modals/LoadingModal";
 const LogoutButton = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     setIsLoading(true);
@@ -29,7 +26,7 @@ const LogoutButton = () => {
       );
 
       localStorage.removeItem("accessToken");
-      navigate("/");
+      window.location.href = "/";
     } catch (error) {
       console.error(
         "Logout failed:",
