@@ -26,7 +26,13 @@ const LogoutButton = () => {
       );
 
       localStorage.removeItem("accessToken");
-      window.location.href = "/";
+      const isGitHubPages = window.location.hostname.includes("github.io");
+           if (isGitHubPages) {
+             navigate("/");
+           } else {
+             window.location.href = "/";
+           }
+           
     } catch (error) {
       console.error(
         "Logout failed:",
