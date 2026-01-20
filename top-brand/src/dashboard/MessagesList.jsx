@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-//import api from "../api/axiosInstance";
-//import DeleteModal from "../components/popUps/DeleteModal";
-//import useSearch from "../utils/useSearch";
+import api from "../api/axiosInstance";
+import DeleteModal from "../components/modals/DeleteModal";
+import useSearch from "../utils/useSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import exportToCSV from "../utils/exportToCSV";
@@ -17,7 +17,7 @@ const MessagesList = () => {
   const [message_ID, setMessage_ID] = useState("");
 
 //now fetching messages
-    /* const fetchMessages = async () => {
+  const fetchMessages = async () => {
       try {
         const res = await api.get(`${BASE_URL}/api/messages`);
         setMessages(res.data);
@@ -27,7 +27,7 @@ const MessagesList = () => {
         setLoading(false);
       }
     };
- */
+
 //handle confirm sets given ID to a state variable
     const handleConfirm=(messageId)=>{
       setMessage_ID(messageId);
@@ -57,7 +57,6 @@ const MessagesList = () => {
    const { query, setQuery, filteredData } = useSearch(messages, ["username", "email"]);
 
   if (loading) return <p>Loading messages...</p>;
-
 
  /*  Exporting messages to CSV */
       exportToCSV(messages, {

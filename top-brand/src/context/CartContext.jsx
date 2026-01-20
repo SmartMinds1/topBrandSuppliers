@@ -108,28 +108,80 @@ export const CartProvider = ({ children }) => {
       prev.filter((x) => !(x.id === id && x.sizeKg === sizeKg))
     );
   };
-  
+
+ /* ORDERS SECTION ------------------------------------------*/
+  //add orders to local order history
+  const addOrder = (order) => {
+    setOrders(prev => [...prev, order]);
+  };
+
+  //update order status
+  const updateOrderStatus = (orderId, status) => {
+    setOrders(prev =>
+      prev.map(order =>
+        order.id === orderId
+          ? { ...order, status }
+          : order
+      )
+    );
+  };
+
+  //UPDATE EXISTING ORDER
+  const updateOrder = async (updatedOrder) => {
+    try {
+      const response = await axios.put(`${BASE_URL}/orders/${updatedOrder.id}`, updatedOrder);
+      
+      if (response.status === 200 && response.data?.status === "pending") {
+        // update local state
+        setOrders(prev => {
+          // If no items, remove the order
+          if (!updatedOrder.items || updatedOrder.items.length === 0) {
+            return prev.filter(o => o.id !== updatedOrder.id);
+          }
+      
+          // Otherwise, update order only if it is pending
+          return prev.map(o =>
+            o.id === updatedOrder.id && o.status === "pending"
+              ? updatedOrder
+              : o
+          );
+        });
+      }
+    } catch (error) {
+      console.error("Failed to update order:", error);
+    }
+  };
+
+  //remove Order
+  const removeOrder = (orderId) => {
+    setOrders(prev => prev.filter(o => o.id !== orderId));
+  };
 
   // Checkout: save current cart to history and clear cart
-  const clearCart = () => {
-    if (cartItems.length > 0) {
-      const generateId = () =>
-        crypto?.randomUUID?.() ?? Date.now().toString();
+  const clearCart = async () => {
+    if (cartItems.length === 0) return;
   
-      const order = {
-        id: generateId(),
-        items: cartItems.map(item => ({ ...item })),
-        status: "pending", // default
-        createdAt: new Date().toISOString(),
-      };
+    const generateId = () => Math.floor(10000000 + Math.random() * 90000000).toString();
   
-      setCartHistory((prev) => [...prev, order]);
-      setOrders(prev => [...prev, order]); // push to confirmed orders
+    const orderData = {
+      id: generateId(),
+      items: cartItems.map(item => ({ ...item })),
+      status: "pending",
+      createdAt: new Date().toISOString(),
+    };
+  
+    try {
+      const response = await axios.post(`${BASE_URL}/orders`, orderData);
+  
+      if (response.status === 201) {
+        setCartHistory(prev => [...prev, orderData]);
+        addOrder(orderData);
+        setCartItems([]);
+      }
+    } catch (error) {
+      console.error("Failed to submit order:", error);
     }
-  
-    setCartItems([]);
   };
-  
 
   // Clear all cart history
   const clearCartHistory = (cartId) => {
@@ -143,6 +195,10 @@ export const CartProvider = ({ children }) => {
         cartItems,
         cartHistory,
         orders,
+        addOrder,
+        updateOrder,
+        updateOrderStatus,
+        removeOrder,
         addToCart,
         increaseQty,
         decreaseQty,

@@ -1,6 +1,29 @@
+import React, { useState } from "react";
+import { useCart } from "./CartContext";
+import AuthModal from "../components/modals/AuthModal";
+import ModifyOrder from "./ModifyOrder";
+
 //Handling client orders
-const OrdersTable = ({ orders, onModify }) => {
+const OrdersTable = () => {
+  //get orders from the cart
+  const { orders, updateOrder } = useCart();
+
+  //modify order states
+  const [editingOrder, setEditingOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  //Client Order Modification
+  const handleModifyOrder = (orderId) => {
+    const orderToEdit = orders.find(o => o.id === orderId);
+    if (!orderToEdit) return;
+  
+  // Deep copy to prevent accidental mutation
+    setEditingOrder(JSON.parse(JSON.stringify(orderToEdit)));
+    setShowModal(true);
+  };
+
     return (
+    <div>
       <div className="overflow-x-auto">
         <table className="w-full shadow-lg">
           <thead className="bg-bg text-left">
@@ -47,13 +70,13 @@ const OrdersTable = ({ orders, onModify }) => {
                 </td>
   
                 <td className="p-2 text-xs">
-                  {new Date(order.createdAt).toLocaleDateString()}
+                  {order.createdAt ? new Date(order.createdAt).toLocaleDateString(): "—"}
                 </td>
   
                 <td className="p-2">
                   {order.status === "pending" ? (
                     <button
-                      onClick={() => onModify(order.id)}
+                      onClick={() => handleModifyOrder(order.id)}//this function is defined in the cart
                       className="text-sm bg-primary text-white px-3 py-1 rounded"
                     >
                       Modify
@@ -69,6 +92,23 @@ const OrdersTable = ({ orders, onModify }) => {
           </tbody>
         </table>
       </div>
+
+  {/* Displaying the Cliet order editing modal */}
+      {showModal && editingOrder && (
+        <AuthModal isOpen={showModal} onClose={() => {
+              setShowModal(false);   
+              }}>
+              <ModifyOrder
+                  editingOrder={editingOrder}
+                  closeModify={() => setShowModal(false)}
+                  onSave={(modifiedOrder) => { //This onsave funtion runs on modifyOrder, it receives the modified order
+                    updateOrder(modifiedOrder);
+                    setShowModal(false);
+                  }}
+                /> 
+              </AuthModal>
+        )}
+ </div>
     );
   };
   export default OrdersTable;

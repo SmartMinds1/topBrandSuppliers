@@ -1,47 +1,23 @@
 // src/pages/CartPage.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
-import OrdersTable from "../context/OrdersTable";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrashAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import AuthModal from "../components/modals/AuthModal";
-import ModifyOrder from "../context/ModifyOrder";
+import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import OrdersTable from "../context/OrdersTable";
 
 export default function Cart() {
-  const { cartItems, cartHistory, orders, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory } =
+  const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory } =
     useCart();
 
   //States to manage what's displayed on the customer dashboard
   const [activeTab, setActiveTab] = useState("cart");
-
-  //modify order states
-  const [editingOrder, setEditingOrder] = useState(null); // the order being modified
-  const [showModal, setShowModal] = useState(false);
 
   /* calculating total cost */
   const total = cartItems.reduce(
     (t, item) => t + parseFloat(item.price) * (item.sizeKg) * item.qty,
     0
   );
-
-  //MODIFYING order state  
-    //const handleModifyOrder = (orderId) => {
-      // later:
-      // - load order items back to cart
-      // - or open edit modal
-     // console.log("Modify order:", orderId);
-   // };
-
-  //Client Order Modification
-    const handleModifyOrder = (orderId) => {
-      const orderToEdit = orders.find(o => o.id === orderId);
-      if (!orderToEdit) return;
-    
-      // Deep copy to prevent accidental mutation
-      setEditingOrder(JSON.parse(JSON.stringify(orderToEdit)));
-      setShowModal(true);
-    };
     
 
   return (
@@ -141,7 +117,7 @@ export default function Cart() {
                       
                                 {/* item name and price */}
                                   <div className="w-fit h-30 flex-col-start justify-start">
-                                        <h3 className="font-semibold pt-2">{item.title}</h3>
+                                         <h4 className="font-semibold pt-2">{item.sizeKg}kg {item.title} x {item.qty} </h4>
                                          <p className="text-text text-sm mb-4 mt-0.5">Total item cost: <span className="text-primary text-sm font-semibold">${(item.price * (item.sizeKg) * item.qty).toFixed(2)}</span></p>
 
                                       <div className="flex items-center gap-2">
@@ -248,36 +224,14 @@ export default function Cart() {
                   <div>
                     <h2 className="text-lg sm:mb-4 text-primary ">My Orders</h2>
                     <div className="p-4 rounded mb-2">
-                            <OrdersTable
-                              orders={orders}
-                              onModify={handleModifyOrder}
-                            />
-                        </div>
+                        <OrdersTable/>
+                    </div>
                   </div>
                 )}
           </div>
 
         </main>
       </div>
-
-  {/*  Displaying the Cliet order editing modal */}
-  {showModal && editingOrder && (
-        <AuthModal isOpen={showModal} onClose={() => {
-                  setShowModal(false);   
-              }}>
-              <ModifyOrder 
-                 closeModify={() => {setShowModal(false)}}
-                 order={editingOrder}
-                 onSave={(updatedOrder) => {
-                  setOrders(prev =>
-                    prev.map(o => o.id === updatedOrder.id ? updatedOrder : o)
-                  );
-                }}
-              >
-              </ModifyOrder>
-        </AuthModal>
-        )}
-
     </div>
   );
 }

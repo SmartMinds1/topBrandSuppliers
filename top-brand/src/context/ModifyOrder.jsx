@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
-const ModifyOrder = ({ order, closeModify, onSave }) => {
-    const [items, setItems] = useState(order.items);
+const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
+    const [items, setItems] = useState(editingOrder.items);
   
     // Increase quantity
     const increaseQty = (id, sizeKg) => {
@@ -20,34 +20,43 @@ const ModifyOrder = ({ order, closeModify, onSave }) => {
     const total = items.reduce((sum, x) => sum + x.price * x.sizeKg * x.qty, 0);
   
     const handleSave = () => {
-      onSave({ ...order, items }); // send back modified order
-      onClose();
+      onSave({ ...editingOrder, items });
     };
+    
   
     return (
-        <div className="bg-white p-6 w-75 sm:w-90 h-100 sm:h-120 rounded-md">
-          <h3 className="text-lg font-bold mb-4">Modify Order</h3>
-  
-          {items.map(item => (
-            <div key={`${item.id}_${item.sizeKg}`} className="flex justify-between items-center mb-2">
-              <div>
-                <p>{item.title} ({item.sizeKg}kg)</p>
-                <p>${(item.price * item.qty * item.sizeKg).toFixed(2)}</p>
+        <div className="bg-bg-light flex flex-col justify-between p-6 w-75 sm:w-90 h-100 sm:h-120 rounded-md">
+              <h3 className="text-lg font-bold mb-4">Modify Order</h3>
+          
+              <div className="overflow-y-scroll">
+                  {items.map(item => (
+                    <div key={`${item.id}_${item.sizeKg}`} className="bg-bg shadow p-2 mb-2">
+                      {/*  item title */}
+                      <p className="font-light">{item.title}<span className="font-semibold text-sm text-maintext"> ({item.sizeKg}kg)</span></p>
+                      {/* modify buttons */}
+                      <div className="flex-row-center justify-between h-10">
+                        <p className="text-primary">${(item.price * item.qty * item.sizeKg).toFixed(2)}</p>
+                        <div className="flex items-center gap-1">
+                            <button
+                              className="flex-col-center justify-center w-6 h-5 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"
+                              onClick={() => decreaseQty(item.id, item.sizeKg)}
+                            >-</button>
+                            <span  className="w-10 h-7 bg-gray-200 rounded-lg flex-col-center justify-center">{item.qty}</span>
+                            <button
+                              className="flex-col-center justify-center w-6 h-5 border border-gray-300 text-sm rounded-md hover:bg-bg-dark cursor-pointer"
+                              onClick={() => increaseQty(item.id, item.sizeKg)}
+                            >+</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  <h4 className="mt-2 text-text">Total: <span className="font-bold text-primary">${total.toFixed(2)}</span></h4>
               </div>
-              <div className="flex gap-1 items-center">
-                <button onClick={() => decreaseQty(item.id, item.sizeKg)}>-</button>
-                <span>{item.qty}</span>
-                <button onClick={() => increaseQty(item.id, item.sizeKg)}>+</button>
+
+              <div className="flex justify-end gap-2 mt-4">
+                <button onClick={closeModify} className=" text-sm px-2 py-1 bg-gray-200 rounded cursor-pointer hover:brightness-90 duration-300">Cancel</button>
+                <button onClick={handleSave} className="text-sm px-2 py-1 bg-primary text-white rounded cursor-pointer hover:brightness-90 duration-300">Save</button>
               </div>
-            </div>
-          ))}
-  
-          <h4>Total: ${total.toFixed(2)}</h4>
-  
-          <div className="flex justify-end gap-2 mt-4">
-            <button onClick={closeModify} className="px-3 py-1 bg-gray-200 rounded">Cancel</button>
-            <button onClick={handleSave} className="px-3 py-1 bg-primary text-white rounded">Save</button>
-          </div>
         </div>
     );
   };
