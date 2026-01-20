@@ -63,18 +63,13 @@ const [isLoading, setIsLoading] = useState(false);
                 password:"",
           });//resetting the input fields
 
+
          //Determine the role of the loged in user and direct them to the right dashboard     
          const role = localStorage.getItem("userRole");
-
          if (role === "admin" || role === "agent") {
            navigate("/admin");
          } else {
-           const isGitHubPages = window.location.hostname.includes("github.io");
-           if (isGitHubPages) {
-             navigate("/");
-           } else {
-             window.location.href = "/";
-           }
+              window.location.reload();
          }
          
               

@@ -26,12 +26,7 @@ const LogoutButton = () => {
       );
 
       localStorage.removeItem("accessToken");
-      const isGitHubPages = window.location.hostname.includes("github.io");
-           if (isGitHubPages) {
-             navigate("/");
-           } else {
-             window.location.href = "/";
-           }
+      window.location.reload();
            
     } catch (error) {
       console.error(
