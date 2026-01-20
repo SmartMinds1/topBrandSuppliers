@@ -16,6 +16,7 @@ import MobileMenu from "./MobileMenu";
 import { useCart } from "../context/CartContext";
 
 import { verifyAccessToken } from "../utils/authHelper";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 import { gsap } from "gsap";
@@ -43,25 +44,33 @@ const HomeHeader = () => {
   const count = cartItems.reduce((t, i) => t + i.qty, 0);
 
   //Current active user
-  const [activeUser, setActiveUser] = useState("");
+   const [activeUser, setActiveUser] = useState("");
 
   //Fetching active User from access token
-  useEffect(() => {
+    useEffect(() => {
     const loadUser = async () => {
-      const result = await verifyAccessToken();
+      await verifyAccessToken();
   
-      if (result && typeof result === "object") {
-        setActiveUser(result.username);
-      } else if (result === true) {
-        // token refreshed — get username from storage
-        setActiveUser(localStorage.getItem("username"));
-      } else {
+      //Read token AFTER refresh
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        setActiveUser(null);
+        return;
+      }
+      try {
+        //Decode JWT
+        const decoded = jwtDecode(token);
+  
+        //Extract username
+        setActiveUser(decoded.username ?? null);
+      } catch (err) {
+        console.error("Failed to decode token", err);
         setActiveUser(null);
       }
     };
-  
     loadUser();
   }, []);
+
 
   //hadling switch to signIn
   const handleSwitchToSignIn = (message) => {
@@ -80,21 +89,6 @@ const HomeHeader = () => {
   const handleSwitchToForgotPassword = () => {
     setShowSignIn(false);
     setShowForgotPass(true);
-  };
-
-  const navigate = useNavigate();
-
-  //navigate to admin dashboard on successfull login
-  const handleAdminAccess = async () => {
-    const isAuthenticated = await verifyAccessToken();
-
-    if (isAuthenticated) {
-      // Already logged in, go straight to dashboard
-      navigate("/admin");
-    } else {
-      // Not logged in, show Sign In modal
-      setShowSignIn(true);
-    }
   };
 
 
@@ -182,16 +176,18 @@ const HomeHeader = () => {
 
             {/* user account */}
                 <div className="absolute w-28 right-25 top-0.5 lg:top-2 bg-transparent">
-                    <div className="w-40 p-1 flex-row-end justify-end xl:justify-evenly">
+                    <div className="w-40 p-1 flex-row-end justify-end">
                       <p className="text-xs md:text-sm text-bg-dark mr-1 header-text">{activeUser ? `Hi, ${activeUser}` : "Guest"}</p>
-                      <FontAwesomeIcon icon={faUser} className="text-primary-light text-xl" />
-                      <button onClick={() => setOpenAcc(prev => !prev)}>
-                          {openAcc ? (
-                              <FontAwesomeIcon icon={faAngleUp} className="text-sm text-bg-dark font-extralight cursor-pointer hover:text-accent header-text" />
-                          ) : (
-                              <FontAwesomeIcon icon={faAngleDown} className="text-sm text-bg-dark cursor-pointer hover:text-accent header-text" />
-                          )}
-                      </button>
+                      <div className="w-12 h-fit">
+                        <FontAwesomeIcon icon={faUser} className="text-primary-light text-xl" />
+                        <button onClick={() => setOpenAcc(prev => !prev)}>
+                            {openAcc ? (
+                                <FontAwesomeIcon icon={faAngleUp} className="text-sm text-bg-dark font-extralight cursor-pointer hover:text-accent header-text" />
+                            ) : (
+                                <FontAwesomeIcon icon={faAngleDown} className="text-sm text-bg-dark cursor-pointer hover:text-accent header-text" />
+                            )}
+                        </button>
+                      </div>
                     </div>
                     
                       <ul className={`bg-bg mt-2 transition-all duration-300 overflow-hidden shadow flex-col-start justify-evenly ${openAcc ? 'h-29' : 'h-0'}`}>

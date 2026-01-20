@@ -16,6 +16,7 @@ import MobileMenu from "./MobileMenu";
 import { useCart } from "../context/CartContext";
 
 import { verifyAccessToken } from "../utils/authHelper";
+import { jwtDecode } from "jwt-decode";
 import AuthModal from "../components/modals/AuthModal";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
@@ -43,20 +44,28 @@ const Header = () => {
   //Fetching active User from access token
   useEffect(() => {
     const loadUser = async () => {
-      const result = await verifyAccessToken();
+      await verifyAccessToken();
   
-      if (result && typeof result === "object") {
-        setActiveUser(result.username);
-      } else if (result === true) {
-        // token refreshed — get username from storage
-        setActiveUser(localStorage.getItem("username"));
-      } else {
+      //Read token AFTER refresh
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        setActiveUser(null);
+        return;
+      }
+      try {
+        //Decode JWT
+        const decoded = jwtDecode(token);
+  
+        //Extract username
+        setActiveUser(decoded.username ?? null);
+      } catch (err) {
+        console.error("Failed to decode token", err);
         setActiveUser(null);
       }
     };
-  
     loadUser();
   }, []);
+  
   
 
   //hadling switch to signIn
@@ -107,16 +116,18 @@ const Header = () => {
 
             {/* user account */}
                 <div className="absolute w-28 right-25 top-0.5 lg:top-2 bg-transparent">
-                    <div className="w-40 p-1 flex-row-end justify-end xl:justify-evenly">
+                    <div className="w-40 p-1 flex-row-end justify-end">
                       <p className="text-xs md:text-sm text-primary mr-1">{activeUser ? `Hi, ${activeUser}` : "Guest"}</p>
-                      <FontAwesomeIcon icon={faUser} className="text-primary text-xl" />
-                      <button onClick={() => setOpenAcc(prev => !prev)}>
-                          {openAcc ? (
-                              <FontAwesomeIcon icon={faAngleUp} className="text-sm text-maintext font-extralight cursor-pointer hover:text-accent" />
-                          ) : (
-                              <FontAwesomeIcon icon={faAngleDown} className="text-sm text-maintext cursor-pointer hover:text-accent" />
-                          )}
-                      </button>
+                      <div className="w-12 h-fit">
+                        <FontAwesomeIcon icon={faUser} className="text-primary text-xl" />
+                        <button onClick={() => setOpenAcc(prev => !prev)}>
+                            {openAcc ? (
+                                <FontAwesomeIcon icon={faAngleUp} className="text-sm text-maintext font-extralight cursor-pointer hover:text-accent" />
+                            ) : (
+                                <FontAwesomeIcon icon={faAngleDown} className="text-sm text-maintext cursor-pointer hover:text-accent" />
+                            )}
+                        </button>
+                      </div>
                     </div>
                     
                       <ul className={`bg-bg mt-2 transition-all duration-300 overflow-hidden shadow flex-col-start justify-evenly ${openAcc ? 'h-29' : 'h-0'}`}>

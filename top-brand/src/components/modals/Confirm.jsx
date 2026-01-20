@@ -3,7 +3,7 @@ import React from "react";
 const Confirm = ({children, onCloseConfirm, handleLogout})=>{
 
     return(
-        <div className="h-[28vh] rounded-md p-4 min-w-67.5 md:min-w-85.5 max-w-[25%] bg-bg m-auto flex-col-center justify-evenly z-50 text-center">
+        <div className="h-60 rounded-md p-4 min-w-67.5 md:min-w-85.5 max-w-[25%] bg-bg m-auto flex-col-center justify-evenly z-50 text-center">
             <div>
                 {children}
             </div>

@@ -198,7 +198,7 @@ export default function Cart() {
                       <p className="text-gray-500">No past carts found</p>
                     ) : (
                       cartHistory.map((cart, index) => (
-                      <div key={cart.id} className="border border-gray-100 shadow p-4 rounded mb-2">
+                      <div key={cart.id} className="border border-gray-100 shadow rounded mb-2">
                           {/* Header */}
                           <div className="flex justify-between items-center mb-3">
                               <h3 className="font-bold">Cart {index + 1}</h3>
@@ -227,7 +227,7 @@ export default function Cart() {
 
                           {/* total order cost */}
                           <h4 className="font-semibold mt-2">
-                              Order Total: {cart.items.reduce((sum, item) => sum + item.price * item.sizeKg * item.qty,0)}
+                              Order Total:$ {cart.items.reduce((sum, item) => sum + item.price * item.sizeKg * item.qty,0)}
                           </h4>
 
                           {/* clear cart history button */}
