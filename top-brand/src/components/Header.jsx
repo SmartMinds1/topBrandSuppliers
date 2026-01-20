@@ -16,7 +16,6 @@ import MobileMenu from "./MobileMenu";
 import { useCart } from "../context/CartContext";
 
 import { verifyAccessToken } from "../utils/authHelper";
-import { jwtDecode } from "jwt-decode";
 import AuthModal from "../components/modals/AuthModal";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
@@ -44,27 +43,14 @@ const Header = () => {
   //Fetching active User from access token
   useEffect(() => {
     const loadUser = async () => {
-      await verifyAccessToken();
-  
-      //Read token AFTER refresh
-      const token = localStorage.getItem("accessToken");
-      if (!token) {
-        setActiveUser(null);
-        return;
-      }
-      try {
-        //Decode JWT
-        const decoded = jwtDecode(token);
-  
-        //Extract username
-        setActiveUser(decoded.username ?? null);
-      } catch (err) {
-        console.error("Failed to decode token", err);
-        setActiveUser(null);
-      }
+      const user = await verifyAccessToken();
+      setActiveUser(user?.username ?? null);
     };
+  
     loadUser();
   }, []);
+  
+ 
   
   
 
