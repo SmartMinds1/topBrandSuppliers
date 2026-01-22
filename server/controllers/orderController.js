@@ -24,8 +24,13 @@ exports.createOrder = async (req, res) => {
 
     // Create order
     const orderResult = await query(
-      `INSERT INTO topbrand_orders (user_id, total_amount)
-       VALUES ($1, $2)
+      `INSERT INTO topbrand_orders (user_id, total_amount, order_code)
+       VALUES ($1, $2, 
+        'TBO' || SUBSTRING(
+          UPPER(REPLACE(gen_random_uuid()::text, '-', '')),
+          1,
+          5
+        ) )
        RETURNING id`,
       [userId, totalAmount]
     );
@@ -70,6 +75,7 @@ exports.getAllOrders = async (req, res) => {
       `
       SELECT 
         o.id,
+        o.order_code,
         o.user_id,
         o.status,
         o.total_amount,
@@ -106,7 +112,17 @@ exports.updateOrderStatusById = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
 
-  const allowedStatuses = ["pending", "processing", "shipping", "cancelled"];
+  if (!status) {
+    return res.status(400).json({ message: "Status is required" });
+  }
+
+  const allowedStatuses = [
+    "pending",
+    "processing",
+    "shipping",
+    "completed",
+    "cancelled",
+  ];
 
   if (!allowedStatuses.includes(status)) {
     return res.status(400).json({ message: "Invalid order status" });
@@ -177,7 +193,7 @@ exports.getMyOrders = async (req, res) => {
       `
       SELECT 
         o.id,
-        o.user_id,
+        o.order_code,
         o.status,
         o.total_amount,
         o.created_at,
@@ -220,8 +236,9 @@ exports.updateMyOrder = async (req, res) => {
     return res.status(400).json({ message: "Order must have items" });
   }
 
+  // Calculate total
   const totalAmount = items.reduce(
-    (sum, item) => sum + item.productPrice * item.qty,
+    (sum, item) => sum + item.productPrice * item.sizeKg * item.qty,
     0
   );
 

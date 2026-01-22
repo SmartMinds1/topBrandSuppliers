@@ -5,9 +5,11 @@ import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import OrdersTable from "../context/OrdersTable";
+import AuthModal from "../components/modals/AuthModal";
+import LoadingModal from "../components/modals/LoadingModal";
 
 export default function Cart() {
-  const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory } =
+  const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory, isLoading } =
     useCart();
 
   //States to manage what's displayed on the customer dashboard
@@ -21,6 +23,7 @@ export default function Cart() {
     
 
   return (
+    <>
     <div className="flex flex-col min-h-screen">
       <Header />
 
@@ -172,8 +175,11 @@ export default function Cart() {
                     <h2 className="text-lg  sm:mb-4 text-primary">Cart History</h2>
                     {cartHistory.length === 0 ? (
                       <p className="text-gray-500">No past carts found</p>
-                    ) : (
-                      cartHistory.map((cart, index) => (
+                    ) 
+                    
+                    : 
+
+                    ( [...cartHistory].reverse().map((cart, index) => (
                       <div key={cart.id} className="border border-gray-100 shadow rounded mb-2">
                           {/* Header */}
                           <div className="flex justify-between items-center mb-3">
@@ -233,5 +239,15 @@ export default function Cart() {
         </main>
       </div>
     </div>
+
+
+      {/*  Displaying the loading modal */}
+      <AuthModal isOpen={isLoading} onClose={() => {}}>
+          <LoadingModal
+          text="Submiting your Order request..."
+          subText="Please wait..."               
+          />
+      </AuthModal>
+    </>
   );
 }

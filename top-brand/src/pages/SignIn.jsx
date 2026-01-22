@@ -36,8 +36,8 @@ const [isLoading, setIsLoading] = useState(false);
 //sending data to the db
   const handleSubmit = async(e)=>{
    //preventing default form submition
-        e.preventDefault();
-        console.log("submitting Sign In Details", formData);
+      e.preventDefault();
+      console.log("submitting Sign In Details", formData);
 
     //show loading state
       setIsLoading(true);

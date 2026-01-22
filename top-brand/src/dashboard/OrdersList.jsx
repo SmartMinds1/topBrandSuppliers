@@ -9,6 +9,7 @@ import { BASE_URL } from "../api/api";
 import LoadingModal from "../components/modals/LoadingModal";
 import AuthModal from "../components/modals/AuthModal";
 import DeleteConfirm from "../components/modals/DeleteConfirm";
+import StatusOption from "./StatusOption";
 
 const UsersList = ({openDashboard}) => {
   //loading state
@@ -23,6 +24,9 @@ const UsersList = ({openDashboard}) => {
     
   //setting up feedback message using a modal
     const [showModal, setShowModal] = useState(false);
+
+  //status update modal  
+    const [statusUpdate, setStatusUpdate] = useState(false);
 
   //Action button ToggleEvent
    const toggleActions = (id) => {
@@ -132,7 +136,7 @@ const UsersList = ({openDashboard}) => {
       <table  className="w-full mt-4 text-left leading-12 tracking-wide dataTable">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Order Id</th>
             <th>User id</th>
             <th>total_amount</th>
             <th>status</th>
@@ -145,7 +149,7 @@ const UsersList = ({openDashboard}) => {
             <React.Fragment key={order.id}>
                 {/* ORDER ROW */}
                 <tr key={order.id}>
-                  <td>{order.id}</td>
+                  <td>{order.order_code}</td>
                   <td>{order.user_id}</td>
                   <td>{order.total_amount}</td>
                   <td>{order.status}</td>
@@ -155,6 +159,19 @@ const UsersList = ({openDashboard}) => {
                           ⋮
                         </p>
                         <ul className={`absolute right-0 mt-2 z-10 w-34 bg-bg-dark shadow-lg rounded-md border border-gray-200 2-50 p-1 ${openActionId === order.id ? "block" : "hidden"}`}>
+
+                          <li onClick={() => {
+                              setStatusUpdate(true);
+                              setOrder_ID(order.id);
+                              setOpenActionId(null);
+                            }}
+                            className="px-4 py-2 hover:bg-red-50 cursor-pointer text-red-500 text-sm"
+                          >
+                            update status
+                          </li>
+
+                          <li onClick={() => { toggleExpand(order.id); setOpenActionId(null);}} > view items</li>
+
                           <li onClick={() => {
                               setShowModal(true);
                               setOrder_ID(order.id);
@@ -164,7 +181,6 @@ const UsersList = ({openDashboard}) => {
                           >
                             Delete
                           </li>
-                          <li onClick={() => toggleExpand(order.id)}> view items</li>
                         </ul>
                       </td>
                 </tr>
@@ -202,11 +218,11 @@ const UsersList = ({openDashboard}) => {
         </tbody>
       </table>
 
-      {/* response message if the table is empty or failed to retrieve */}
-      {filteredData.length===0 ? <p className="emptyTable">No Orders found!</p> : ""}
-    </div>
+        {/* response message if the table is empty or failed to retrieve */}
+        {filteredData.length===0 ? <p className="emptyTable">No Orders found!</p> : ""}
+      </div>
 
-{/* Displaying the response messsage using a popUP. This is when deleting or updating within  the list */}
+      {/* Response message in a modal*/}
       <DeleteModal isOpen={showModal}  fetchData={()=>fetchOrders()} onCloseConfirm={() => onCloseConfirm()} onClose={() => {
               setShowModal(false); 
           }}>
@@ -227,6 +243,23 @@ const UsersList = ({openDashboard}) => {
                subText="Please wait while data is securely loaded"               
             />
         </AuthModal>
+
+
+
+    {/* Update Order status modal */}
+      {statusUpdate && (
+        <AuthModal isOpen={statusUpdate} onClose={() => setStatusUpdate(false)}>
+          {/* Any popUP right here */}
+          <StatusOption
+            closeStatusUpdate={ () => setStatusUpdate(false)}
+            orderId={order_ID}
+            fetchOrders={()=>fetchOrders()}
+          />
+        </AuthModal>
+      )}
+
+
+
     </div>
   );
 };

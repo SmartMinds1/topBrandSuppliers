@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import ModifyOrder from "./ModifyOrder";
 import api from "../api/axiosInstance";
 import DeleteModal from "../components/modals/DeleteModal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import exportToCSV from "../utils/exportToCSV";
-import useSearch from "../utils/useSearch";
 import { BASE_URL } from "../api/api";
 import LoadingModal from "../components/modals/LoadingModal";
 import AuthModal from "../components/modals/AuthModal";
 import DeleteConfirm from "../components/modals/DeleteConfirm";
+import Alert from "../components/modals/Alert";
 
 //Handling solo client orders
 const OrdersTable = () => {
-  //loading state
+  //loading states
   const [isLoading, setIsLoading] = useState(false);
+  const [isModifying, setIsModifying] = useState(false);
 
   // action button 
     const [openActionId, setOpenActionId] = useState(null);
@@ -24,8 +22,10 @@ const OrdersTable = () => {
  
      
    //setting up feedback message using a modal
-     const [showModal, setShowModal] = useState(false);
- 
+     const [showModal, setShowModal] = useState( false );
+     const [showAlert, setShowAlert] = useState( false );
+     const[responseMessage, setResponseMessage] = useState("");
+     
    //Action button ToggleEvent
       const toggleActions = (id) => {
             setOpenActionId(prev => (prev === id ? null : id));
@@ -69,54 +69,46 @@ const OrdersTable = () => {
          };
        }, []);
  
-  // Reusable search hook.
-     const { query, setQuery, filteredData } = useSearch(orders, ["status"]);
- 
- 
-  /* Handle export to CSV file */
-       const handleExportOrders = () => {
-         exportToCSV(filteredData, {
-           filename: "orders.csv",
-           columns: [
-             { key: "id", label: "order id" },
-             { key: "user_id", label: "User id" },
-             { key: "status", label: "status" },
-             { key: "total_amount", label: "total amount" },
-             { key: "created_at", label: "Date/time" },
-           ],
-         });
-       };
- 
 
   //modify order states
-  const [editingOrder, setEditingOrder] = useState([]);
-  const [ editingId, setEditingId] = useState(null);
-  
-  //Client Order Modification
-  const handleModifyOrder = (orderId, items) => {
-     setEditingOrder(items);
-     setEditingId(orderId);
+      const [editingOrder, setEditingOrder] = useState([]);
+      const [ editingId, setEditingId] = useState(null);
+      
+      //Client Order Modification
+      const handleModifyOrder = (orderId, items) => {
+        setEditingOrder(items);
+        setEditingId(orderId);
 
-    if (!editingOrder) return;
-    setShowModal(true);
-  };
+        if (!editingOrder) return;
+        setShowModal(true);
+      };
 
-  //update order to backened
-  const updateOrder = async (modifiedItems) => {
-    setIsLoading(true);
-  
-    try {
-      await api.put(`/orders/my-orders/${editingId}`, {
-        items: modifiedItems
-      });
-  
-      fetchOrders(); // refresh list
-    } catch (err) {
-      console.error("Error updating your order:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      //update order to backened
+      const updateOrder = async (modifiedItems) => {
+        setIsModifying(true);
+      
+        try {
+         const response = await api.put(`/orders/my-orders/${editingId}`, {
+            items: modifiedItems
+          });
+          setResponseMessage(response.data.message);
+          fetchOrders(); // refresh list
+        } catch (err) {
+          console.error("Error updating order:", err);
+          setResponseMessage(
+            err.response?.data?.message || <p className='loginFailed'><span>Error updating your order</span> Please try again later</p> 
+        );
+        } finally {
+          setIsModifying(false);
+        }
+      };
+
+      // Show modal only when responseMessage changes and is not empty
+      useEffect(() => {
+        if (responseMessage) {
+            setShowAlert(true);
+        }
+      }, [responseMessage]);
   
 
     return (
@@ -125,7 +117,6 @@ const OrdersTable = () => {
         <table className="w-full shadow-lg">
           <thead className="bg-bg text-left">
             <tr>  
-              <th className="p-2 text-left">User id</th>
               <th className="p-2">Order Id</th>
               <th className="p-2">Total_amount</th>
               <th className="p-2">Status</th>
@@ -144,8 +135,7 @@ const OrdersTable = () => {
                 ) : (
               orders.map((order) => (
               <tr key={order.id} className="">
-                <td className="p-2 text-xs">{order.user_id}</td>
-                <td className="p-2 text-xs">{order.id}</td>
+                <td className="p-2 text-xs">{order.order_code}</td>
   
                 <td className="p-2 text-sm">
                   {order.total_amount}
@@ -207,6 +197,43 @@ const OrdersTable = () => {
                 /> 
               </AuthModal>
         )}
+
+      {/* Alert Feedback */}
+            {/*  Displaying the response messsage using a popUP */}
+            <AuthModal isOpen={showAlert} onClose={() => {
+                    setShowAlert(false); 
+                    setResponseMessage("");//reset so that to trigger useEffect on the second time
+                }}>
+
+                <Alert onClose={() => {
+                    setShowAlert(false); 
+                    setResponseMessage("");
+                }}
+                >
+                  <p className="responseMessage">{responseMessage}</p>
+                </Alert>
+            </AuthModal>
+
+
+      {/*   Loading states */}
+          {/*RETRIEVING ORDERS*/}
+          <AuthModal isOpen={isLoading} onClose={() => {}}>
+                <LoadingModal
+                 text="Retrieving Your Orders..."
+                 subText="Please wait"               
+                />
+            </AuthModal>
+
+          {/*MODIFYING ORDERS*/}
+          <AuthModal isOpen={isModifying} onClose={() => {}}>
+                <LoadingModal
+                text="Updating Your Order..."
+                subText="Please wait"               
+                />
+            </AuthModal>
+
+
+
  </div>
     );
   };

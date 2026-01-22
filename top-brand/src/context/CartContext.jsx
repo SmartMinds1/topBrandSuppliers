@@ -6,6 +6,9 @@ import { BASE_URL } from "../api/api";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  //loading states
+  const [isLoading, setIsLoading] = useState(false);
+
   //global order reset if the order is unreparable
   //const validOrders = saved.filter(o => Array.isArray(o.items));
 
@@ -124,7 +127,10 @@ export const CartProvider = ({ children }) => {
         productPrice: item.price
       }))
     };
-  
+
+    //show loading modal
+    setIsLoading(true);
+      
     try {
       // Send to backend
       const response = await api.post(`${BASE_URL}/api/orders`, orderPayload);
@@ -132,12 +138,12 @@ export const CartProvider = ({ children }) => {
       if (response.status === 201) {
         updateHistory();//update local history
         setCartItems([]);//clear the shopping cart
-        alert("Order placed successfully");
       }
     } catch (error) {
-      alert("FAILED TO SUBMIT ORDER");
       console.error("Failed to submit order:", error);
-    }
+    }finally {
+          setIsLoading(false);
+        }
   };
   
   
@@ -152,6 +158,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         cartHistory,
+        isLoading,
         addToCart,
         increaseQty,
         decreaseQty,

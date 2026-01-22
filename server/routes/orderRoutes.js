@@ -22,11 +22,11 @@ router.get(
 
 // ADMIN : UPDATE ORDER BY ID
 router.put(
-  "/:id",
+  "/status/:id",
   checkAccessBlacklist,
   requireRole(ROLES.ADMIN, ROLES.STAFF),
   requirePermission("orders.update"),
-  orderController.deleteOrderById
+  orderController.updateOrderStatusById
 );
 
 // ADMIN : DELETE ORDER BY ID
