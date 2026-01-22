@@ -38,11 +38,6 @@ exports.messageValidation = body("message")
   .escape()
   .replace(/[ \t]{3,}/g, "  ");
 
-exports.commentValidation = body("comment")
-  .notEmpty()
-  .withMessage("Comment must not be null")
-  .trim();
-
 exports.accessTokenValidation = body("accessToken")
   .notEmpty()
   .withMessage("Access token is required.")
@@ -66,23 +61,43 @@ exports.payment_codeValidation = body("payment_code")
   .isLength({ max: 10 })
   .withMessage("Enter a valid Code length");
 
-exports.checkinValidation = body("checkin")
+/* ----------------------PRODUCT ORDER SECTION----------------------------- */
+exports.product_nameValidation = body("productName")
   .notEmpty()
-  .isISO8601()
-  .withMessage("Checkin must be a valid date");
+  .withMessage("Kindly enter your product name")
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ")
+  .toLowerCase();
 
-exports.checkoutValidation = body("checkout")
+exports.product_packageValidation = body("packageType")
   .notEmpty()
-  .isISO8601()
-  .withMessage("Checkout must be a valid date");
+  .withMessage("Kindly Select your product package")
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ")
+  .toLowerCase();
 
-exports.questValidation = body("guests")
+exports.product_sizeValidation = body("sizeKg")
   .notEmpty()
-  .isInt({ min: 1 })
-  .withMessage("Guests must be a number greater than 0");
+  .withMessage("Product size must not be empty")
+  .isNumeric()
+  .withMessage("Product size must be numeric")
+  .trim()
+  .escape();
 
-exports.roomValidation = body("room")
+exports.product_qtyValidation = body("qty")
   .notEmpty()
-  .withMessage("Room must not be empty")
+  .withMessage("Product quantity must not be empty")
+  .isNumeric()
+  .withMessage("Product quantity must be a number")
+  .trim()
+  .escape();
+
+exports.product_priceValidation = body("productPrice")
+  .notEmpty()
+  .withMessage("Product quantity must not be empty")
+  .isNumeric()
+  .withMessage("Product quantity must be a number")
   .trim()
   .escape();

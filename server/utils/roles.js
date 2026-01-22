@@ -3,12 +3,11 @@
 const ROLES = {
   ADMIN: "admin",
   STAFF: "staff",
-  CUSTOMER: "customer",
+  USER: "user",
 };
 
 /* Permissions are arbitrary strings used in checks like: requirePermission('users.delete')
-   Map each role to the permissions it grants.
-*/
+   Map each role to the permissions it grants. */
 const ROLE_PERMISSIONS = {
   [ROLES.ADMIN]: [
     "users.read",
@@ -18,6 +17,9 @@ const ROLE_PERMISSIONS = {
     "messages.delete",
     "messages.read",
     "messages.update",
+    "orders.delete",
+    "orders.read",
+    "orders.update",
     "sessions.invalidate",
     "admin.panel",
   ],
@@ -28,7 +30,13 @@ const ROLE_PERMISSIONS = {
     "messages.read",
     "messages.update",
   ],
-  [ROLES.CUSTOMER]: ["orders.create", "orders.read_own", "profile.update"],
+  [ROLES.USER]: [
+    "orders.create",
+    "messages.create",
+    "own_orders.read",
+    "own_orders.update",
+    "own_orders.cancel",
+  ],
 };
 
 module.exports = { ROLES, ROLE_PERMISSIONS };

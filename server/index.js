@@ -39,6 +39,7 @@ if (process.env.NODE_ENV === "production") {
 --------------------------------*/
 //importing & Registering my routes
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/messages", require("./routes/messageRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 //app.use("/api/mpesa", require("./routes/mpesaRoutes"));

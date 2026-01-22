@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
-    const [items, setItems] = useState(editingOrder.items);
+    const [items, setItems] = useState(editingOrder);
   
     // Increase quantity
     const increaseQty = (id, sizeKg) => {
@@ -17,10 +17,10 @@ const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
       ).filter(x => x.qty > 0));
     };
   
-    const total = items.reduce((sum, x) => sum + x.price * x.sizeKg * x.qty, 0);
+    const total = items.reduce((sum, x) => sum + x.productPrice * x.sizeKg * x.qty, 0);
   
     const handleSave = () => {
-      onSave({ ...editingOrder, items });
+      onSave( items );
     };
     
   
@@ -32,10 +32,10 @@ const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
                   {items.map(item => (
                     <div key={`${item.id}_${item.sizeKg}`} className="bg-bg shadow p-2 mb-2">
                       {/*  item title */}
-                      <p className="font-light">{item.title}<span className="font-semibold text-sm text-maintext"> ({item.sizeKg}kg)</span></p>
+                      <p className="font-light">{item.productName}<span className="font-semibold text-sm text-maintext"> ({item.sizeKg}kg)</span></p>
                       {/* modify buttons */}
                       <div className="flex-row-center justify-between h-10">
-                        <p className="text-primary">${(item.price * item.qty * item.sizeKg).toFixed(2)}</p>
+                        <p className="text-primary">${(item.productPrice * item.qty * item.sizeKg).toFixed(2)}</p>
                         <div className="flex items-center gap-1">
                             <button
                               className="flex-col-center justify-center w-6 h-5 border border-gray-300 rounded-md hover:bg-bg-dark cursor-pointer"

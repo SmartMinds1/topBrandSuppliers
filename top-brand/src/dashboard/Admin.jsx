@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UsersList from './UsersList';
+import OrdersList from './OrdersList';
 import MessagesList from './MessagesList';
 import LogoutButton from './logoutButton';
 import CircularProgress from './adminCompnts/CircularProgress';
@@ -219,6 +220,7 @@ const Admin = () => {
                {/* Rendering db content */}
                     <div>
                         {activeTab === "users" && <UsersList openDashboard={openDashboard} searchTerm={searchTerm} />}
+                        {activeTab === "orders" && <OrdersList openDashboard={openDashboard} searchTerm={searchTerm} />}
                         {/*  {activeTab === "messages" && <MessagesList searchTerm={searchTerm} />} */}
                     </div> 
                 </div>

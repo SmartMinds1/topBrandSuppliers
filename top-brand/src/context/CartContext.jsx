@@ -1,5 +1,7 @@
 // src/context/CartContext.jsx
 import React, { createContext, useContext, useEffect, useState } from "react";
+import api from "../api/axiosInstance";
+import { BASE_URL } from "../api/api";
 
 const CartContext = createContext();
 
@@ -20,12 +22,6 @@ export const CartProvider = ({ children }) => {
     })) : [],
     status: order.status ?? "pending",
     createdAt: order.createdAt ?? new Date().toISOString(),
-  });
-
-  //loading saved orders history
-  const [orders, setOrders] = useState(() => {
-    const saved = JSON.parse(localStorage.getItem("orders")) || [];
-    return saved.map(normalizeOrder);
   });
 
   // Load saved cart from localStorage
@@ -50,11 +46,8 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cartHistory", JSON.stringify(cartHistory));
   }, [cartHistory]);
 
-  // Persist orders whenever they change
-  useEffect(() => {
-    localStorage.setItem("orders", JSON.stringify(orders));
-  }, [orders]);
 
+  /* CART ITEMS SECTION ------------------------------------------*/
   // Add new item or increase qty
   const addToCart = (item) => {
     setCartItems((prev) => {
@@ -74,8 +67,6 @@ export const CartProvider = ({ children }) => {
     });
   };
   
-
-
   // Increment quantity
   const increaseQty = (id, sizeKg) => {
     setCartItems((prev) =>
@@ -87,7 +78,6 @@ export const CartProvider = ({ children }) => {
     );
   };
   
-
   // Decrement quantity
   const decreaseQty = (id, sizeKg) => {
     setCartItems((prev) =>
@@ -101,7 +91,6 @@ export const CartProvider = ({ children }) => {
     );
   };
   
-
   // Remove item completely
   const removeFromCart = (id, sizeKg) => {
     setCartItems((prev) =>
@@ -110,79 +99,48 @@ export const CartProvider = ({ children }) => {
   };
 
  /* ORDERS SECTION ------------------------------------------*/
-  //add orders to local order history
-  const addOrder = (order) => {
-    setOrders(prev => [...prev, order]);
+  // save local history on successfull checkout
+  const updateHistory = () => {
+    const orderData = {
+      items: cartItems.map(item => ({ ...item })),
+      createdAt : new Date().toISOString()
+    };
+      setCartHistory(prev => [...prev, orderData]);
   };
 
-  //update order status
-  const updateOrderStatus = (orderId, status) => {
-    setOrders(prev =>
-      prev.map(order =>
-        order.id === orderId
-          ? { ...order, status }
-          : order
-      )
-    );
-  };
 
-  //UPDATE EXISTING ORDER
-  const updateOrder = async (updatedOrder) => {
-    try {
-      const response = await axios.put(`${BASE_URL}/orders/${updatedOrder.id}`, updatedOrder);
-      
-      if (response.status === 200 && response.data?.status === "pending") {
-        // update local state
-        setOrders(prev => {
-          // If no items, remove the order
-          if (!updatedOrder.items || updatedOrder.items.length === 0) {
-            return prev.filter(o => o.id !== updatedOrder.id);
-          }
-      
-          // Otherwise, update order only if it is pending
-          return prev.map(o =>
-            o.id === updatedOrder.id && o.status === "pending"
-              ? updatedOrder
-              : o
-          );
-        });
-      }
-    } catch (error) {
-      console.error("Failed to update order:", error);
-    }
-  };
 
-  //remove Order
-  const removeOrder = (orderId) => {
-    setOrders(prev => prev.filter(o => o.id !== orderId));
-  };
-
-  // Checkout: save current cart to history and clear cart
+//--------------------CHECKOUT, send data to db and update locally---------------------------------------------
   const clearCart = async () => {
     if (cartItems.length === 0) return;
   
-    const generateId = () => Math.floor(10000000 + Math.random() * 90000000).toString();
-  
-    const orderData = {
-      id: generateId(),
-      items: cartItems.map(item => ({ ...item })),
-      status: "pending",
-      createdAt: new Date().toISOString(),
+    // Build request payload
+    const orderPayload = {
+      items: cartItems.map(item => ({
+        productName: item.title,
+        packageType: item.packageType,
+        sizeKg: item.sizeKg,
+        qty: item.qty,
+        productPrice: item.price
+      }))
     };
   
     try {
-      const response = await axios.post(`${BASE_URL}/orders`, orderData);
+      // Send to backend
+      const response = await api.post(`${BASE_URL}/api/orders`, orderPayload);
   
       if (response.status === 201) {
-        setCartHistory(prev => [...prev, orderData]);
-        addOrder(orderData);
-        setCartItems([]);
+        updateHistory();//update local history
+        setCartItems([]);//clear the shopping cart
+        alert("Order placed successfully");
       }
     } catch (error) {
+      alert("FAILED TO SUBMIT ORDER");
       console.error("Failed to submit order:", error);
     }
   };
-
+  
+  
   // Clear all cart history
   const clearCartHistory = (cartId) => {
     setCartHistory(prev => prev.filter(cart => cart.id !== cartId));
@@ -194,11 +152,6 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         cartHistory,
-        orders,
-        addOrder,
-        updateOrder,
-        updateOrderStatus,
-        removeOrder,
         addToCart,
         increaseQty,
         decreaseQty,

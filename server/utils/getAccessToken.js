@@ -16,11 +16,11 @@ axios
     },
   })
   .then((response) => {
-    console.log("✅ Access Token:", response.data.access_token);
+    console.log("Access Token:", response.data.access_token);
   })
   .catch((error) => {
     console.error(
-      "❌ Error getting access token:",
+      "Error getting access token:",
       error.response ? error.response.data : error.message
     );
   });
