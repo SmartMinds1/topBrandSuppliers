@@ -7,6 +7,7 @@ const {
   usernameValidation,
   emailValidation,
   messageValidation,
+  phoneValidation,
 } = require("../middlewares/validators");
 
 //Authorization
@@ -18,7 +19,7 @@ const checkAccessBlacklist = require("../middlewares/checkAccessBlacklist");
 router.post(
   "/",
   contactLimiter,
-  [usernameValidation, emailValidation, messageValidation],
+  [usernameValidation, emailValidation, phoneValidation, messageValidation],
   msgController.sendMessage
 );
 

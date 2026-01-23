@@ -11,11 +11,11 @@ exports.sendMessage = async (req, res) => {
   }
 
   //Get data from body
-  const { username, email, message } = req.body;
+  const { username, email, phone, message } = req.body;
 
   try {
     // Insert into the database
-    const data = await MsgService.sendMessage(username, email, message);
+    const data = await MsgService.sendMessage(username, email, phone, message);
 
     logger.info(`Message sent by: ${username}`);
     res.status(201).json({

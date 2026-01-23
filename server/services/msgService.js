@@ -3,8 +3,13 @@ const msgModel = require("../models/msgModel");
 
 class MsgService {
   // Add a new message
-  static async sendMessage(username, email, message) {
-    const result = await msgModel.createMessage(username, email, message);
+  static async sendMessage(username, email, phone, message) {
+    const result = await msgModel.createMessage(
+      username,
+      email,
+      phone,
+      message
+    );
     return result.rows[0]; // return data only
   }
 

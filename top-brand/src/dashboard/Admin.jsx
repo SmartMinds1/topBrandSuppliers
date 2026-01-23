@@ -63,21 +63,22 @@ const Admin = () => {
     };
 
     //Fetching message's count
-  /*   const fetchMessages = async () => {
+    const fetchMessages = async () => {
         try {
-            const res = await api.get(`${BASE_URL}/api/messages`);
+            const res = await api.get(`/messages`);
             setMessagesCount(res.data.length);
+            
         } catch (err) {
             console.error("Error fetching messages count:", err);
         }
-    }; */
+    };
 
 
 
 
     useEffect(() => {
         fetchUsers();
-       /*  fetchMessages(); */
+        fetchMessages();
     }, []); 
 
     const handleTabClick = (tab, fetchFunction, state) => {
@@ -221,7 +222,7 @@ const Admin = () => {
                     <div>
                         {activeTab === "users" && <UsersList openDashboard={openDashboard} searchTerm={searchTerm} />}
                         {activeTab === "orders" && <OrdersList openDashboard={openDashboard} searchTerm={searchTerm} />}
-                        {/*  {activeTab === "messages" && <MessagesList searchTerm={searchTerm} />} */}
+                        {activeTab === "messages" && <MessagesList  openDashboard={openDashboard} searchTerm={searchTerm} />} 
                     </div> 
                 </div>
 

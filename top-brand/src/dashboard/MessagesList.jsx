@@ -7,10 +7,19 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import exportToCSV from "../utils/exportToCSV";
 import { BASE_URL } from "../api/api";
 import DeleteConfirm from "../components/modals/DeleteConfirm";
+import AuthModal from "../components/modals/AuthModal";
+import Alert from "../components/modals/Alert";
+import LoadingModal from "../components/modals/LoadingModal";
 
 const MessagesList = () => {
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+//loading state
+  const [isLoading, setIsLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
+//Setting up our feedback modal
+  const[responseMessage, setResponseMessage] = useState("");
 
 //setting up feedback message using a popUp
   const [showModal, setShowModal] = useState(false);
@@ -18,13 +27,18 @@ const MessagesList = () => {
 
 //now fetching messages
   const fetchMessages = async () => {
+    //initialize loading
+     setIsLoading(true)
+       
       try {
-        const res = await api.get(`${BASE_URL}/api/messages`);
+        const res = await api.get(`/messages`);
         setMessages(res.data);
-        setLoading(false);
+
       } catch (err) {
         console.error("Error fetching messages:", err);
-        setLoading(false);
+
+      }finally {
+        setIsLoading(false); // unlock UI
       }
     };
 
@@ -51,24 +65,32 @@ const MessagesList = () => {
     return () => {
       window.removeEventListener("listChange", handleListChange);
     };
-  }, [messages]);
+  }, []);
 
   // Reusable search hook. Search messages
    const { query, setQuery, filteredData } = useSearch(messages, ["username", "email"]);
 
-  if (loading) return <p>Loading messages...</p>;
+   // Show modal only when responseMessage changes and is not empty
+   useEffect(() => {
+    if (responseMessage) {
+        setShowModal(true);
+    }
+  }, [responseMessage]);
+
 
  /*  Exporting messages to CSV */
+   const handleExportMessages = () => {
       exportToCSV(messages, {
         filename: "messages.csv",
         columns: [
-          { key: "name", label: "Sender Name" },
-          { key: "email", label: "Email" },
-          { key: "message", label: "Message" },
-          { key: "created_at", label: "Date" },
+            { key: "username", label: "Username" },
+            { key: "email", label: "Email" },
+            { key: "phone", label: "Phone" },
+            { key: "message", label: "Message" },
+            { key: "created_at", label: "Date/time" },
         ],
       });
-
+    }
 
   return (
     <div>
@@ -94,6 +116,13 @@ const MessagesList = () => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
+            </div>
+
+            {/* export bar */}
+            <div className="w-fit h-full flex-row-center">
+              <button 
+              onClick={handleExportMessages}
+              className="bg-primary-light cursor-pointer hover:shadow-2xl hover:shadow-primary duration-300 text-bg w-20 h-9.5 rounded-lg text-sm"> Export </button>
             </div>
       </div>
   
@@ -146,6 +175,30 @@ const MessagesList = () => {
               <p className="responseMessage">Please confirm to Delete</p>
           </DeleteConfirm>
       </DeleteModal>
+
+
+      {/*  Displaying feedback message */}
+      <AuthModal isOpen={showAlert} onClose={() => {
+                      setShowAlert(false); 
+                      setResponseMessage("");//reset so that to trigger useEffect
+                  }}>
+
+                  <Alert onClose={() => {
+                      setShowAlert(false); 
+                      setResponseMessage("");
+                  }}
+                  >
+                      <p className="responseMessage">{responseMessage}</p>
+                  </Alert>
+              </AuthModal>
+
+        {/*  Displaying the loading modal */}
+                <AuthModal isOpen={isLoading} onClose={() => {}}>
+                  <LoadingModal
+                   text="Retrieving Messages..."
+                   subText="Please wait while data is securely loaded" 
+                  />
+                </AuthModal>
 </div>
   );
 };

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import api from "../api/axiosInstance"
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import FAQcard from '../components/FAQcard'
@@ -7,12 +8,21 @@ import { faEnvelope, faMobilePhone, faPhoneAlt } from '@fortawesome/free-solid-s
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'
-import { BASE_URL } from "../api/api";
+import AuthModal from '../components/modals/AuthModal'
+import Alert from '../components/modals/Alert'
+import LoadingModal from '../components/modals/LoadingModal'
 
 const Contact = () => {
-    //state controlled inputs
-     const[formData, setFormData] = useState({username:"", email:"",phone:"", message:""});
+    //loading state
+     const [isLoading, setIsLoading] = useState(false);
 
+    //Setting up our feedback modal
+    const [showModal, setShowModal] = useState(false);
+    const[responseMessage, setResponseMessage] = useState("");
+
+    //state controlled inputs
+     const[formData, setFormData] = useState({username:"", email:"", phone:"", message:""});
+     
     //The handle change function inserts user inputs to the formdata
        const handleChange = (e)=>{
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -23,32 +33,53 @@ const Contact = () => {
         e.preventDefault();
         console.log("submitting user message", formData);
 
+        const payload = {
+          ...formData,
+          phone: formData.phone.replace(/\s+/g, "")
+        };
+
+      //initialize loading
+       setIsLoading(true);
+       setShowModal(false); 
+       setResponseMessage("");
+
      try {
-              const response = await axios.post(`${BASE_URL}/api/messages`, formData);
-              setResponseMessage(response.data.message);
-              setFormData({username:"", email:"", message:""});
-              }
+          const response = await api.post(`/messages`, payload);
+          setResponseMessage(response.data.message);
+          setFormData({username:"", email:"", phone:"", message:""});
+          }
               
           catch(error){
-            setResponseMessage("ERROR! sending message, Kindly try again later!");
+            setResponseMessage("ERROR! sending message, try again later!");
+          }finally{
+            setIsLoading(false);
           } 
       }
 
-/* Animating contact page landing text */
-   useGSAP(() => {
-    gsap.fromTo( '.para',
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        delay: 0.3,
-        stagger: 0.3
-      }
-    );
-  }, []);
+  /* Animating contact page landing text */
+      useGSAP(() => {
+        gsap.fromTo( '.para',
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            delay: 0.3,
+            stagger: 0.3
+          }
+        );
+      }, []);
+
+
+  // Show modal only when responseMessage changes and is not empty
+      useEffect(() => {
+        if (responseMessage) {
+            setShowModal(true);
+        }
+      }, [responseMessage]);
 
 
   return (
+    <>
     <div>
       {/*  Nav bar */}
       <Header/>
@@ -197,9 +228,33 @@ const Contact = () => {
         </div>
 
 
-            <br /><br /><br /><br />
-    <Footer/>
-    </div>
+        <br /><br /><br /><br />
+        <Footer/>
+
+    </div>        
+        {/*  Displaying feedback message */}
+              <AuthModal isOpen={showModal} onClose={() => {
+                      setShowModal(false); 
+                      setResponseMessage("");//reset so that to trigger useEffect
+                  }}>
+
+                  <Alert onClose={() => {
+                      setShowModal(false); 
+                      setResponseMessage("");
+                  }}
+                  >
+                      <p className="responseMessage">{responseMessage}</p>
+                  </Alert>
+              </AuthModal>
+
+        {/*  Displaying the loading modal */}
+                <AuthModal isOpen={isLoading} onClose={() => {}}>
+                  <LoadingModal
+                     text="Submitting Your Message..."
+                     subText="Please wait..."
+                  />
+                </AuthModal>
+    </>
   )
 }
 
