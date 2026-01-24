@@ -1,5 +1,5 @@
 // src/pages/CartPage.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,19 +7,72 @@ import { faBoxesPacking, faCartShopping, faHistory, faShoppingCart, faSignOut, f
 import OrdersTable from "../context/OrdersTable";
 import AuthModal from "../components/modals/AuthModal";
 import LoadingModal from "../components/modals/LoadingModal";
+import { verifyAccessToken } from "../utils/authHelper";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import ForgotPassword from "./ForgotPassword";
+import Modal from "../components/modals/Modal";
+import Alert from "../components/modals/Alert";
 
 export default function Cart() {
-  const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory, isLoading } =
+  const { cartItems, cartHistory, increaseQty, decreaseQty, removeFromCart, clearCart, clearCartHistory, isLoading, orderResponse, handleResetOrderResponse} =
     useCart();
 
   //States to manage what's displayed on the customer dashboard
-    const [activeTab, setActiveTab] = useState("cart");
+  const [activeTab, setActiveTab] = useState("cart");
+
+  //authentication
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showForgotPass, setShowForgotPass] = useState(false);
+  const [signUpMessage, setSignUpMessage] = useState(""); 
+  const [showAlert, setShowAlert] = useState( false ); 
 
   /* calculating total cost */
   const total = cartItems.reduce(
     (t, item) => t + parseFloat(item.price) * (item.sizeKg) * item.qty,
     0
   );
+
+    //hadling switch to signIn
+    const handleSwitchToSignIn = (message) => {
+      setShowSignUp(false);
+      setSignUpMessage(message);
+      setShowSignIn(true);
+    };
+  
+    //hadling switch to signUp
+    const handleSwitchToSignUp = () => {
+      setShowSignIn(false);
+      setShowSignUp(true);
+    };
+  
+    //hadling switch to forgot password
+    const handleSwitchToForgotPassword = () => {
+      setShowSignIn(false);
+      setShowForgotPass(true);
+    };
+  
+
+  //Check if user is authenticated before they place an order
+  const handleVerifyUser = async () => {
+    const isAuthenticated = await verifyAccessToken();
+
+    if (isAuthenticated) {
+      // Already logged in, go ahead and place Order
+      clearCart();
+    } else {
+      // Not logged in, show Sign In modal
+      setShowSignIn(true);
+    }
+  };
+
+// Show modal only when responseMessage changes and is not empty
+  useEffect(() => {
+      if (orderResponse) {
+          setShowAlert(true);
+      }
+    }, [orderResponse]);
     
 
   return (
@@ -159,9 +212,9 @@ export default function Cart() {
 
                               <button
                                 className="w-full bg-primary  cursor-pointer hover:shadow-2xl hover:shadow-primary-light/50 duration-300 text-bg px-6 py-3 rounded-md text-sm"
-                                onClick={clearCart}
+                                onClick={handleVerifyUser}
                               >
-                                Request Order
+                                Place Order
                               </button>
                           </div>
                       </div>
@@ -254,6 +307,56 @@ export default function Cart() {
           subText="Please wait..."               
           />
       </AuthModal>
+
+
+      {/* Alert Feedback */}
+        <AuthModal isOpen={showAlert} onClose={() => {
+                setShowAlert(false); 
+                handleResetOrderResponse();//reset so that to trigger useEffect on the second time
+            }}>
+
+            <Alert onClose={() => {
+                setShowAlert(false); 
+                handleResetOrderResponse("");
+            }}
+            >
+              <p className="responseMessage">{orderResponse}</p>
+            </Alert>
+        </AuthModal>
+
+      
+      {/* showing login popUp */}
+      {showSignIn && (
+        <AuthModal isOpen={showSignIn} onClose={() => setShowSignIn(false)}>
+          {/*Any popUP right here */}
+          <SignIn
+            signUpResponse={signUpMessage}
+            closeSignIn={() => setShowSignIn(false)}
+            onForgotPass={() => handleSwitchToForgotPassword()}
+            onDontHaveAccount={() => handleSwitchToSignUp()}
+          />
+        </AuthModal>
+      )}
+
+      {/* showing signUp popUp */}
+      {showSignUp && (
+        <AuthModal isOpen={showSignUp} onClose={() => setShowSignUp(false)}>
+          {/* Any popUP right here */}
+          <SignUp
+            onSuccess={handleSwitchToSignIn}
+            closeSignUp={() => setShowSignUp(false)}
+          />
+        </AuthModal>
+      )}
+
+      {/* showing forgotPassword popUp */}
+      {showForgotPass && (
+        <AuthModal isOpen={showForgotPass} onClose={() => setShowForgotPass(false)}>
+          {/*Any popUP right here */}
+          <ForgotPassword closeForgotPass={() => setShowForgotPass(false)} />
+        </AuthModal>
+      )}
+    
     </>
   );
 }

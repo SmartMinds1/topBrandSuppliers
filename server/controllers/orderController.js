@@ -58,7 +58,7 @@ exports.createOrder = async (req, res) => {
 
     logger.info("Order placed successfully");
     res.status(201).json({
-      message: "Order placed successfully",
+      message: "Order placed successfully, will get back to you soon!",
       orderId,
     });
   } catch (err) {

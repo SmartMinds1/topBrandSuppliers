@@ -1,7 +1,12 @@
 import React, {useState} from "react";
+import DeleteModal from "../components/modals/DeleteModal";
+import UpdateConfirm from "../components/modals/UpdateConfirm";
 
-const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
+const ModifyOrder = ({ editingOrder, editingId, closeModify, onSave, fetchOrders}) => {
     const [items, setItems] = useState(editingOrder);
+  
+    //setting up feedback message using a popUp
+      const [showDelete, setShowDelete] = useState(false);
   
     // Increase quantity
     const increaseQty = (id, sizeKg) => {
@@ -25,6 +30,7 @@ const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
     
   
     return (
+      <>
         <div className="bg-bg-light flex flex-col justify-between p-6 w-75 sm:w-90 h-100 sm:h-120 rounded-md">
               <h3 className="text-lg font-bold mb-4">Modify Order</h3>
           
@@ -53,11 +59,37 @@ const ModifyOrder = ({ editingOrder, closeModify, onSave }) => {
                   <h4 className="mt-2 text-text">Total: <span className="font-bold text-primary">${total.toFixed(2)}</span></h4>
               </div>
 
-              <div className="flex justify-end gap-2 mt-4">
-                <button onClick={closeModify} className=" text-sm px-2 py-1 bg-gray-200 rounded cursor-pointer hover:brightness-90 duration-300">Cancel</button>
-                <button onClick={handleSave} className="text-sm px-2 py-1 bg-primary text-white rounded cursor-pointer hover:brightness-90 duration-300">Save</button>
+              <div className="w-full flex-row-center justify-between">
+                {/* Cancel order button */}
+                  <button onClick={async() => {
+                              setShowDelete(true);
+                            }}
+                            className="px-4 py-2 hover:bg-red-50 cursor-pointer text-red-500 text-sm"
+                          >
+                            Cacel Order   
+                  </button>
+
+                  <div className="flex justify-end gap-2 mt-4">
+                    <button onClick={closeModify} className=" text-sm px-2 py-1 bg-gray-200 rounded cursor-pointer hover:brightness-90 duration-300">Close</button>
+                    <button onClick={handleSave} className="text-sm px-2 py-1 bg-primary text-white rounded cursor-pointer hover:brightness-90 duration-300">Save</button>
+                  </div>
               </div>
         </div>
+
+        {/* USER CANCEL ORDER Delete*/}
+          <DeleteModal isOpen={showDelete}  fetchData={()=>fetchOrders()} onCloseConfirm={() => setShowDelete(false)} onClose={() => {
+                setShowDelete(false); 
+            }}>
+            <UpdateConfirm onCloseConfirm={() => setShowDelete(false)}
+                    deleteUrl={`/orders/cancel-my-order/${editingId}`}
+                    deleteName="Order"
+                    closeModify={() => closeModify()}
+                    fetchData={() => fetchOrders()}//refreshing orders list
+            >
+                <p className="responseMessage">CONFIRM cancel order</p>
+            </UpdateConfirm>
+        </DeleteModal>
+    </>
     );
   };
 

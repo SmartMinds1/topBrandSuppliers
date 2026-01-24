@@ -8,6 +8,12 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   //loading states
   const [isLoading, setIsLoading] = useState(false);
+  const [orderResponse, setOrderResponse] = useState("");
+
+  //reset orderResponse after displaying it
+  const handleResetOrderResponse = () => {
+    setOrderResponse("");
+  }
 
   //global order reset if the order is unreparable
   //const validOrders = saved.filter(o => Array.isArray(o.items));
@@ -134,13 +140,15 @@ export const CartProvider = ({ children }) => {
     try {
       // Send to backend
       const response = await api.post(`${BASE_URL}/api/orders`, orderPayload);
+      setOrderResponse(response.data.message);
   
       if (response.status === 201) {
         updateHistory();//update local history
         setCartItems([]);//clear the shopping cart
       }
     } catch (error) {
-      console.error("Failed to submit order:", error);
+      console.error("Failed to Place order:", error);
+      setOrderResponse(error.response?.data?.message || <p className='loginFailed'><span>Error Placing your order</span> Please try again later</p>);
     }finally {
           setIsLoading(false);
         }
@@ -159,6 +167,8 @@ export const CartProvider = ({ children }) => {
         cartItems,
         cartHistory,
         isLoading,
+        orderResponse,
+        handleResetOrderResponse,
         addToCart,
         increaseQty,
         decreaseQty,

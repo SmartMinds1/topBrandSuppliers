@@ -58,7 +58,7 @@ router.put(
 
 //USER : CANCEL OWN ORDER BY ID
 router.patch(
-  "/my-orders/:id/cancel",
+  "/cancel-my-order/:id",
   checkAccessBlacklist,
   requireRole(ROLES.USER),
   requirePermission("own_orders.cancel"),

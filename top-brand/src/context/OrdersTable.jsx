@@ -189,17 +189,18 @@ const OrdersTable = () => {
               }}>
               <ModifyOrder
                   editingOrder={editingOrder}
+                  editingId={editingId}
                   closeModify={() => setShowModal(false)}
                   onSave={(modifiedItems) => { //This onsave funtion runs on modifyOrder, it receives the modified order
                     updateOrder(modifiedItems);
                     setShowModal(false);
                   }}
+                  fetchOrders={() => fetchOrders()}
                 /> 
               </AuthModal>
         )}
 
       {/* Alert Feedback */}
-            {/*  Displaying the response messsage using a popUP */}
             <AuthModal isOpen={showAlert} onClose={() => {
                     setShowAlert(false); 
                     setResponseMessage("");//reset so that to trigger useEffect on the second time
