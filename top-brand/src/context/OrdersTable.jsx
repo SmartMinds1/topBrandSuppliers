@@ -114,10 +114,10 @@ const OrdersTable = () => {
     return (
     <div>
       <div className="overflow-x-auto">
-        <table className="w-full shadow-lg">
+        <table className="w-full shadow-lg text-sm">
           <thead className="bg-bg text-left">
             <tr>  
-              <th className="p-2">Order Id</th>
+              <th className="p-2">Order_Id</th>
               <th className="p-2">Total_amount</th>
               <th className="p-2">Status</th>
               <th className="p-2">Created</th>

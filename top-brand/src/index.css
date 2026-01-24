@@ -207,7 +207,7 @@ body {
   
  }
  .activeCartTab{
-  @apply cursor-pointer h-10 bg-bg-light sm:bg-primary-light text-maintext sm:text-bg-light font-bold sm:font-normal leading-5 sm:leading-normal p-2 flex-row-center gap-2 rounded-md text-sm;
+  @apply cursor-pointer h-10 bg-bg-light sm:bg-primary-light text-accent sm:text-bg-light font-semibold sm:font-normal leading-5 sm:leading-normal p-2 flex-row-center gap-2 rounded-md text-sm;
   
  }
 
