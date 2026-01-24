@@ -239,9 +239,9 @@ const HomeHeader = () => {
       <div className="mobile-menu-button sm:hidden fixed top-15 left-2 z-50">
             <button onClick={() => setIsOpen(prev => !prev)}>
                 {isOpen ? (
-                    <FontAwesomeIcon icon={faTimes} className="text-2xl header-text text-bg font-extralight" />
+                    <FontAwesomeIcon icon={faTimes} className="text-sm text-maintext font-extralight ml-1 mt-2" />
                 ) : (
-                    <FontAwesomeIcon icon={faBars} className="text-2xl header-text text-bg" />
+                    <FontAwesomeIcon icon={faBars} className="text-xl header-text text-bg" />
                 )}
             </button>
       </div>

@@ -38,12 +38,12 @@ export default function MobileMenu({ isOpen, setIsOpen }) {
   };
 
   return (
-    <div className="w-full h-[95vh] overflow-x-hidden fixed top-7 right-0 z-40 sm:hidden pointer-events-none">
+    <div className="w-full h-[85vh] overflow-y-hidden overflow-x-hidden fixed top-8 right-0 z-40 sm:hidden pointer-events-none">
       <div
         ref={menuRef}
         className="bg-bg absolute top-6 right-0 w-[98%] h-[90vh] pt-12 text-maintext p-2 shadow-[#2e2e3f] shadow-lg flex flex-col items-center z-50 opacity-0 pointer-events-auto rounded-lg"
       >
-        <h2 className="font-bold border-b border-text text-center w-[80%] pb-2">
+        <h2 className="font-bold border-b border-accent text-center w-[80%] pb-2">
           Menu
         </h2>
 

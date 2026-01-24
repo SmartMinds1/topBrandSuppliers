@@ -85,7 +85,7 @@ useGSAP(() => {
       <HomeHeader/>
 
       <div className="w-full min-h-screen bg-[url('/landingPage3.png')] bg-cover bg-position-[65%_50%] lg:bg-position-[50%_100%] bg-no-repeat"> {/* bg-[url('/landingBg5.webp')] bg-cover bg-position-[50%_50%]     bg-position-[95%_50%] lg:bg-position-[50%_50%]*/}
-         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr from-primary-dark sm:from-transparent via-primary/50 sm:via-transparent to-transparent">
+         <div className="w-full min-h-screen flex-col-center justify-between  bg-linear-to-tr from-primary sm:from-transparent via-primary/50 sm:via-transparent to-transparent">
             
             {/* Main container */}
             <div className="h-fit lg:min-h-[75%] w-full pt-24 lg:pt-14 flex items-center justify-between flex-wrap-reverse">
@@ -154,7 +154,7 @@ useGSAP(() => {
 {/* ------------------SECTION 1 -------------------------*/}
       <div className='w-full h-fit mt-16'>
            <div>
-               <p className='headerText w-70 m-auto sm:h-full text-center'>Africa to the World</p>
+               <p className='headerText w-70 m-auto sm:h-full text-center'>Africa to <span className='font-light '>the World</span> </p>
                <p className='bodyText'>TopBrand Suppliers connect Africa’s finest products to the world with efficiency and trust. We specialize in sourcing quality products from Kenya and delivering them to global markets—and bringing international goods back home.</p>
            </div>
           {/* services cards */}
@@ -191,7 +191,7 @@ useGSAP(() => {
 
            {/* caption div */}
            <div className='w-full md:w-1/2 h-fit lg:h-110 p-2 lg:p-4 lg:pt-8'>
-               <p className='headerText text-center md:text-left  m-auto'>Pure & Natural for Sustainable Lifestyles</p>
+               <p className='headerText text-left w-75  m-0 sm:w-80 sm:text-center sm:m-auto md:m-0 md:text-left'>Pure & Natural for <span className='font-light text-[26px] sm:text-[28px]'>Sustainable Lifestyles</span></p>
                <p className="sideBodyText">We source pure, natural products like cashews, cloves, and honey directly from trusted farmers using responsible practices. Our goods promote healthy living, support local communities, and meet high standards of quality and traceability. 
                <br /> <p className='md:mt-4'>Choose sustainably grown products that are authentic, fresh, and naturally produced.</p></p>
            </div>
@@ -200,7 +200,7 @@ useGSAP(() => {
 {/* ------------------SECTION 3 -------------------------*/}
       <div className='w-full h-fit mt-20'>
            <div>
-               <p className='headerText w-full text-center'>Top Natural Products</p>
+               <p className='headerText text-center w-70 m-auto'>Top Natural <span className='font-light text-[26px] sm:text-[28px]'>Products</span> </p>
                <p className='bodyText'>Discover our sustainably sourced products. Carefully harvested to preserve purity, flavor, and nutritional value. Each product is selected from trusted farmers who follow eco-friendly practices, ensuring freshness and quality in every batch.</p>
            </div>
           {/* services cards */}
@@ -225,7 +225,7 @@ useGSAP(() => {
       <div className='w-full h-fit mt-20'>
             <div className='w-full h-15 flex-row-center justify-center mb-5 pl-[3%] gap-2'>
                <div> <FontAwesomeIcon icon={faCheckCircle} className='mainIcon text-accent'/> </div>
-               <p className='headerText'>Proven Performance</p>           
+               <p className='headerText'>Proven <span className='text-[26px] sm:text-[28px] font-light'>Performance</span></p>           
             </div>
             <p className='bodyText'>Our track record is proven—satisfied clients, trusted partners, and reliable deliveries. We provide quality sourcing and transparent service you can count on.</p>
             <div className='w-full h-fit bg-accent-soft bg-bg p-4'>
@@ -236,7 +236,7 @@ useGSAP(() => {
 {/* ------------------SECTION 5 -------------------------*/}
       <div className='w-full h-fit mt-16'>
           <div className='w-full h-fit flex flex-col sm:flex-row items-center justify-center mb-8 p-4 sm:p-0 '>
-            <p className='w-[95%] sm:w-1/3 h-fit text-maintext headerText'>Our Satisfied Customers</p>
+            <p className='w-[95%] sm:w-1/3 h-fit text-primary headerText'>Our Satisfied <span className='text-[26px] sm:text-[28px] font-light'>Customers</span></p>
             <p className='w-full text-left sm:w-1/2 p-4 h-fit text-text cardText'>Businesses and buyers trust our natural products for their quality, consistency, and dependable delivery. Their feedback reflects the strong relationships and reliable service we work hard to uphold every day.</p>
           </div>
             

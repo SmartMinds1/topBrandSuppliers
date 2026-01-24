@@ -34,7 +34,7 @@ const Footer = ()=> {
         <>
         {/* EMAIL SUBSCRIPTION SECTION */}
             <div className="w-full h-fit p-4 mb-20">
-                <p className="text-text w-full text-center">Be the first to know about new products, special deals, and important industry updates.</p>
+                <p className="text-text w-full text-center">Subscribe for special deals, and important updates.</p>
                 <form onSubmit={handleSubscribe} className='flex sm:flex-row flex-col items-center sm:gap-8 gap-4 sm:mt-4 mt-12  justify-center'>
                     <input
                         className="w-full sm:w-1/4 border-b border-text-light h-10 p-4 outline-none  text-sm hover:border-primary duration-300 ease-in-out" 
@@ -48,7 +48,7 @@ const Footer = ()=> {
                         value={formData.email}
                         onChange={handleChange}
                       />
-                   <button className="btn-primary mt-3 w-40 hover:shadow-xl bg-maintext text-bg-dark">Subscribe Now</button>
+                   <button className="btn-primary mt-3 w-34 hover:shadow-xl bg-primary text-sm py-2.5 text-bg-dark">Subscribe Now</button>
                 </form>
             </div>
 
@@ -63,7 +63,7 @@ const Footer = ()=> {
                              {/* caption */}
                             <p className="w-[90%] text-md text-text text-sm mt-4 pl-4">Ideas that grow, connections that scale.</p>
                         </div>
-                        <button className="btn-primary mt-0 lg:mt-12 green-shadow">Call Now</button>
+                        <button className="btn-primary mt-0 lg:mt-12 green-shadow text-sm">Call Now</button>
                     </div>
 
                 {/* links div */}
