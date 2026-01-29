@@ -1,6 +1,19 @@
-import React, { useState } from "react";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from "react";
+import AuthModal from "./modals/AuthModal";
+import Alert from "./modals/Alert";
+import LoadingModal from "./modals/LoadingModal";
+import api from "../api/axiosInstance";
 
-const BulkQuotationForm = () => {
+const BulkQuotationForm = ({onClose}) => {
+  //loading state
+  const [isLoading, setIsLoading] = useState(false);
+
+  //Setting up our feedback modal
+  const [showModal, setShowModal] = useState(false);
+  const[responseMessage, setResponseMessage] = useState("");
+
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
@@ -9,13 +22,14 @@ const BulkQuotationForm = () => {
     country: "",
     businessType: "",
     products: [],
-    volumes: "",
     deliveryRequirements: "",
     additionalInfo: "",
     quantities: {
       honey: "",
       cashew: "",
-      clove: ""
+      clove: "",
+      ginger: "",
+      macadamia:""
     }
   });
 
@@ -35,20 +49,33 @@ const BulkQuotationForm = () => {
       name: "Premium Clove Collection",
       desc: "Aromatic clove spices and extracts",
     },
+    {
+      id: "ginger",
+      name: "Ginger Collection",
+      desc: "Fresh ginger roots, powders, and extracts",
+    },
+    {
+      id: "macadamia",
+      name: "Macadamia Collection",
+      desc: "High-quality macadamia nuts and processed products",
+    },
   ];
 
   // Handle general input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+  
     if (name.includes("-qty")) {
       const key = name.split("-")[0];
       setFormData((prev) => ({
         ...prev,
         quantities: { ...prev.quantities, [key]: value },
+        products: value
+          ? [...new Set([...prev.products, key])]
+          : prev.products.filter(p => p !== key),
       }));
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -65,104 +92,173 @@ const BulkQuotationForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("FORM SUBMITTED:", formData);
-    alert("Quotation request submitted!");
-  };
+ //handleSubmit sends the user's ORDER Inputs to the database
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+        const filteredQuantities = Object.fromEntries(
+            formData.products
+              .filter(p => formData.quantities[p])
+              .map(p => [p, Number(formData.quantities[p])])
+          );
+      
+
+        const payload = {
+            ...formData,
+            quantities: filteredQuantities,
+            phone: formData.phone.replace(/\s+/g, ""),
+          };
+
+
+        console.log("Payload sending to backend:", {
+            ...formData,
+            quantities: filteredQuantities,
+            phone: formData.phone.replace(/\s+/g, "")
+          });
+
+      //initialize loading
+          setIsLoading(true);
+          setShowModal(false); 
+          setResponseMessage("");
+
+    try {
+        const response = await api.post(`/bulk_quotes`, payload);
+        setResponseMessage(response.data.message);
+        setFormData({
+          companyName: "",
+          contactPerson: "",
+          email: "",
+          phone: "",
+          country: "",
+          businessType: "",
+          products: [],
+          deliveryRequirements: "",
+          additionalInfo: "",
+          quantities: {
+            honey: "",
+            cashew: "",
+            clove: "",
+            ginger: "",
+            macadamia:""
+          }
+        });
+        }
+            
+        catch(error){
+          setResponseMessage("ERROR! sending request, try again later!");
+        }finally{
+          setIsLoading(false);
+        } 
+    }
+
+  // Show modal only when responseMessage changes and is not empty
+      useEffect(() => {
+        if (responseMessage) {
+            setShowModal(true);
+        }
+      }, [responseMessage]);
+
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md">
+    <>
+    <div className="max-w-4xl mx-auto p-2 pt-12 sm:p-16 bg-bg-light">
+      {/* close button */}
+        <div className="w-[64%] flex-row-center justify-end h-8 text-right fixed top-3 right-[7%] md:right-[18%]">
+            <button onClick={onClose} className="bg-bg-dark shadow-2xl w-6 h-6 rounded-full text-background hover:brightness-80 duration-300 cursor-pointer flex-col-center justify-center"> <FontAwesomeIcon icon={faTimes} className="text-xs"/></button>
+        </div>
+
       {/* Header */}
-      <div className="text-center mb-8">
-        <h3 className="text-2xl font-semibold">Request Bulk Order Quotation</h3>
-        <p className="text-gray-600 mt-2">
+      <div className="text-center mb-2 mt-8 sm:mb-8">
+        <h3 className="text-2xl font-semibold text-primary"><span className="text-accent">|</span> Request Bulk Order Quotation</h3>
+        <p className="text-text text-left sm:text-center text-xs sm:text-base mt-2 w-[90%] sm:w-[70%] m-auto font-light">
           Get competitive pricing for large quantity orders. Fill out the form
-          and receive a detailed quotation within 24 hours.
+          and receive a detailed quotation within <span className="text-accent font-semibold">24 hours</span>.
         </p>
       </div>
+
+      <br /><br />
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         
-        {/* Row 1 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="form-label">Company Name *</label>
-            <input
-              type="text"
-              name="companyName"
-              required
-              className="form-input"
-              value={formData.companyName}
-              onChange={handleChange}
-            />
+      {/* Row 1 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16 p-2 sm:p-0">
+          <div className="bg-bg w-full tracking-wide">
+              <input
+                className='outline-gray-200 bg-bg w-full p-2 text-sm text-text'
+                type="text"
+                name="companyName"
+                required
+                value={formData.companyName}
+                onChange={handleChange}
+                placeholder="Campany Name *"
+              />
           </div>
 
-          <div>
-            <label className="form-label">Contact Person *</label>
-            <input
+          <div className="bg-bg w-full tracking-wide">
+              <input
+              className='outline-gray-200 bg-bg w-full p-2 text-sm text-text'
               type="text"
               name="contactPerson"
               required
-              className="form-input"
               value={formData.contactPerson}
               onChange={handleChange}
+              placeholder="Contact Person *"
             />
           </div>
         </div>
 
         {/* Row 2 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="form-label">Email Address *</label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16 p-2 sm:p-0">
+          <div className="bg-bg w-full tracking-wide">
             <input
+              className='outline-gray-200 bg-bg w-full p-2 text-sm text-text'
               type="email"
               name="email"
               required
-              className="form-input"
               value={formData.email}
               onChange={handleChange}
+              placeholder="Email *"
             />
           </div>
 
-          <div>
-            <label className="form-label">Phone Number *</label>
+          <div className="bg-bg w-full tracking-wide">
             <input
+              className='outline-gray-200 bg-bg w-full p-2 text-sm text-text'
               type="tel"
               name="phone"
               required
-              className="form-input"
               value={formData.phone}
               onChange={handleChange}
+              placeholder="Phone *"
             />
           </div>
         </div>
 
         {/* Row 3 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="form-label">Country *</label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16 p-2 sm:p-0">
+          <div className="bg-bg w-full tracking-wide">
             <input
+              className='outline-gray-200 bg-bg w-full p-2 text-sm text-text'
               type="text"
               name="country"
               required
-              className="form-input"
               value={formData.country}
               onChange={handleChange}
+              placeholder="Country *"
             />
           </div>
 
-          <div>
-            <label className="form-label">Business Type *</label>
-            <select
+          <div className="bg-bg w-full tracking-wide">
+              <select
+              className='outline-gray-200 bg-bg w-full p-2 text-sm text-text'
               name="businessType"
               required
-              className="form-select"
               value={formData.businessType}
               onChange={handleChange}
+              placeholder="Business Type *"
             >
-              <option value="">Select Business Type</option>
+              <option value="" >Select Business Type</option>
               <option value="retailer">Retailer</option>
               <option value="wholesaler">Wholesaler</option>
               <option value="distributor">Distributor</option>
@@ -173,99 +269,117 @@ const BulkQuotationForm = () => {
           </div>
         </div>
 
+        <br /><br />
+
         {/* Product Selection */}
         <div>
-          <label className="form-label">Products of Interest *</label>
+          <label className="text-primary text-lg font-semibold pl-2 sm:pl-0">Products of Interest *</label>
 
-          <div className="space-y-3 mt-3">
+          <div className="mb-10">
             {productList.map((prod) => (
               <label
                 key={prod.id}
-                className="flex items-center justify-between p-3 border rounded-lg cursor-pointer hover:bg-gray-50"
+                className="flex-row-center justify-between p-3 cursor-pointer hover:bg-bg mb-4"
               >
                 <div className="flex items-start gap-3">
                   <input
                     type="checkbox"
                     onChange={() => toggleProduct(prod.id)}
                     checked={formData.products.includes(prod.id)}
-                    className="mt-1"
+                    className="mt-2"
                   />
                   <div>
-                    <div className="font-semibold">{prod.name}</div>
-                    <div className="text-gray-500 text-sm">{prod.desc}</div>
+                    <div>{prod.name}</div>
+                    <div className="text-text text-sm font-light">{prod.desc}</div>
                   </div>
                 </div>
 
                 <input
+                  className="w-20 h-9 text-sm p-2 outline-none shadow bg-bg"
                   type="number"
                   name={`${prod.id}-qty`}
-                  placeholder="Qty"
-                  min="1"
-                  className="w-20 form-input"
+                  placeholder="Qty(kg)"
+                  min="100"
+                  max="1000"
+                  maxLength={5}
                   value={formData.quantities[prod.id]}
                   onChange={handleChange}
+                  disabled={!formData.products.includes(prod.id)}//check it out later
+
                 />
               </label>
             ))}
           </div>
         </div>
 
-        {/* Volume */}
-        <div>
-          <label className="form-label">Expected Monthly Volume</label>
-          <select
-            name="volumes"
-            className="form-select"
-            value={formData.volumes}
-            onChange={handleChange}
-          >
-            <option value="">Select Volume Range</option>
-            <option value="100-500kg">100-500 kg</option>
-            <option value="500-1000kg">500-1,000 kg</option>
-            <option value="1000-5000kg">1,000-5,000 kg</option>
-            <option value="5000-10000kg">5,000-10,000 kg</option>
-            <option value="10000+kg">10,000+ kg</option>
-          </select>
-        </div>
+        <br /><br />
 
         {/* Delivery Requirements */}
-        <div>
-          <label className="form-label">Delivery Requirements</label>
-          <textarea
-            name="deliveryRequirements"
-            className="form-textarea"
-            placeholder="Packaging requests, delivery timeline, special instructions..."
-            value={formData.deliveryRequirements}
-            onChange={handleChange}
-          ></textarea>
+        <div className="p-2 sm:p-0">
+          <label className="text-primary text-lg font-semibold">Delivery Requirements</label>
+             <textarea 
+                className="w-full h-20 resize-none p-4 mt-10 outline-none border-b border-text-light text-sm hover:border-primary duration-300 ease-in-out"
+                type="text"
+                name="deliveryRequirements"
+                placeholder="Packaging requests, delivery timeline, special instructions..."
+                value={formData.deliveryRequirements}
+                onChange={handleChange}
+          
+              />
+                        
         </div>
 
+        <br /><br />
+
         {/* Additional Info */}
-        <div>
-          <label className="form-label">Additional Information</label>
-          <textarea
-            name="additionalInfo"
-            className="form-textarea"
-            placeholder="Any other notes or questions..."
-            value={formData.additionalInfo}
-            onChange={handleChange}
-          ></textarea>
+        <div className="p-2 sm:p-0">
+            <label className="text-primary text-lg font-semibold">Additional Information</label>
+            <textarea 
+                className="w-full h-20 resize-none p-4 mt-10 outline-none border-b border-text-light text-sm hover:border-primary duration-300 ease-in-out"
+                type="text"
+                id="message"
+                name="additionalInfo"
+                placeholder="Any other notes or questions..."
+                value={formData.additionalInfo}
+                onChange={handleChange}
+              />
         </div>
 
         {/* Submit */}
-        <button
-          type="submit"
-          className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded-lg font-semibold"
-        >
-          Request Quotation
-        </button>
+        <button type="submit" className="btn-primary green-shadow w-50 mt-8 ml-2 sm:ml-0">Request Quotation</button>
+      </form>
 
-        <div className="text-sm text-gray-500 mt-2">
-          <strong>Note:</strong> All required fields must be filled. We’ll get
+        <div className="text-sm text-gray-500 mt-12 p-2">
+          <strong className="text-primary">Note:</strong> All required fields must be filled. We’ll get
           back within 24 hours. For urgent requests, please call us directly.
         </div>
-      </form>
+
+        <br />
     </div>
+
+        {/*  Displaying feedback message */}
+        <AuthModal isOpen={showModal} onClose={() => {
+          setShowModal(false); 
+          setResponseMessage("");//reset so that to trigger useEffect
+      }}>
+
+      <Alert onClose={() => {
+          setShowModal(false); 
+          setResponseMessage("");
+      }}
+      >
+          <p className="responseMessage">{responseMessage}</p>
+      </Alert>
+    </AuthModal>
+
+    {/*  Displaying the loading modal */}
+    <AuthModal isOpen={isLoading} onClose={() => {}}>
+      <LoadingModal
+        text="Submitting Your Order Request..."
+        subText="Please wait..."
+      />
+    </AuthModal>
+</>
   );
 };
 

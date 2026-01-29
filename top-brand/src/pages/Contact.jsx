@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import FAQcard from '../components/FAQcard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faMobilePhone, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faMobilePhone } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'

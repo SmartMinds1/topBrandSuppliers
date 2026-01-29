@@ -101,3 +101,77 @@ exports.product_priceValidation = body("productPrice")
   .withMessage("Product quantity must be a number")
   .trim()
   .escape();
+
+/* -------------------- Validators for Bulk Quotation--------------------------- */
+exports.companyNameValidation = body("companyName")
+  .notEmpty()
+  .withMessage("Company name is required")
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ");
+
+exports.contactPersonValidation = body("contactPerson")
+  .notEmpty()
+  .withMessage("Contact person is required")
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ");
+
+exports.countryValidation = body("country")
+  .notEmpty()
+  .withMessage("Country is required")
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ")
+  .toLowerCase();
+
+exports.businessTypeValidation = body("businessType")
+  .notEmpty()
+  .withMessage("Business type is required")
+  .trim()
+  .escape()
+  .isIn([
+    "retailer",
+    "wholesaler",
+    "distributor",
+    "manufacturer",
+    "restaurant",
+    "other",
+  ])
+  .withMessage("Invalid business type");
+
+exports.productsValidation = body("products")
+  .isArray({ min: 1 })
+  .withMessage("At least one product must be selected");
+
+exports.quantitiesValuesValidation = body("quantities").custom(
+  (quantities, { req }) => {
+    const products = req.body.products || [];
+
+    for (const product of products) {
+      const value = quantities?.[product];
+
+      if (value === "" || value === null || value === undefined) {
+        throw new Error(`Quantity required for ${product}`);
+      }
+
+      if (isNaN(value)) {
+        throw new Error(`Quantity for ${product} must be numeric`);
+      }
+    }
+
+    return true;
+  }
+);
+
+exports.deliveryRequirementsValidation = body("deliveryRequirements")
+  .optional({ nullable: true })
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ");
+
+exports.additionalInfoValidation = body("additionalInfo")
+  .optional({ nullable: true })
+  .trim()
+  .escape()
+  .replace(/[ \t]{3,}/g, "  ");

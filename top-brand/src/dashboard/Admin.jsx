@@ -20,6 +20,7 @@ import {
 import AdminStatCard from './AdminStatCard';
 import api from "../api/axiosInstance";
 import { jwtDecode } from "jwt-decode";
+import BulkList from './BulkList';
 
 const Admin = () => {
     const [openDashboard, setOpenDashboard] = useState(true)
@@ -223,6 +224,7 @@ const Admin = () => {
                         {activeTab === "users" && <UsersList openDashboard={openDashboard} searchTerm={searchTerm} />}
                         {activeTab === "orders" && <OrdersList openDashboard={openDashboard} searchTerm={searchTerm} />}
                         {activeTab === "messages" && <MessagesList  openDashboard={openDashboard} searchTerm={searchTerm} />} 
+                        {activeTab === "bulk Quotes" && <BulkList  openDashboard={openDashboard} searchTerm={searchTerm} />} 
                     </div> 
                 </div>
 

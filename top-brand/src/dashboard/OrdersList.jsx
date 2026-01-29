@@ -96,7 +96,7 @@ const UsersList = ({openDashboard}) => {
       };
 
   return (
-  <div>
+  <div className="overflow-x-scroll w-190 lg:w-full">
   {/* This is the db table Header.*/}
       <div className="w-[98%] m-auto rounded-xl bg-bg flex-row-center justify-between pl-8 pr-4 h-14">
             <div className="nameOfContentDisplayed">
@@ -132,9 +132,9 @@ const UsersList = ({openDashboard}) => {
             </div>
       </div>
     
-    <div className={`w-full pl-8 not-odd:overflow-y-scroll ${openDashboard ? "h-[43vh]" : "h-[66vh]"}`}>
-      <table  className="w-full mt-4 text-left leading-12 tracking-wide dataTable">
-        <thead>
+    <div className={`w-full pl-8 ${openDashboard ? "h-[43vh]" : "h-[66vh]"}`}>
+      <table  className="w-full mt-4 text-left leading-12 tracking-wide dataTable text-xs">
+        <thead> 
           <tr>
             <th>Order Id</th>
             <th>User id</th>
@@ -152,7 +152,24 @@ const UsersList = ({openDashboard}) => {
                   <td>{order.order_code}</td>
                   <td>{order.user_id}</td>
                   <td>{order.total_amount}</td>
-                  <td>{order.status}</td>
+                  <td className="p-2">
+                    <span
+                        className={`px-2 py-1 rounded text-xs font-semibold
+                        ${
+                          order.status === "pending"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : order.status === "processing"
+                            ? "bg-blue-100 text-blue-700"
+                            : order.status === "completed"
+                            ? "bg-orange-100 text-orange-700"
+                            : order.status === "shipping"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-gray-100 text-gray-700"
+                        }`}
+                    >
+                      {order.status}
+                    </span>
+                  </td>
                   <td>{new Date(order.created_at).toLocaleString()}</td>
                   <td className="relative">
                         <p className="cursor-pointer  text-lg" onClick={() => toggleActions(order.id)}>

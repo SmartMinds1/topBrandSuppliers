@@ -10,11 +10,13 @@ import ProductDetails from '../components/ProductDetails';
 import Modal from '../components/modals/Modal';
 import { cashewList, clovesList, gingerList, honeyList, macadamiaList } from '../../constants/ProductList'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import BulkQuotationForm from '../components/BulkQuotationForm'
 
 
 const Brands = () => {
   const [productLink, setProductLink] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showBulk, setShowBulk] = useState(false);
 
   /* setting up active product */
   const [activeProduct, setActiveProduct] = useState("cloves");
@@ -81,7 +83,7 @@ const Brands = () => {
             </div>
             <p className='bodyText para'>  Discover natural products grown with care and delivered with precision. From rich honey to premium cashews and cloves, we ensure freshness, purity, and high-quality standards from farm to export.</p>
             <div className='w-full h-fit text-center mb-4 -translate-y-8 flex-row-center justify-center gap-6 sm:gap-12 para'>
-               <button className="btn-primary green-shadow"> Bulk Quote</button>
+               <button onClick={()=> setShowBulk(true)} className="btn-primary green-shadow"> Bulk Quote</button>
                <button className="btn-secondary green-shadow">Call to Order</button>
             </div>
 
@@ -242,6 +244,11 @@ const Brands = () => {
     {/* A modal to show every project's additional details */}
       <Modal isOpen={showModal} onClose={() => {setShowModal(false)}}>
           <ProductDetails product={productLink} onClose={() => {setShowModal(false)}}/>
+      </Modal> 
+
+    {/* BULK QUOTATION MODAL */}
+      <Modal isOpen={showBulk} onClose={() => {setShowBulk(false)}}>
+          <BulkQuotationForm onClose={() => {setShowBulk(false)}}/>
       </Modal> 
    </div>
   )

@@ -93,7 +93,7 @@ export default function ProductDetails({product, onClose}) {
                   </span>
               )}
           {/*  close btn */}
-            <button onClick={onClose} className="bg-bg-dark shadow-2xl w-6 h-6 rounded-full text-background hover:brightness-80 duration-300 cursor-pointer"> <FontAwesomeIcon icon={faTimes}/></button>
+            <button onClick={onClose} className="bg-bg-dark shadow-2xl w-6 h-6 rounded-full text-background hover:brightness-80 duration-300 cursor-pointer flex-col-center justify-center"> <FontAwesomeIcon icon={faTimes} className="text-xs"/></button>
         </div>
 
 
@@ -268,7 +268,7 @@ export default function ProductDetails({product, onClose}) {
               </button>
           
             {/* bulk QUOTE button */}
-            <button className="btn-secondary green-shadow">Bulk Quote</button>
+         {/*    <button className="btn-secondary green-shadow">Bulk Quote</button> */}
           </div> 
        </div>
    </div>

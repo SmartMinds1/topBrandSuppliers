@@ -97,7 +97,7 @@ useGSAP(() => {
                         Naturally Harvested<span className='font-extralight'>,</span> Globally Supplied<span className='font-extralight'>.</span> Cashews<span className='font-extralight'>,</span> Cloves <span className='font-extralight'>&</span> Honey
                      </p>
                      {/* Description */}
-                     <p className="text-gray-200 w-full sm:w-[60%] lg:w-[95%] text-left para sm:text-left">
+                     <p className="text-gray-200 w-full sm:w-[60%] lg:w-[95%] text-left para sm:text-left text-sm tracking-wide">
                        From farm to destination, we partner with sustainable growers to bring
                        you natural products. A global supply chain where quality enriches lives.
                      </p>
@@ -121,7 +121,7 @@ useGSAP(() => {
                      <div className="w-38 sm:w-70 h-44 p-2 bg-[url('/landingCashews.webp')] bg-cover bg-position-[50%_50%] "></div>
                   </div> */}
                   <div className="w-70 h-70 p-2 bg-black/30 hidden lg:block rounded-full pl-16 pt-12 rotate-45">
-                     <p className='text-gray-200 font-bold text-xl text-left pl-4 pt-1 leading-12 border-l-2 border-primary -rotate-45'> <span className='text-amber-300 text-4xl animate-pulse font-serif'>FREE!</span> <br /> Samples <br /> Available <FontAwesomeIcon icon={faArrowRightLong} className='font-light text-lg bg-[#FFF]/20 cursor-pointer hover:bg-primary duration-300  p-2 rounded-full ml-4 translate-y-2'/></p>
+                     <p className='text-gray-200 font-bold text-xl text-left pl-4 pt-1 leading-12 border-l-2 border-primary -rotate-45'> <span className='text-amber-300 text-4xl animate-pulse font-serif'>FREE!</span> <br /> <span className='tracking-wide font-light'> Samples <br /> Available </span> <FontAwesomeIcon icon={faArrowRightLong} className='font-light text-lg bg-[#FFF]/20 cursor-pointer hover:bg-primary duration-300  p-2 rounded-full ml-4 translate-y-2'/></p>
                   </div>
                </div>
             </div>

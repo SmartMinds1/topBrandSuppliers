@@ -134,7 +134,7 @@ const OrdersTable = () => {
                   </tr>
                 ) : (
               orders.map((order) => (
-              <tr key={order.id} className="">
+              <tr key={order.id}>
                 <td className="p-2 text-xs">{order.order_code}</td>
   
                 <td className="p-2 text-sm">
