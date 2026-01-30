@@ -304,6 +304,7 @@ const BulkQuotationForm = ({onClose}) => {
                   maxLength={5}
                   value={formData.quantities[prod.id]}
                   onChange={handleChange}
+                  required={formData.products.includes(prod.id)}// If checked, then qty is required
                   disabled={!formData.products.includes(prod.id)}//check it out later
 
                 />

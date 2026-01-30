@@ -11,13 +11,13 @@ import AuthModal from "../components/modals/AuthModal";
 import DeleteConfirm from "../components/modals/DeleteConfirm";
 import StatusOption from "./StatusOption";
 
-const UsersList = ({openDashboard}) => {
+const OrdersList = () => {
   //loading state
     const [isLoading, setIsLoading] = useState(false);
 
  // action button 
     const [openActionId, setOpenActionId] = useState(null);
-    const [oders, setOrders] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [order_ID, setOrder_ID] = useState("");
     const [expandedOrderId, setExpandedOrderId] = useState(null);
 
@@ -78,7 +78,7 @@ const UsersList = ({openDashboard}) => {
       }, []);
 
  // Reusable search hook.
-    const { query, setQuery, filteredData } = useSearch(oders, ["status"]);
+    const { query, setQuery, filteredData } = useSearch(orders, ["order_code"]);
 
 
  /* Handle export to CSV file */
@@ -86,7 +86,7 @@ const UsersList = ({openDashboard}) => {
         exportToCSV(filteredData, {
           filename: "orders.csv",
           columns: [
-            { key: "id", label: "order id" },
+            { key: "order_code", label: "order code" },
             { key: "user_id", label: "User id" },
             { key: "status", label: "status" },
             { key: "total_amount", label: "total amount" },
@@ -118,7 +118,7 @@ const UsersList = ({openDashboard}) => {
                 <input
                   className="outline-0"
                   type="text"
-                  placeholder="username or email"
+                  placeholder="order code"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
@@ -132,11 +132,11 @@ const UsersList = ({openDashboard}) => {
             </div>
       </div>
     
-    <div className={`w-full pl-8 ${openDashboard ? "h-[43vh]" : "h-[66vh]"}`}>
+    <div className={`w-full pl-8 h-[66vh]`}>
       <table  className="w-full mt-4 text-left leading-12 tracking-wide dataTable text-xs">
         <thead> 
           <tr>
-            <th>Order Id</th>
+            <th>Order code</th>
             <th>User id</th>
             <th>total_amount</th>
             <th>status</th>
@@ -282,5 +282,5 @@ const UsersList = ({openDashboard}) => {
 };
 
 
-export default UsersList;
+export default OrdersList;
 

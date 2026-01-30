@@ -29,20 +29,6 @@ const Admin = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [usersCount, setUsersCount] = useState("");
     const [messagesCount, setMessagesCount] = useState("");
-    const [bookingsCount, setBookingsCount] = useState("");
-    const [paymentsCount, setPaymentsCount] = useState("");
-    const [commentsCount, setCommentsCount] = useState("");
-    const [searchTerm, setSearchTerm] = useState("");
-
-    // Search handler function
-    const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
-    };
-
-    // Clear search function
-    const clearSearch = () => {
-        setSearchTerm("");
-    };
 
     //Fetching activeAdmin from access token
      useEffect(() => {
@@ -221,10 +207,10 @@ const Admin = () => {
 
                {/* Rendering db content */}
                     <div>
-                        {activeTab === "users" && <UsersList openDashboard={openDashboard} searchTerm={searchTerm} />}
-                        {activeTab === "orders" && <OrdersList openDashboard={openDashboard} searchTerm={searchTerm} />}
-                        {activeTab === "messages" && <MessagesList  openDashboard={openDashboard} searchTerm={searchTerm} />} 
-                        {activeTab === "bulk Quotes" && <BulkList  openDashboard={openDashboard} searchTerm={searchTerm} />} 
+                        {activeTab === "users" && <UsersList openDashboard={openDashboard} />}
+                        {activeTab === "orders" && <OrdersList openDashboard={openDashboard} />}
+                        {activeTab === "messages" && <MessagesList  openDashboard={openDashboard} />} 
+                        {activeTab === "bulk Quotes" && <BulkList  openDashboard={openDashboard} />} 
                     </div> 
                 </div>
 
